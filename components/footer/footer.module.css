@@ -1,0 +1,18 @@
+.Footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+.Footer .Divider {
+  display: block;
+  background: #000;
+  width: 15px;
+  height: 2px;
+  margin: 0 10px;
+}
+
+.Footer a {
+  color: #000;
+}

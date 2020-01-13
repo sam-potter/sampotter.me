@@ -1,0 +1,86 @@
+/* Typography */
+
+.SubHeading {
+  font-size: 16px;
+  font-family: DrukWide;
+  text-transform: uppercase;
+}
+
+.Heading {
+  font-size: 36px;
+  font-family: DrukText;
+  color: var(--blue);
+}
+
+/* Splash */
+
+.Splash {
+  height: 700px;
+  padding: var(--padding);
+  display: flex;
+  align-items: center;
+}
+
+.Splash .SubHeading {
+  position: absolute;
+  top: 80px;
+}
+
+/* Works */
+
+.Works {
+  padding: var(--padding);
+}
+
+.Works ul {
+  margin-top: 40px;
+  list-style-type: none;
+}
+
+.Works .Card {
+  background: var(--blue);
+  padding: 50px;
+  margin-bottom: 50px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.Works .Card:hover {
+  transform: translate(2px, -2px);
+  box-shadow: var(--shadow);
+}
+
+.Works .Card .Heading {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.Works .Card .SubHeading {
+  margin-top: 70px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Contact */
+
+.Contact {
+  height: 700px;
+  padding: var(--padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Contact .TextBox {
+  display: flex;
+}
+
+.Contact .TextBox span {
+  font-size: 60px;
+  font-family: DrukWide;
+  margin-right: 40px;
+}
+
+.Contact .TextBox .Heading {
+  color: #000;
+}
