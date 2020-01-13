@@ -2,9 +2,18 @@
 
 :root {
   --blue: #112267;
-  --padding: 0 80px;
+
+  --padding: 80px;
   --transition: 250ms;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  --mobile-breakpoint: 600px;
+}
+
+@media only screen and (max-width: 800px) {
+  :root {
+    --padding: 30px;
+  }
 }
 
 /* ---- Global CSS ---- */
@@ -68,11 +77,6 @@ p {
 
 /* ---- Columns ---- */
 
-.col .row {
-  margin-left: -0.75rem;
-  margin-right: -0.75rem;
-}
-
 .section {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -106,7 +110,6 @@ p {
   float: left;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 0 0.75rem;
   min-height: 1px;
 }
 

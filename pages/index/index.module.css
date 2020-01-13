@@ -12,24 +12,59 @@
   color: var(--blue);
 }
 
+@media only screen and (max-width: 800px) {
+  .SubHeading {
+    font-size: 10px;
+  }
+
+  .Heading {
+    font-size: 26px;
+  }
+}
+
 /* Splash */
 
 .Splash {
   height: 700px;
-  padding: var(--padding);
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.Splash .SubHeading {
-  position: absolute;
-  top: 80px;
+.Splash .Text {
+  padding-left: var(--padding);
+}
+
+.Splash .Avatar {
+  background: #edeef3;
+  height: 100%;
+  padding: 0 var(--padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 800px) {
+  .Splash {
+    display: block;
+    height: auto;
+    position: relative;
+  }
+
+  .Splash .Text {
+    padding: 0 var(--padding);
+  }
+
+  .Splash .Avatar {
+    padding: var(--padding) 0;
+    margin: var(--padding) 0;
+  }
 }
 
 /* Works */
 
 .Works {
-  padding: var(--padding);
+  padding: 0 var(--padding);
 }
 
 .Works ul {
@@ -57,15 +92,20 @@
 
 .Works .Card .SubHeading {
   margin-top: 70px;
-  font-size: 12px;
   color: rgba(255, 255, 255, 0.3);
+}
+
+@media only screen and (max-width: 800px) {
+  .Works .Card {
+    padding: var(--padding);
+  }
 }
 
 /* Contact */
 
 .Contact {
   height: 700px;
-  padding: var(--padding);
+  padding: 0 var(--padding);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -83,4 +123,26 @@
 
 .Contact .TextBox .Heading {
   color: #000;
+}
+
+@media only screen and (max-width: 800px) {
+  .Contact {
+    display: block;
+    height: auto;
+    padding: 50px var(--padding);
+  }
+
+  .Contact .TextBox {
+    display: block;
+  }
+
+  .Contact .TextBox span {
+    font-size: 30px;
+    font-family: DrukWide;
+    margin-right: 40px;
+  }
+
+  .Contact .TextBox .Heading {
+    margin: 5px 0 30px 0;
+  }
 }

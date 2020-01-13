@@ -1,21 +1,13 @@
 import React from "react";
 import id from "uuid/v1";
 import Head from "next/head";
-import { Footer } from "../../components";
+import { Nav, Footer } from "../../components";
 import classes from "./index.module.css";
 
 function Index() {
   let works = [
-    {
-      title: "Retail Track",
-      type: "Business analysis tool",
-      link: "/works/retail-track"
-    },
-    {
-      title: "Podac",
-      type: "Chrome extension web app",
-      link: "/works/podac"
-    }
+    { title: "Retail Track", type: "Business analysis tool" },
+    { title: "Podac", type: "Chrome extension" }
   ];
 
   return (
@@ -25,8 +17,9 @@ function Index() {
       </Head>
 
       <div id="home">
+        <Nav />
+
         <div className={classes.Splash}>
-          <h6 className={classes.SubHeading}>Sam Potter</h6>
           <div className={classes.Text}>
             <h1 className={classes.Heading}>
               I’m an Australian freelance developer, currently living in
@@ -54,8 +47,7 @@ function Index() {
           <div className={classes.TextBox}>
             <span>👋 </span>
             <h1 className={classes.Heading}>
-              I’m available for
-              <br /> freelance work
+              I’m available for freelance work
             </h1>
           </div>
           <p>sam.potter@hotmail.com</p>
