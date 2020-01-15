@@ -6,8 +6,8 @@ import classes from "./index.module.css";
 
 function Index() {
   let works = [
-    { title: "Retail Track", type: "Business analysis tool" },
-    { title: "Podac", type: "Chrome extension" }
+    { title: "Retail Track", type: "Business Analysis Tool" },
+    { title: "Podac", type: "Chrome Extension" }
   ];
 
   return (
