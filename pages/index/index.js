@@ -37,7 +37,7 @@ function Index() {
             {works.map(({ title, type }) => (
               <li key={id()} className={classes.Card}>
                 <h1 className={classes.Heading}>{title}</h1>
-                <h6 className={classes.SubHeading}>{type}</h6>
+                <p className={classes.Type}>{type}</p>
               </li>
             ))}
           </ul>
@@ -47,10 +47,12 @@ function Index() {
           <div className={classes.TextBox}>
             <span>👋 </span>
             <h1 className={classes.Heading}>
-              I’m available for freelance work
+              I’m available for
+              <br /> freelance work, please
+              <br /> contact me <a href="mailto:sam.potter@hotmail.com">here</a>
+              .
             </h1>
           </div>
-          <p>sam.potter@hotmail.com</p>
         </div>
       </div>
 

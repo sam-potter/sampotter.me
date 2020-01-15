@@ -2,23 +2,23 @@
 
 .SubHeading {
   font-size: 16px;
-  font-family: DrukWide;
+  font-family: DrukBold;
   text-transform: uppercase;
 }
 
 .Heading {
   font-size: 36px;
-  font-family: DrukText;
+  font-family: DrukRegular;
   color: var(--blue);
 }
 
 @media only screen and (max-width: 800px) {
   .SubHeading {
-    font-size: 10px;
+    font-size: 16px;
   }
 
   .Heading {
-    font-size: 26px;
+    font-size: 20px;
   }
 }
 
@@ -90,12 +90,24 @@
   text-transform: uppercase;
 }
 
-.Works .Card .SubHeading {
+.Works .Card .Type {
   margin-top: 70px;
   color: rgba(255, 255, 255, 0.3);
 }
 
 @media only screen and (max-width: 800px) {
+  .Works {
+    padding: 0;
+  }
+
+  .Works .SubHeading {
+    margin-left: var(--padding);
+  }
+
+  .Works .Card .SubHeading {
+    margin-left: 0;
+  }
+
   .Works .Card {
     padding: var(--padding);
   }
@@ -117,12 +129,18 @@
 
 .Contact .TextBox span {
   font-size: 60px;
-  font-family: DrukWide;
+  font-family: DrukRegular;
   margin-right: 40px;
 }
 
-.Contact .TextBox .Heading {
+.Contact .TextBox .Heading,
+.Contact .TextBox .Heading a {
   color: #000;
+}
+
+.Contact .TextBox .Heading a:after,
+.Contact .TextBox .Heading a:before {
+  height: 2px;
 }
 
 @media only screen and (max-width: 800px) {
@@ -130,16 +148,11 @@
     display: block;
     height: auto;
     padding: 50px var(--padding);
+    text-align: center;
   }
 
   .Contact .TextBox {
     display: block;
-  }
-
-  .Contact .TextBox span {
-    font-size: 30px;
-    font-family: DrukWide;
-    margin-right: 40px;
   }
 
   .Contact .TextBox .Heading {

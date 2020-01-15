@@ -9,7 +9,7 @@
 
 .Nav .Name {
   font-size: 16px;
-  font-family: DrukWide;
+  font-family: DrukBold;
   text-transform: uppercase;
 }
 
@@ -19,6 +19,6 @@
   }
 
   .Nav .Name {
-    font-size: 10px;
+    font-size: 16px;
   }
 }
