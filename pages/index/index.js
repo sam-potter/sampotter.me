@@ -7,10 +7,6 @@ const Index = () => (
   <>
     <Head>
       <title>Sam Potter</title>
-      <script>
-        document.addEventListener("scroll",_ =>
-        document.getElementsByTagName('body')[0].style.background=(document.documentElement.scrollTop>50)?"#fff":"#112267",false);
-      </script>
     </Head>
 
     <div id="home">
@@ -37,32 +33,30 @@ const Index = () => (
       </div>
 
       <div className={classes.About}>
-        <img
-          className={classes.Avatar}
-          src="/static/avatar.jpg"
-          width="300px"
-          alt=""
-        ></img>
-        <div className={classes.Text}>
-          <p>
-            My name’s Sam Potter, I’m a full-stack web developer that offers my
-            services as a freelancer. I’ve built countless apps and websites for
-            plenty of good people, and I’m always happy to take on new work 😊
-          </p>
-          <p>
-            I mostly work with React, and use server-side rendering to optimise
-            performance and usability. So far, no task has been too big, nor too
-            small, so whatever web solution you need, don’t hesitate to get in
-            touch.
-          </p>
-          <p>
-            I’m also unemployed. If you’re an employer that’s reading this, here
-            is my <a href="/static/sampotter-resume.pdf">resume</a>. You,
-            especially, should not hesitate to get in touch.
-          </p>
-          <div className={classes.NameLocation}>
-            <p>Sam P</p>
-            <p>Melbourne, Australia</p>
+        <div className={classes.Container}>
+          <img className={classes.Avatar} src="/static/avatar.jpg" alt=""></img>
+          <div className={classes.Text}>
+            <p>
+              My name’s Sam Potter, I’m a full-stack web developer that offers
+              my services as a freelancer. I’ve built countless apps and
+              websites for plenty of good people, and I’m always happy to take
+              on new work 😊
+            </p>
+            <p>
+              I mostly work with React, and use server-side rendering to
+              optimise performance and usability. So far, no task has been too
+              big, nor too small, so whatever web solution you need, don’t
+              hesitate to get in touch.
+            </p>
+            <p>
+              I’m also unemployed. If you’re an employer that’s reading this,
+              here is my <a href="/static/sampotter-resume.pdf">resume</a>. You,
+              especially, should not hesitate to get in touch.
+            </p>
+            <div className={classes.NameLocation}>
+              <p>Sam P</p>
+              <p>Melbourne, Australia</p>
+            </div>
           </div>
         </div>
       </div>

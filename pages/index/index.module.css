@@ -67,6 +67,10 @@ p {
 /*-------------------- About --------------------*/
 
 .About {
+  background: #fff;
+}
+
+.About .Container {
   background: var(--grey);
   padding: var(--padding);
   margin-right: var(--padding);
@@ -96,10 +100,16 @@ p {
   .About {
     display: block;
     margin-right: 0;
+    text-align: center;
   }
 
   .About .Text {
+    text-align: left;
     padding: var(--padding) 0 0 0;
+  }
+
+  .About .Avatar {
+    width: 200px;
   }
 }
 
