@@ -65,8 +65,7 @@ const Index = () => (
         <div className={classes.TextBox}>
           <span>👋 </span>
           <h1 className={classes.Heading}>
-            I’m available for freelance
-            <br />
+            I’m available for freelance <br />
             work, send me an email{" "}
             <a href="mailto:sam.potter@hotmail.com">here</a> <br />
             to get in touch.

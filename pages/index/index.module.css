@@ -129,7 +129,6 @@ p {
 
 .Contact .TextBox span {
   font-size: 60px;
-  font-family: DrukRegular;
   margin-right: 40px;
 }
 
@@ -151,6 +150,10 @@ p {
 
   .Contact .TextBox {
     display: block;
+  }
+
+  .Contact .TextBox span {
+    margin-right: 0;
   }
 
   .Contact .TextBox .Heading {
