@@ -30,6 +30,6 @@
   }
 
   .Footer .Links {
-    margin-top: 30px;
+    margin-bottom: var(--padding);
   }
 }

@@ -25,28 +25,11 @@ p {
 .Splash {
   background: var(--blue);
   color: #fff;
-  padding: 100px;
+  padding: var(--padding);
 }
 
 .Splash .Heading {
   margin-bottom: 30px;
-}
-
-@media only screen and (max-width: 800px) {
-  .Splash {
-    display: block;
-    height: auto;
-    position: relative;
-  }
-
-  .Splash .Text {
-    padding: 0 var(--padding);
-  }
-
-  .Splash .Avatar {
-    padding: var(--padding) 0;
-    margin: var(--padding) 0;
-  }
 }
 
 /*-------------------- Works --------------------*/
@@ -70,20 +53,14 @@ p {
 }
 
 @media only screen and (max-width: 800px) {
-  .Works {
-    padding: 0;
+  .Works .Websites,
+  .Works .WebApps {
+    display: block;
   }
 
-  .Works .SubHeading {
-    margin-left: var(--padding);
-  }
-
-  .Works .Card .SubHeading {
-    margin-left: 0;
-  }
-
-  .Works .Card {
-    padding: var(--padding);
+  .Works .Heading {
+    min-width: 0;
+    margin-bottom: var(--padding);
   }
 }
 
@@ -113,6 +90,17 @@ p {
 .About .Text .NameLocation p {
   font-family: maisonneue_bold;
   margin-bottom: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .About {
+    display: block;
+    margin-right: 0;
+  }
+
+  .About .Text {
+    padding: var(--padding) 0 0 0;
+  }
 }
 
 /*-------------------- Contact --------------------*/
@@ -148,8 +136,6 @@ p {
 @media only screen and (max-width: 800px) {
   .Contact {
     display: block;
-    height: auto;
-    padding: 50px var(--padding);
     text-align: center;
   }
 
@@ -159,5 +145,9 @@ p {
 
   .Contact .TextBox .Heading {
     margin: 5px 0 30px 0;
+  }
+
+  .Contact br {
+    display: none;
   }
 }

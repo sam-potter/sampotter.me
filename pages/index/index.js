@@ -7,6 +7,10 @@ const Index = () => (
   <>
     <Head>
       <title>Sam Potter</title>
+      <script>
+        document.addEventListener("scroll",_ =>
+        document.getElementsByTagName('body')[0].style.background=(document.documentElement.scrollTop>50)?"#fff":"#112267",false);
+      </script>
     </Head>
 
     <div id="home">
@@ -70,8 +74,7 @@ const Index = () => (
             I’m available for freelance
             <br />
             work, send me an email{" "}
-            <a href="mailto:sam.potter@hotmail.com">here</a>
-            <br />
+            <a href="mailto:sam.potter@hotmail.com">here</a> <br />
             to get in touch.
           </h1>
         </div>
