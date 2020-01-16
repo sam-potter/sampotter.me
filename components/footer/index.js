@@ -3,16 +3,14 @@ import classes from "./footer.module.css";
 
 const Footer = props => (
   <div className={classes.Footer}>
-    <p>All rights reserved — © Sam Potter</p>
     <div className={classes.Links}>
-      <a className="link-primary" href="https://www.instagram.com/sampotter4/">
-        Instagram
-      </a>
+      <a href="https://www.instagram.com/sampotter4/">Instagram</a>
       <span className={classes.Divider}></span>
-      <a className="link-primary" href="https://github.com/saampotter">
-        Github
-      </a>
+      <a href="https://github.com/saampotter">Github</a>
     </div>
+    <p>
+      This website loaded in 120ms, don’t worry, I’ll make yours just as fast.
+    </p>
   </div>
 );
 

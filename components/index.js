@@ -1,4 +1,4 @@
-import Nav from "./nav";
+import Showcase from "./showcase";
 import Footer from "./footer";
 
-export { Nav, Footer };
+export { Showcase, Footer };

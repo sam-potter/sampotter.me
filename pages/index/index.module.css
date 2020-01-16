@@ -1,19 +1,17 @@
-/* Typography */
+/*-------------------- Typography --------------------*/
 
-.SubHeading {
-  font-size: 16px;
-  font-family: DrukBold;
-  text-transform: uppercase;
+p {
+  font-family: maisonneue_book;
+  font-size: 18px;
 }
 
 .Heading {
+  font-family: druk_text;
   font-size: 36px;
-  font-family: DrukRegular;
-  color: var(--blue);
 }
 
 @media only screen and (max-width: 800px) {
-  .SubHeading {
+  p {
     font-size: 16px;
   }
 
@@ -22,26 +20,16 @@
   }
 }
 
-/* Splash */
+/*-------------------- Splash --------------------*/
 
 .Splash {
-  height: 700px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--blue);
+  color: #fff;
+  padding: 100px;
 }
 
-.Splash .Text {
-  padding-left: var(--padding);
-}
-
-.Splash .Avatar {
-  background: #edeef3;
-  height: 100%;
-  padding: 0 var(--padding);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.Splash .Heading {
+  margin-bottom: 30px;
 }
 
 @media only screen and (max-width: 800px) {
@@ -61,38 +49,24 @@
   }
 }
 
-/* Works */
+/*-------------------- Works --------------------*/
 
 .Works {
-  padding: 0 var(--padding);
+  background: #fff;
+  padding: var(--padding);
 }
 
-.Works ul {
-  margin-top: 40px;
-  list-style-type: none;
+.Works .Heading {
+  min-width: 300px;
 }
 
-.Works .Card {
-  background: var(--blue);
-  padding: 50px;
-  margin-bottom: 50px;
-  cursor: pointer;
-  transition: all var(--transition);
+.Works .Websites,
+.Works .WebApps {
+  display: flex;
 }
 
-.Works .Card:hover {
-  transform: translate(2px, -2px);
-  box-shadow: var(--shadow);
-}
-
-.Works .Card .Heading {
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.Works .Card .Type {
-  margin-top: 70px;
-  color: rgba(255, 255, 255, 0.3);
+.Works .Websites {
+  margin-bottom: var(--padding);
 }
 
 @media only screen and (max-width: 800px) {
@@ -113,11 +87,39 @@
   }
 }
 
-/* Contact */
+/*-------------------- About --------------------*/
+
+.About {
+  background: var(--grey);
+  padding: var(--padding);
+  margin-right: var(--padding);
+  display: flex;
+}
+
+.About .Text {
+  padding: var(--padding);
+  padding-right: 0;
+}
+
+.About .Text p {
+  margin-bottom: 40px;
+}
+
+.About .Text .NameLocation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.About .Text .NameLocation p {
+  font-family: maisonneue_bold;
+  margin-bottom: 0;
+}
+
+/*-------------------- Contact --------------------*/
 
 .Contact {
-  height: 700px;
-  padding: 0 var(--padding);
+  background: #fff;
+  padding: calc(var(--padding) * 3.5) var(--padding);
   display: flex;
   align-items: center;
   justify-content: space-between;
