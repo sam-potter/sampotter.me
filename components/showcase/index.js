@@ -35,6 +35,19 @@ Indicators.propTypes = {
   backgrounds: propTypes.array.isRequired
 };
 
+const Computer = props => (
+  <div className={classes.Wrapper} style={props.style}>
+    <div className={classes.Computer}>
+      <div className={classes.Bar}>
+        <div className={classes.Dot} style={{ background: "#EA4F49" }} />
+        <div className={classes.Dot} style={{ background: "#F7BC33" }} />
+        <div className={classes.Dot} style={{ background: "#69CA43" }} />
+      </div>
+      {props.children}
+    </div>
+  </div>
+);
+
 class Showcase extends Component {
   state = { currentSlide: 0, timeout: undefined };
 
@@ -78,21 +91,8 @@ class Showcase extends Component {
 
   handleSlideClick = event => {
     let width = this.refs.carousel.offsetWidth;
-
-    console.dir(event);
-
-    if (event.layerX > width / 2) {
-      this.nextSlide();
-      console.log("Next slide...", event.layerX, width / 2);
-    } else {
-      this.prevSlide();
-      console.log("Prev slide...", event.layerX, width / 2);
-    }
-
-    this.reset();
-    return;
-
-    event.layerX > width / 2 ? this.nextSlide() : this.prevSlide();
+    let pos = event.layerX + this.state.currentSlide * width;
+    pos > width / 2 ? this.nextSlide() : this.prevSlide();
     this.reset();
   };
 
@@ -108,9 +108,9 @@ class Showcase extends Component {
       >
         <div className={classes.Carousel} ref="carousel">
           {this.props.backgrounds.map(({ background, src }, index) => (
-            <div className={classes.ImageWrapper} style={{ background }}>
-              <img className={classes.Image} src={src} key={index} alt="" />
-            </div>
+            <Computer key={index} style={{ background }} order={index}>
+              <img className={classes.Image} src={src} alt="" />
+            </Computer>
           ))}
         </div>
       </InView>
