@@ -1,5 +1,6 @@
 .Footer {
-  background: #fff;
+  background: var(--background);
+  color: var(--text);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,6 +15,7 @@
 
 .Footer .Links a {
   font-family: maisonneue_book;
+  color: var(--text);
 }
 
 .Footer .Links .Divider {

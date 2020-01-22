@@ -35,30 +35,39 @@ p {
 /*-------------------- Works --------------------*/
 
 .Works {
-  background: #fff;
+  background: var(--background);
   padding: var(--padding);
 }
 
-.Works .Heading {
+.Works .Info {
   min-width: 300px;
 }
 
-.Works .Websites,
-.Works .WebApps {
-  display: flex;
+.Works h1 {
+  font-family: maisonneue_bold;
+  font-size: 36px;
+  color: var(--text);
 }
 
-.Works .Websites {
+.Works h4 {
+  font-family: druk_text;
+  font-size: 14px;
+  margin-bottom: 30px;
+  opacity: 0.5;
+  color: var(--text);
+}
+
+.Works .Work {
+  display: flex;
   margin-bottom: var(--padding);
 }
 
 @media only screen and (max-width: 800px) {
-  .Works .Websites,
-  .Works .WebApps {
+  .Works .Work {
     display: block;
   }
 
-  .Works .Heading {
+  .Works .Info {
     min-width: 0;
     margin-bottom: var(--padding);
   }
@@ -67,7 +76,7 @@ p {
 /*-------------------- About --------------------*/
 
 .About {
-  background: #fff;
+  background: var(--background);
 }
 
 .About .Container {
@@ -116,7 +125,7 @@ p {
 /*-------------------- Contact --------------------*/
 
 .Contact {
-  background: #fff;
+  background: var(--background);
   padding: calc(var(--padding) * 3.5) var(--padding);
   display: flex;
   align-items: center;
@@ -134,7 +143,7 @@ p {
 
 .Contact .TextBox .Heading,
 .Contact .TextBox .Heading a {
-  color: #000;
+  color: var(--text);
 }
 
 .Contact .TextBox .Heading a:after,

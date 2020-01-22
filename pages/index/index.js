@@ -7,6 +7,7 @@ const Index = () => (
   <>
     <Head>
       <title>Sam Potter</title>
+      <script src="/static/gsap.min.js"></script>
     </Head>
 
     <div id="home">
@@ -19,22 +20,104 @@ const Index = () => (
       </div>
 
       <div className={classes.Works}>
-        <div className={classes.Websites}>
-          <h1 className={classes.Heading}>websites</h1>
+        <div className={classes.Work}>
+          <div className={classes.Info}>
+            <h4>chrome extension</h4>
+            <h1>Podac</h1>
+          </div>
 
-          <Showcase />
+          <Showcase
+            backgrounds={[
+              {
+                preload: "",
+                src: "/static/images/podac/main.jpg",
+                duration: 5000,
+                background: "#1e1e1e"
+              },
+              {
+                preload: "",
+                src: "/static/images/podac/add-bookmark.jpg",
+                duration: 5000,
+                background: "#1e1e1e"
+              }
+            ]}
+          />
         </div>
 
-        <div className={classes.WebApps}>
-          <h1 className={classes.Heading}>web apps</h1>
+        <div className={classes.Work}>
+          <div className={classes.Info}>
+            <h4>website</h4>
+            <h1>Charlie Potter</h1>
+          </div>
 
-          <Showcase />
+          <Showcase
+            backgrounds={[
+              {
+                preload: "",
+                src: "/static/images/charlie-potter/About.jpg",
+                duration: 5000,
+                background: "#4B84FC"
+              },
+              {
+                preload: "",
+                src: "/static/images/charlie-potter/Director.jpg",
+                duration: 5000,
+                background: "#4B84FC"
+              }
+            ]}
+          />
+        </div>
+
+        <div className={classes.Work}>
+          <div className={classes.Info}>
+            <h4>web app</h4>
+            <h1>Retail Track</h1>
+          </div>
+
+          <Showcase
+            backgrounds={[
+              {
+                preload: "",
+                src: "/static/images/retail-track/login.jpg",
+                duration: 5000,
+                background: "#1e1e1e"
+              },
+              {
+                preload: "",
+                src: "/static/images/retail-track/home.jpg",
+                duration: 5000,
+                background: "#1e1e1e"
+              },
+              {
+                preload: "",
+                src: "/static/images/retail-track/create-campaign.jpg",
+                duration: 5000,
+                background: "#1e1e1e"
+              },
+              {
+                preload: "",
+                src: "/static/images/retail-track/campaign.jpg",
+                duration: 5000,
+                background: "#1e1e1e"
+              },
+              {
+                preload: "",
+                src: "/static/images/retail-track/error.jpg",
+                duration: 5000,
+                background: "#1e1e1e"
+              }
+            ]}
+          />
         </div>
       </div>
 
       <div className={classes.About}>
         <div className={classes.Container}>
-          <img className={classes.Avatar} src="/static/avatar.jpg" alt=""></img>
+          <img
+            className={classes.Avatar}
+            src="/static/images/avatar.jpg"
+            alt=""
+          ></img>
           <div className={classes.Text}>
             <p>
               My name’s Sam Potter, I’m a full-stack web developer that offers
