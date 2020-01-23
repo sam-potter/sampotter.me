@@ -86,6 +86,11 @@ p {
   display: flex;
 }
 
+.About .AvatarContainer {
+  display: flex;
+  align-items: center;
+}
+
 .About .Text {
   padding: var(--padding);
   padding-right: 0;

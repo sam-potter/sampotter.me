@@ -57,30 +57,28 @@ class Showcase extends Component {
 
   componentWillUnmount() {
     this.refs.carousel.removeEventListener("click", this.handleSlideClick);
-    clearTimeout(this.state.timeout);
+    this.stop();
   }
 
   start = async () => {
     let current = this.state.currentSlide;
     let { duration } = this.props.backgrounds[current];
+    let timeout = setTimeout(this.loop, duration);
+    this.setState({ timeout });
+  };
 
+  loop = () => {
+    let current = this.state.currentSlide;
+    let { duration } = this.props.backgrounds[current];
     this.nextSlide();
-    let timeout = setTimeout(this.start, duration);
+    let timeout = setTimeout(this.loop, duration);
     this.setState({ timeout });
   };
 
   stop = () => clearTimeout(this.state.timeout);
 
-  reset = () => {
-    clearTimeout(this.state.timeout);
-    let { duration } = this.props.backgrounds[this.state.currentSlide];
-    let timeout = setTimeout(this.start, duration);
-    this.setState({ timeout });
-  };
-
   changeSlide = slide => {
     if (slide >= this.props.backgrounds.length || slide < 0) return;
-
     let pos = slide * this.refs.carousel.offsetWidth;
     this.refs.carousel.style.transform = `translate3d(-${pos}px, 0px, 0px)`;
     this.setState({ currentSlide: slide });
@@ -93,7 +91,9 @@ class Showcase extends Component {
     let width = this.refs.carousel.offsetWidth;
     let pos = event.layerX + this.state.currentSlide * width;
     pos > width / 2 ? this.nextSlide() : this.prevSlide();
-    this.reset();
+
+    this.stop();
+    this.start();
   };
 
   handleScroll = inView => (inView ? this.start() : this.stop());

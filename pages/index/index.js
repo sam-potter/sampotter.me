@@ -113,11 +113,13 @@ const Index = () => (
 
       <div className={classes.About}>
         <div className={classes.Container}>
-          <img
-            className={classes.Avatar}
-            src="/static/images/avatar.jpg"
-            alt=""
-          ></img>
+          <div className={classes.AvatarContainer}>
+            <img
+              className={classes.Avatar}
+              src="/static/images/avatar.jpg"
+              alt=""
+            />
+          </div>
           <div className={classes.Text}>
             <p>
               My name’s Sam Potter, I’m a full-stack web developer that offers
