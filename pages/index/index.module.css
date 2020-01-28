@@ -52,7 +52,7 @@ p {
 .Works h4 {
   font-family: druk_text;
   font-size: 14px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   opacity: 0.5;
   color: var(--text);
 }
@@ -112,9 +112,10 @@ p {
 
 @media only screen and (max-width: 800px) {
   .About .Container {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-right: 0;
-    text-align: center;
   }
 
   .About .Text {

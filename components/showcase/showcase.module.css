@@ -12,7 +12,7 @@
   display: flex;
   width: 100%;
   height: 100%;
-  transition: all 900ms;
+  transition: all 700ms;
   transition-timing-function: cubic-bezier(0.59, 0.01, 0.4, 1);
 }
 
@@ -25,13 +25,15 @@
   background: #fff;
 }
 
-.Showcase .Carousel .Wrapper .Computer {
+.Showcase .Carousel .Wrapper .Browser {
   height: 85%;
   background: #fff;
   box-shadow: var(--shadow);
+  overflow: hidden;
+  border-radius: 8px;
 }
 
-.Showcase .Carousel .Wrapper .Computer .Bar {
+.Showcase .Carousel .Wrapper .Browser .Bar {
   display: block;
   width: 100%;
   height: 20px;
@@ -41,7 +43,7 @@
   padding-left: 5px;
 }
 
-.Showcase .Carousel .Wrapper .Computer .Bar .Dot {
+.Showcase .Carousel .Wrapper .Browser .Bar .Dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -49,9 +51,17 @@
   margin-left: 5px;
 }
 
-.Showcase .Carousel .Wrapper .Computer .Image {
+.Showcase .Carousel .Wrapper .Browser .Image {
   max-height: calc(100% - 20px);
   object-fit: contain;
+}
+
+@media only screen and (max-width: 800px) {
+  .Showcase .Carousel .Wrapper .Browser {
+    height: auto;
+    max-height: 85%;
+    max-width: 85%;
+  }
 }
 
 .Showcase .Indicators {

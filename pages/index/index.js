@@ -29,16 +29,14 @@ const Index = () => (
           <Showcase
             backgrounds={[
               {
-                preload: "",
                 src: "/static/images/podac/main.jpg",
                 duration: 5000,
-                background: "#1e1e1e"
+                background: "#b8b8b8"
               },
               {
-                preload: "",
                 src: "/static/images/podac/add-bookmark.jpg",
                 duration: 5000,
-                background: "#1e1e1e"
+                background: "#b8b8b8"
               }
             ]}
           />
@@ -53,13 +51,11 @@ const Index = () => (
           <Showcase
             backgrounds={[
               {
-                preload: "",
                 src: "/static/images/charlie-potter/About.jpg",
                 duration: 5000,
                 background: "#4B84FC"
               },
               {
-                preload: "",
                 src: "/static/images/charlie-potter/Director.jpg",
                 duration: 5000,
                 background: "#4B84FC"
@@ -77,31 +73,26 @@ const Index = () => (
           <Showcase
             backgrounds={[
               {
-                preload: "",
                 src: "/static/images/retail-track/login.jpg",
                 duration: 5000,
                 background: "#1e1e1e"
               },
               {
-                preload: "",
                 src: "/static/images/retail-track/home.jpg",
                 duration: 5000,
                 background: "#1e1e1e"
               },
               {
-                preload: "",
                 src: "/static/images/retail-track/create-campaign.jpg",
                 duration: 5000,
                 background: "#1e1e1e"
               },
               {
-                preload: "",
                 src: "/static/images/retail-track/campaign.jpg",
                 duration: 5000,
                 background: "#1e1e1e"
               },
               {
-                preload: "",
                 src: "/static/images/retail-track/error.jpg",
                 duration: 5000,
                 background: "#1e1e1e"

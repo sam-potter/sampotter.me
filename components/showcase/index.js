@@ -35,9 +35,9 @@ Indicators.propTypes = {
   backgrounds: propTypes.array.isRequired
 };
 
-const Computer = props => (
+const Browser = props => (
   <div className={classes.Wrapper} style={props.style}>
-    <div className={classes.Computer}>
+    <div className={classes.Browser}>
       <div className={classes.Bar}>
         <div className={classes.Dot} style={{ background: "#EA4F49" }} />
         <div className={classes.Dot} style={{ background: "#F7BC33" }} />
@@ -49,7 +49,21 @@ const Computer = props => (
 );
 
 class Showcase extends Component {
-  state = { currentSlide: 0, timeout: undefined };
+  constructor(props) {
+    super(props);
+
+    let backgrounds = [
+      props.backgrounds[props.backgrounds.length - 1],
+      ...props.backgrounds,
+      props.backgrounds[0]
+    ];
+
+    this.state = {
+      timeout: undefined,
+      currentSlide: 0,
+      backgrounds
+    };
+  }
 
   componentDidMount() {
     this.refs.carousel.addEventListener("click", this.handleSlideClick);
@@ -62,14 +76,14 @@ class Showcase extends Component {
 
   start = async () => {
     let current = this.state.currentSlide;
-    let { duration } = this.props.backgrounds[current];
+    let { duration } = this.state.backgrounds[current];
     let timeout = setTimeout(this.loop, duration);
     this.setState({ timeout });
   };
 
   loop = () => {
     let current = this.state.currentSlide;
-    let { duration } = this.props.backgrounds[current];
+    let { duration } = this.state.backgrounds[current];
     this.nextSlide();
     let timeout = setTimeout(this.loop, duration);
     this.setState({ timeout });
@@ -78,9 +92,35 @@ class Showcase extends Component {
   stop = () => clearTimeout(this.state.timeout);
 
   changeSlide = slide => {
-    if (slide >= this.props.backgrounds.length || slide < 0) return;
-    let pos = slide * this.refs.carousel.offsetWidth;
-    this.refs.carousel.style.transform = `translate3d(-${pos}px, 0px, 0px)`;
+    let c = this.refs.carousel;
+
+    function noAnimation(pos) {
+      // TODO: if animation has already started, get its current pos and use that instead;
+
+      c.style.transition = "none";
+      c.style.transform = `translate3d(-${pos}px, 0px, 0px)`;
+      // flush pending css
+      c.offsetHeight;
+      // restore transition
+      c.style.transition = "all 700ms";
+    }
+
+    // backwards
+    if (slide < 1) {
+      let pos = (this.state.backgrounds.length - 1) * c.offsetWidth;
+      noAnimation(pos);
+      slide = this.state.backgrounds.length - 2;
+    }
+
+    // forwards
+    if (slide >= this.state.backgrounds.length - 1) {
+      noAnimation(0);
+      slide = 1;
+    }
+
+    let pos = slide * c.offsetWidth;
+    c.style.transform = `translate3d(-${pos}px, 0px, 0px)`;
+
     this.setState({ currentSlide: slide });
   };
 
@@ -107,10 +147,10 @@ class Showcase extends Component {
         threshold={1}
       >
         <div className={classes.Carousel} ref="carousel">
-          {this.props.backgrounds.map(({ background, src }, index) => (
-            <Computer key={index} style={{ background }} order={index}>
+          {this.state.backgrounds.map(({ background, src }, index) => (
+            <Browser key={index} style={{ background }}>
               <img className={classes.Image} src={src} alt="" />
-            </Computer>
+            </Browser>
           ))}
         </div>
       </InView>
