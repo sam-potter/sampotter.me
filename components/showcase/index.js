@@ -60,13 +60,14 @@ class Showcase extends Component {
 
     this.state = {
       timeout: undefined,
-      currentSlide: 0,
+      currentSlide: 1,
       backgrounds
     };
   }
 
   componentDidMount() {
-    this.refs.carousel.addEventListener("click", this.handleSlideClick);
+    let c = this.refs.carousel;
+    c.addEventListener("click", this.handleSlideClick);
   }
 
   componentWillUnmount() {
@@ -94,8 +95,8 @@ class Showcase extends Component {
   changeSlide = slide => {
     let c = this.refs.carousel;
 
-    function noAnimation(pos) {
-      // TODO: if animation has already started, get its current pos and use that instead;
+    function noAnimate(pos) {
+      // TODO: if mid-animation, get its current pos and use that instead;
 
       c.style.transition = "none";
       c.style.transform = `translate3d(-${pos}px, 0px, 0px)`;
@@ -108,13 +109,13 @@ class Showcase extends Component {
     // backwards
     if (slide < 1) {
       let pos = (this.state.backgrounds.length - 1) * c.offsetWidth;
-      noAnimation(pos);
+      noAnimate(pos);
       slide = this.state.backgrounds.length - 2;
     }
 
     // forwards
     if (slide >= this.state.backgrounds.length - 1) {
-      noAnimation(0);
+      noAnimate(0);
       slide = 1;
     }
 
