@@ -1,0 +1,20 @@
+.Indicators {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: calc(100% - 30px);
+  display: flex;
+  justify-content: space-between;
+}
+
+.Indicators .Indicator {
+  display: block;
+  height: 2px;
+  background: rgba(102, 103, 120, 1);
+}
+
+.Indicators .Indicator .Bar {
+  display: block;
+  height: 100%;
+  background: rgba(191, 191, 191, 1);
+}

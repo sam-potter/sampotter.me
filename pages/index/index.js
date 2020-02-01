@@ -1,22 +1,14 @@
 import React from "react";
-import Head from "next/head";
-import { Showcase, Footer } from "../../components";
+import { SEO, Showcase, Footer, Background } from "../../components";
 import classes from "./index.module.css";
 
 const Index = () => (
   <>
-    <Head>
-      <title>Sam Potter</title>
-      <script src="/static/gsap.min.js"></script>
-    </Head>
+    <SEO title="Sam Potter" />
 
     <div id="home">
       <div className={classes.Splash}>
-        <h1 className={classes.Heading}>
-          I’m not going to write a bullshit slogan here,
-          <br /> because that’s not me.
-        </h1>
-        <p>Instead, check out some of my previous projects.</p>
+        <Background />
       </div>
 
       <div className={classes.Works}>

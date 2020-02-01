@@ -26,10 +26,7 @@ p {
   background: var(--blue);
   color: #fff;
   padding: var(--padding);
-}
-
-.Splash .Heading {
-  margin-bottom: 30px;
+  height: 100vh;
 }
 
 /*-------------------- Works --------------------*/

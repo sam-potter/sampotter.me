@@ -32,7 +32,7 @@ html,
 }
 
 body {
-  background: var(--background);
+  background: var(--blue);
 }
 
 a {
