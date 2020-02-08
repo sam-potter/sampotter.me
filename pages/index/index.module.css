@@ -23,10 +23,30 @@ p {
 /*-------------------- Splash --------------------*/
 
 .Splash {
-  background: var(--blue);
+  background: #000;
   color: #fff;
   padding: var(--padding);
   height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.Splash h3 {
+  position: absolute;
+  top: var(--padding);
+  font-family: druk_text;
+  z-index: 1000;
+}
+
+.Splash h1 {
+  position: relative;
+  font-family: druk_text;
+  width: 650px;
+  z-index: 1000;
+}
+
+.Splash h1 span {
+  opacity: 0.5;
 }
 
 /*-------------------- Works --------------------*/

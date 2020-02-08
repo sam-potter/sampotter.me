@@ -8,6 +8,11 @@ const Index = () => (
 
     <div id="home">
       <div className={classes.Splash}>
+        <h3>sam potter</h3>
+        <h1>
+          I’m not going to put some vague slogan here to make you hire me,{" "}
+          <span>just go look at some of my works.</span>
+        </h1>
         <Background />
       </div>
 
