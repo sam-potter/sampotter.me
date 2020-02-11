@@ -1,11 +1,11 @@
 /*--------------- Variables ---------------*/
 
 :root {
-  --blue: #112267;
-  --grey: #edeef3;
+  --blue: #0070f3;
+  --grey: #1f1f1f;
 
-  --background: #fff;
-  --text: #000;
+  --background: #000;
+  --text: #fff;
 
   --padding: 80px;
   --transition: 250ms;
@@ -32,7 +32,7 @@ html,
 }
 
 body {
-  background: var(--blue);
+  background: var(--background);
 }
 
 a {

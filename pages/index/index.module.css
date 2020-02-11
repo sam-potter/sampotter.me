@@ -42,6 +42,46 @@ p {
   opacity: 0.5;
 }
 
+/*-------------------- About --------------------*/
+
+.About {
+  background: var(--grey);
+  padding-top: calc(var(--padding) * 2);
+  padding-bottom: calc(var(--padding) * 2);
+  padding-right: calc(var(--padding) * 3);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.About .Title {
+  width: 530px;
+  font-family: druk_text;
+  margin-bottom: 60px;
+}
+
+.About p {
+  width: 685px;
+  margin-bottom: 30px;
+}
+
+.About p a {
+  color: #fff;
+}
+
+.About p a::before,
+.About p a::after {
+  background: var(--blue);
+}
+
+@media only screen and (max-width: 800px) {
+  .About {
+    text-align: left;
+    padding: var(--padding) 0 0 0;
+  }
+}
+
 /*-------------------- Works --------------------*/
 
 .Works {
@@ -83,65 +123,10 @@ p {
   }
 }
 
-/*-------------------- About --------------------*/
-
-.About {
-  background: var(--background);
-}
-
-.About .Container {
-  background: var(--grey);
-  padding: var(--padding);
-  margin-right: var(--padding);
-  display: flex;
-}
-
-.About .AvatarContainer {
-  display: flex;
-  align-items: center;
-}
-
-.About .Text {
-  padding: var(--padding);
-  padding-right: 0;
-}
-
-.About .Text p {
-  margin-bottom: 40px;
-}
-
-.About .Text .NameLocation {
-  display: flex;
-  justify-content: space-between;
-}
-
-.About .Text .NameLocation p {
-  font-family: maisonneue_bold;
-  margin-bottom: 0;
-}
-
-@media only screen and (max-width: 800px) {
-  .About .Container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 0;
-  }
-
-  .About .Text {
-    text-align: left;
-    padding: var(--padding) 0 0 0;
-  }
-
-  .About .Avatar {
-    width: 200px;
-  }
-}
-
 /*-------------------- Contact --------------------*/
 
 .Contact {
-  background: var(--background);
+  background: var(--grey);
   padding: calc(var(--padding) * 3.5) var(--padding);
   display: flex;
   align-items: center;

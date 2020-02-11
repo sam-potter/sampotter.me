@@ -22,5 +22,5 @@
 
 .Nav .Links a::before,
 .Nav .Links a::after {
-  background: #fff;
+  background: var(--blue);
 }

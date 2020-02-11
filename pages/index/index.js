@@ -17,6 +17,25 @@ const Index = () => (
         <Background />
       </div>
 
+      <div className={classes.About}>
+        <h1 className={classes.Title}>
+          My name’s Sam Potter, I’m a full-stack web developer from Melbourne,
+          Australia.
+        </h1>
+        <p>
+          In my short 18 years on this earth, I’ve been countless websites for
+          individuals, businesses and startups. I’m simple, and cut right
+          through the bullsh*t. No task has been too big, nor too small (so far
+          😊), so don’t hesitate to get in touch!
+        </p>
+        <p>
+          <b>P.S.</b>I’m also looking for a job in this industry. So if you’re
+          an employer that’s reading this, here is my{" "}
+          <a href="/static/sampotter-resume.pdf">resume</a>. You, especially,
+          should not hesitate to get in touch.
+        </p>
+      </div>
+
       <div className={classes.Works}>
         <div className={classes.Work}>
           <div className={classes.Info}>
@@ -97,41 +116,6 @@ const Index = () => (
               }
             ]}
           />
-        </div>
-      </div>
-
-      <div className={classes.About}>
-        <div className={classes.Container}>
-          <div className={classes.AvatarContainer}>
-            <img
-              className={classes.Avatar}
-              src="/static/images/avatar.jpg"
-              alt=""
-            />
-          </div>
-          <div className={classes.Text}>
-            <p>
-              My name’s Sam Potter, I’m a full-stack web developer that offers
-              my services as a freelancer. I’ve built countless apps and
-              websites for plenty of good people, and I’m always happy to take
-              on new work 😊
-            </p>
-            <p>
-              I mostly work with React, and use server-side rendering to
-              optimise performance and usability. So far, no task has been too
-              big, nor too small, so whatever web solution you need, don’t
-              hesitate to get in touch.
-            </p>
-            <p>
-              I’m also unemployed. If you’re an employer that’s reading this,
-              here is my <a href="/static/sampotter-resume.pdf">resume</a>. You,
-              especially, should not hesitate to get in touch.
-            </p>
-            <div className={classes.NameLocation}>
-              <p>Sam P</p>
-              <p>Melbourne, Australia</p>
-            </div>
-          </div>
         </div>
       </div>
 
