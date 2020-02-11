@@ -1,12 +1,12 @@
-new SmoothScroll(document.documentElement, 150, 6);
+new SmoothScroll(document, 150, 6);
 
 function SmoothScroll(target, speed, smooth) {
-  if (target == document)
+  if (target == document) {
     target =
       document.documentElement || document.body.parentNode || document.body;
-
-  let moving = false;
-  let pos = target.scrollTop;
+  }
+  var moving = false;
+  var pos = target.scrollTop;
   target.addEventListener("mousewheel", scrolled, { passive: false });
   target.addEventListener("DOMMouseScroll", scrolled, { passive: false });
 
@@ -41,7 +41,7 @@ function SmoothScroll(target, speed, smooth) {
     else moving = false;
   }
 
-  let requestFrame = (function() {
+  var requestFrame = (function() {
     // requestAnimationFrame cross browser
     return (
       window.requestAnimationFrame ||

@@ -5,7 +5,11 @@ import classes from "./background.module.css";
 
 function Head({ onLoad }) {
   const gltf = useLoader(GLTFLoader, "/static/three/modelSD.glb");
-  useEffect(onLoad, []);
+
+  useEffect(() => {
+    onLoad;
+  }, []);
+
   return <primitive object={gltf.scene} position={[0, 0, 0]} />;
 }
 

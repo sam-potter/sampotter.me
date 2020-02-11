@@ -1,5 +1,3 @@
-/* BUG: border-radius doesn't show up on Safari */
-
 .Showcase {
   position: relative;
   width: 100%;
@@ -7,7 +5,7 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 10px; /* BUG: border-radius doesn't show up on Safari */
 }
 
 .Showcase .Carousel {
@@ -20,7 +18,8 @@
 
 .Showcase .Carousel .Slide {
   width: 100%;
-  min-width: 100%; /* fixes width bug on Chrome */
+  min-width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
