@@ -7,7 +7,7 @@ function Head({ onLoad }) {
   const gltf = useLoader(GLTFLoader, "/static/three/modelSD.glb");
 
   useEffect(() => {
-    onLoad;
+    onLoad();
   }, []);
 
   return <primitive object={gltf.scene} position={[0, 0, 0]} />;
@@ -20,8 +20,9 @@ function Background() {
 
   const onLoad = _ => gsap.to(container.current, 1, { delay: 0.5, opacity: 1 });
 
-  const onPointerMove = _ =>
-    (mouse = event.clientX - window.innerWidth * (3 / 4));
+  const onPointerMove = _ => {
+    mouse = -(event.clientX - window.innerWidth * (3 / 4));
+  };
 
   function Camera() {
     useFrame(({ camera }) => {

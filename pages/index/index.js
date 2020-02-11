@@ -17,7 +17,7 @@ const Index = () => (
         <Background />
       </div>
 
-      <div className={classes.About}>
+      <div name="about" className={classes.About}>
         <h1 className={classes.Title}>
           My name’s Sam Potter, I’m a full-stack web developer from Melbourne,
           Australia.
@@ -36,7 +36,7 @@ const Index = () => (
         </p>
       </div>
 
-      <div className={classes.Works}>
+      <div name="works" className={classes.Works}>
         <div className={classes.Work}>
           <div className={classes.Info}>
             <h4>chrome extension</h4>
@@ -119,7 +119,7 @@ const Index = () => (
         </div>
       </div>
 
-      <div className={classes.Contact}>
+      <div name="contact" className={classes.Contact}>
         <div className={classes.TextBox}>
           <span>👋 </span>
           <h1 className={classes.Heading}>
