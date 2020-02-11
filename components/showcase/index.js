@@ -99,8 +99,8 @@ class Showcase extends Component {
       >
         <div className={classes.Carousel} ref="carousel">
           {this.state.slides.map(({ background, src }, index) => (
-            <div className={classes.Slide} style={{ background }}>
-              <Browser key={index}>
+            <div className={classes.Slide} key={index} style={{ background }}>
+              <Browser>
                 <img className={classes.Image} src={src} alt="" />
               </Browser>
             </div>
