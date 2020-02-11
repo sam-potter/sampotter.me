@@ -1,4 +1,4 @@
-new SmoothScroll(document.documentElement, 100, 8);
+new SmoothScroll(document.documentElement, 150, 6);
 
 function SmoothScroll(target, speed, smooth) {
   if (target == document)
