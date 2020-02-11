@@ -1,4 +1,4 @@
-module.exports.SmoothScroll = (target, speed, smooth) => {
+module.exports.SmoothScroll = function(target, speed, smooth) {
   if (target == document) {
     target =
       document.documentElement || document.body.parentNode || document.body;
