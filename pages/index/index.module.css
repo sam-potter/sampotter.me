@@ -31,13 +31,6 @@ p {
   align-items: center;
 }
 
-.Splash h3 {
-  position: absolute;
-  top: var(--padding);
-  font-family: druk_text;
-  z-index: 1000;
-}
-
 .Splash h1 {
   position: relative;
   font-family: druk_text;

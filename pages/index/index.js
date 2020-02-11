@@ -1,5 +1,5 @@
 import React from "react";
-import { SEO, Showcase, Footer, Background } from "../../components";
+import { SEO, Showcase, Footer, Background, Nav } from "../../components";
 import classes from "./index.module.css";
 
 const Index = () => (
@@ -7,11 +7,12 @@ const Index = () => (
     <SEO title="Sam Potter" />
 
     <div id="home">
+      <Nav />
+
       <div className={classes.Splash}>
-        <h3>sam potter</h3>
         <h1>
           I’m not going to put some vague slogan here to make you hire me,{" "}
-          <span>just go look at some of my works.</span>
+          <span>just go look at some of my work.</span>
         </h1>
         <Background />
       </div>

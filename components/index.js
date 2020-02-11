@@ -1,6 +1,7 @@
-import Showcase from "./showcase";
+import Nav from "./nav";
 import Footer from "./footer";
+import Showcase from "./showcase";
 import SEO from "./seo";
 import Background from "./background";
 
-export { Showcase, Footer, SEO, Background };
+export { Nav, Footer, Showcase, SEO, Background };
