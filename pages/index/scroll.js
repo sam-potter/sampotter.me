@@ -1,12 +1,11 @@
-new SmoothScroll(document, 150, 6);
-
-function SmoothScroll(target, speed, smooth) {
+module.exports.SmoothScroll = (target, speed, smooth) => {
   if (target == document) {
     target =
       document.documentElement || document.body.parentNode || document.body;
   }
   var moving = false;
   var pos = target.scrollTop;
+  target.addEventListener("scroll", _ => (pos = target.scrollTop), false);
   target.addEventListener("mousewheel", scrolled, { passive: false });
   target.addEventListener("DOMMouseScroll", scrolled, { passive: false });
 
@@ -54,4 +53,4 @@ function SmoothScroll(target, speed, smooth) {
       }
     );
   })();
-}
+};
