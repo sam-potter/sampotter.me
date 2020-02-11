@@ -23,7 +23,7 @@ const Index = () => (
           Australia.
         </h1>
         <p>
-          In my short 18 years on this earth, I’ve been countless websites for
+          In my short 18 years on this earth, I’ve built countless websites for
           individuals, businesses and startups. I’m simple, and cut right
           through the bullsh*t. No task has been too big, nor too small (so far
           😊), so don’t hesitate to get in touch!

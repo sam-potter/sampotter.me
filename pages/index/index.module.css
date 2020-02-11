@@ -64,10 +64,11 @@ p {
 .About p {
   width: 685px;
   margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .About p a {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .About p a::before,
