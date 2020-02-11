@@ -1,55 +1,40 @@
 import React, { Suspense, useRef, useEffect } from "react";
 import { GLTFLoader } from "./GLTFLoader";
-import { OrbitControls } from "./OrbitControls";
-import {
-  extend,
-  Canvas,
-  useLoader,
-  useThree,
-  useFrame
-} from "react-three-fiber";
+import { Canvas, useLoader, useFrame } from "react-three-fiber";
 import classes from "./background.module.css";
 
-extend({ OrbitControls });
-
-function Head() {
+function Head({ onLoad }) {
   const gltf = useLoader(GLTFLoader, "/static/three/modelSD.glb");
+  useEffect(onLoad, []);
   return <primitive object={gltf.scene} position={[0, 0, 0]} />;
-}
-
-function Controls(props) {
-  const ref = useRef();
-  const {
-    camera,
-    gl: { domElement }
-  } = useThree();
-  useFrame(() => ref.current.update());
-  return <orbitControls ref={ref} args={[camera, domElement]} {...props} />;
 }
 
 function Background() {
   let container = useRef();
-  let options = {
-    enableZoom: false,
-    enableDamping: true,
-    dampingFactor: 1.5,
-    rotateSpeed: 0.2,
-    maxPolarAngle: 45,
-    minPolarAngle: 0,
-    minAzimuthAngle: -Math.PI * (1 / 2),
-    maxAzimuthAngle: Math.PI * (1 / 2)
-  };
+  let mouse = 0;
+  let easing = 0.03;
 
-  // eslint-disable-next-line
-  useEffect(_ => gsap.to(container.current, 0.5, { opacity: 1 }));
+  const onLoad = _ => gsap.to(container.current, 1, { opacity: 1 });
+
+  const onPointerMove = _ =>
+    (mouse = event.clientX - window.innerWidth * (3 / 4));
+
+  function Camera() {
+    useFrame(({ camera }) => {
+      camera.position.x += (mouse - camera.position.x) * (Math.PI / 4) * easing;
+      camera.lookAt(0, 0, 0);
+      camera.updateProjectionMatrix();
+    });
+    return null;
+  }
 
   return (
     <div className={classes.Container} ref={container}>
-      <Canvas camera={{ position: [0, 0, 300] }}>
+      <Canvas camera={{ position: [0, 0, 300] }} onPointerMove={onPointerMove}>
         <ambientLight />
-        <Controls {...options} />
+        <Camera />
         <Suspense fallback={null}>
-          <Head />
+          <Head onLoad={onLoad} />
         </Suspense>
       </Canvas>
     </div>
