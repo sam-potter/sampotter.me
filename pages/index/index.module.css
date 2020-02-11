@@ -150,6 +150,7 @@ p {
 .Contact .TextBox .Heading a:after,
 .Contact .TextBox .Heading a:before {
   height: 2px;
+  background: var(--blue);
 }
 
 @media only screen and (max-width: 800px) {
