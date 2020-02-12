@@ -80,8 +80,8 @@ class Showcase extends Component {
 
   handleSlideClick = event => {
     let width = this.refs.carousel.offsetWidth;
-    let pos = event.layerX + this.state.currentSlide * width;
-    pos > width / 2 ? this.nextSlide() : this.prevSlide();
+    console.log(event.layerX);
+    event.layerX > width / 2 ? this.nextSlide() : this.prevSlide();
 
     this.stop();
     this.start();
