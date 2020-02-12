@@ -18,9 +18,14 @@ function Background() {
   let mouse = 0;
   let easing = 0.03;
 
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   const onLoad = _ => gsap.to(container.current, 1, { delay: 0.5, opacity: 1 });
 
-  const onPointerMove = _ => {
+  const handleMouseMove = _ => {
     mouse = -(event.clientX - window.innerWidth * (3 / 4));
   };
 
@@ -35,7 +40,7 @@ function Background() {
 
   return (
     <div className={classes.Container} ref={container}>
-      <Canvas camera={{ position: [0, 0, 350] }} onPointerMove={onPointerMove}>
+      <Canvas camera={{ position: [0, 0, 350] }}>
         <ambientLight />
         <Camera />
         <Suspense fallback={null}>

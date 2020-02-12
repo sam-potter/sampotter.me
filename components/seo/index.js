@@ -4,11 +4,10 @@ import Head from "next/head";
 const SEO = ({ title }) => (
   <Head>
     <title>{title}</title>
-    <script src="/static/scroll.js" />
-    <script src="/static/gsap.min.js/" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js" />
 
     <meta charSet="utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Sam Potter" />
     <meta name="robots" content="follow, all" />
