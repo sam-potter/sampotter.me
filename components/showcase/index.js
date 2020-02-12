@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { InView } from "react-intersection-observer";
 import Browser from "./browser";
+import Indicators from "./indicators";
 import classes from "./showcase.module.css";
 
 class Showcase extends Component {
@@ -13,7 +14,12 @@ class Showcase extends Component {
       props.backgrounds[0]
     ];
 
-    this.state = { timeout: undefined, currentSlide: 1, slides };
+    this.state = {
+      running: false,
+      timeout: undefined,
+      currentSlide: 1,
+      slides
+    };
   }
 
   componentDidMount() {
@@ -30,7 +36,7 @@ class Showcase extends Component {
     let current = this.state.currentSlide;
     let { duration } = this.state.slides[current];
     let timeout = setTimeout(this.loop, duration);
-    this.setState({ timeout });
+    this.setState({ timeout, running: true });
   };
 
   loop = () => {
@@ -41,7 +47,10 @@ class Showcase extends Component {
     this.setState({ timeout });
   };
 
-  stop = () => clearTimeout(this.state.timeout);
+  stop = () => {
+    clearTimeout(this.state.timeout);
+    this.setState({ running: false });
+  };
 
   changeSlide = slide => {
     let c = this.refs.carousel;
@@ -80,7 +89,6 @@ class Showcase extends Component {
 
   handleSlideClick = event => {
     let width = this.refs.carousel.offsetWidth;
-    console.log(event.layerX);
     event.layerX > width / 2 ? this.nextSlide() : this.prevSlide();
 
     this.stop();
@@ -90,13 +98,20 @@ class Showcase extends Component {
   handleScroll = inView => (inView ? this.start() : this.stop());
 
   render() {
+    const { currentSlide, slides, running } = this.state;
+
     return (
       <InView
         as="section"
         className={classes.Showcase}
         onChange={this.handleScroll}
-        threshold={1}
+        threshold={0.9}
       >
+        <Indicators
+          running={running}
+          passed={currentSlide - 1}
+          slides={slides}
+        />
         <div className={classes.Carousel} ref="carousel">
           {this.state.slides.map(({ background, src }, index) => (
             <div className={classes.Slide} key={index} style={{ background }}>

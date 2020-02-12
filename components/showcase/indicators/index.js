@@ -1,9 +1,16 @@
 import React from "react";
-import propTypes from "prop-types";
 import classes from "./indicators.module.css";
 
-class Indicators extends Component {
-  state = { containerWidth: 0 };
+class Indicators extends React.Component {
+  constructor(props) {
+    super(props);
+
+    let { slides } = props;
+
+    slides = slides.slice(1, slides.length - 1);
+
+    this.state = { slides, containerWidth: 0 };
+  }
 
   componentDidMount() {
     const containerWidth = this.refs.container.offsetWidth;
@@ -11,27 +18,26 @@ class Indicators extends Component {
   }
 
   render() {
-    const { containerWidth } = this.state;
-    const { backgrounds, currentSlide, running } = this.props;
+    const { containerWidth, slides } = this.state;
+    const { passed, running } = this.props;
 
     return (
       <div className={classes.Indicators} ref="container">
-        {backgrounds.map((background, index) => (
+        {slides.map((_, index) => (
           <div
-            style={{ width: containerWidth / backgrounds.length - 12 }}
+            style={{ width: containerWidth / slides.length - 12 }}
             className={classes.Indicator}
             key={index}
           >
-            <div className={classes.Bar} />
+            {passed > index ? <div className={classes.BarFull} /> : null}
+            {passed === index && running ? (
+              <div className={classes.BarActive} />
+            ) : null}
           </div>
         ))}
       </div>
     );
   }
 }
-
-Indicators.propTypes = {
-  backgrounds: propTypes.array.isRequired
-};
 
 export default Indicators;
