@@ -57,6 +57,7 @@ class Showcase extends Component {
 
     function noAnimate(pos) {
       // TODO: if mid-animation, get its current pos and use that instead;
+
       c.style.transition = "none";
       c.style.transform = `translate3d(-${pos}px, 0px, 0px)`;
       // flush pending css

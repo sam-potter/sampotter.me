@@ -23,7 +23,7 @@ class Indicators extends React.Component {
 
     return (
       <div className={classes.Indicators} ref="container">
-        {slides.map((_, index) => (
+        {slides.map(({ duration }, index) => (
           <div
             style={{ width: containerWidth / slides.length - 12 }}
             className={classes.Indicator}
@@ -31,7 +31,10 @@ class Indicators extends React.Component {
           >
             {passed > index ? <div className={classes.BarFull} /> : null}
             {passed === index && running ? (
-              <div className={classes.BarActive} />
+              <div
+                className={classes.BarActive}
+                style={{ animationDuration: `${duration}ms` }}
+              />
             ) : null}
           </div>
         ))}

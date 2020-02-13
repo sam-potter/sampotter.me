@@ -30,7 +30,6 @@
   animation-name: bar;
   animation-fill-mode: forwards;
   animation-timing-function: linear;
-  animation-duration: 5000ms;
 }
 
 @keyframes bar {
