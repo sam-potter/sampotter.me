@@ -1,16 +1,20 @@
+import * as THREE from "three";
 import React, { Suspense, useRef, useEffect } from "react";
-import { GLTFLoader } from "./GLTFLoader";
 import { Canvas, useLoader, useFrame } from "react-three-fiber";
-import classes from "./background.module.css";
 
-function Head({ onLoad }) {
+import { GLTFLoader } from "./GLTFLoader";
+
+function Head() {
   const gltf = useLoader(GLTFLoader, "/static/three/modelSD.glb");
 
-  useEffect(() => {
-    onLoad();
-  }, []);
+  // const geometry = gltf.nodes.Node.geometry;
+  // const wireframe = new THREE.WireframeGeometry(geometry);
+  // const line = new THREE.LineSegments(wireframe);
+  // line.material.transparent = true;
+  // line.material.opacity = 0.25;
+  // line.material.vertexColors = "#000";
 
-  return <primitive object={gltf.scene} position={[0, 0, 0]} />;
+  return <primitive object={gltf.scene} />;
 }
 
 function Background() {
@@ -39,7 +43,7 @@ function Background() {
   }
 
   return (
-    <div className={classes.Container} ref={container}>
+    <div className="container" ref={container}>
       <Canvas camera={{ position: [0, 0, 350] }}>
         <ambientLight />
         <Camera />
@@ -47,6 +51,20 @@ function Background() {
           <Head onLoad={onLoad} />
         </Suspense>
       </Canvas>
+
+      <style jsx>{`
+        .container {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 50vw;
+          height: 100vh;
+        }
+
+        .container canvas {
+          outline: 0;
+        }
+      `}</style>
     </div>
   );
 }
