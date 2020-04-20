@@ -10,7 +10,7 @@
   "dependencies": {
     "@charlietango/use-native-lazy-loading": "^1.7.0",
     "classnames": "^2.2.6",
-    "next": "9.0.6",
+    "next": "9.3.2",
     "prop-types": "^15.7.2",
     "react": "16.9.0",
     "react-device-detect": "^1.11.14",
