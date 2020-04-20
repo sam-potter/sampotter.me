@@ -2,12 +2,15 @@ import { isBrowser } from "react-device-detect";
 
 import Button from "../button";
 
-export default function controls({
+export default function Controls({
   currentSlide,
   slides,
   prevSlide,
-  nextSlide
+  nextSlide,
 }) {
+  const firstSlide = currentSlide === 0;
+  const lastSlide = currentSlide === slides.length - 1;
+
   return (
     <div className="controls">
       <span>
@@ -17,10 +20,14 @@ export default function controls({
       {isBrowser ? (
         <div className="buttons">
           <div className="button">
-            <Button onClick={prevSlide}>Previous</Button>
+            <Button onClick={prevSlide} disabled={firstSlide}>
+              Previous
+            </Button>
           </div>
           <div className="button">
-            <Button onClick={nextSlide}>Next</Button>
+            <Button onClick={nextSlide} disabled={lastSlide}>
+              Next
+            </Button>
           </div>
         </div>
       ) : null}
@@ -39,6 +46,11 @@ export default function controls({
         }
         .button {
           margin-left: 25px;
+        }
+        @media screen and (max-width: 816px) {
+          .controls {
+            padding: 15px 0;
+          }
         }
       `}</style>
     </div>

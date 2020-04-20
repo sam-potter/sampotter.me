@@ -5,8 +5,8 @@ import Close from "./icons/close";
 export default class Toast extends Component {
   componentDidMount() {
     /* eslint-disable */
-    const from = { autoAlpha: 0, x: 3 };
-    const to = { delay: 1, autoAlpha: 1, x: 0 };
+    const from = { autoAlpha: 0, x: -3 };
+    const to = { delay: this.props.delay, autoAlpha: 1, x: 0 };
     gsap.fromTo(this.refs.toast, 0.2, from, to);
     /* eslint-enable */
   }
@@ -15,8 +15,8 @@ export default class Toast extends Component {
     /* eslint-disable */
     const options = {
       autoAlpha: 0,
-      x: 3,
-      ease: Power1.easeOut
+      x: -3,
+      ease: Power1.easeOut,
     };
     gsap.to(this.refs.toast, 0.25, options);
     /* eslint-enable */
@@ -36,7 +36,7 @@ export default class Toast extends Component {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px;
+            padding: 15px;
             background: #fff;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
             border: 0;
@@ -45,8 +45,9 @@ export default class Toast extends Component {
             cursor: pointer;
           }
           .icon {
-            width: 16px;
-            height: 16px;
+            width: 24px;
+            height: 24px;
+            padding: 3px;
             border-radius: 50%;
             display: flex;
             align-items: center;

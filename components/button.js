@@ -61,12 +61,12 @@ const cachedStyles = css`
   .btn.secondary:hover {
     box-shadow: 0 7px 15px rgba(0, 0, 0, 0.12);
   }
-  .btn.small {
-    font-size: 0.875rem;
-    height: 1.5rem;
-    padding: 0 0.75rem;
-    line-height: inherit;
-    border-radius: 5px;
+  .btn.disabled {
+    color: var(--muted-text);
+    cursor: not-allowed;
+  }
+  .btn.disabled:hover {
+    background-color: transparent;
   }
 `;
 
@@ -74,24 +74,21 @@ export default withPure(function Button({
   children,
   primary,
   secondary,
-  small,
-  error,
+  disabled,
   href,
   as,
   className,
   onClick,
-  amp,
+  isExternal,
   ...props
 }) {
   const cachedClassNames = classNames(className, "btn", "fw4 no-drag", {
     primary,
     secondary,
-    small,
-    error
+    disabled,
   });
 
   if (href) {
-    const isExternal = href && href.startsWith("http");
     const a = (
       <a className={cachedClassNames} href={href} {...props}>
         {children}
@@ -99,7 +96,7 @@ export default withPure(function Button({
       </a>
     );
 
-    return amp || isExternal ? (
+    return isExternal ? (
       a
     ) : (
       <Link href={href} as={as}>

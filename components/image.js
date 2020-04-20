@@ -1,22 +1,25 @@
-import useNativeLazyLoading from "@charlietango/use-native-lazy-loading";
 import { useInView } from "react-intersection-observer";
 
-const LazyImage = ({ src, ...rest }) => {
-  const supportsLazyLoading = useNativeLazyLoading();
-  const [ref, inView] = useInView({ threshold: 1, triggerOnce: true });
+export default function Image({ src, width, height, ...rest }) {
+  const [ref, inView] = useInView({ triggerOnce: true });
+  const aspectRatio = (height / width) * 100;
 
-  if (inView || supportsLazyLoading) {
-    return (
-      <img
-        {...rest}
-        src={src}
-        loading="lazy"
-        ref={supportsLazyLoading ? undefined : ref}
-      />
-    );
-  }
-
-  return null;
-};
-
-export default LazyImage;
+  return (
+    <>
+      <div ref={ref} className="container">
+        {inView ? <img className="img" src={src} alt="" {...rest} /> : null}
+      </div>
+      <style jsx>{`
+        .container {
+          display: block;
+          width: 100%;
+          padding-bottom: ${aspectRatio}%;
+          background: #eee;
+        }
+        .img {
+          position: absolute;
+        }
+      `}</style>
+    </>
+  );
+}
