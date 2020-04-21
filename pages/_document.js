@@ -14,6 +14,17 @@ export default class NextSite extends Document {
           <meta name="language" content="en" />
           <link rel="canonical" href="https://sampotter.me/" />
           <meta property="og:url" content="https://sampotter.me/" />
+          <meta name="msapplication-TileColor" content="#ffffff" />
+          <meta
+            name="msapplication-TileImage"
+            content="/static/images/favicon/ms-icon-144x144.png"
+          />
+          <meta name="theme-color" content="#ffffff" />
+
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
           <link
             rel="apple-touch-icon"
             sizes="57x57"
@@ -84,17 +95,6 @@ export default class NextSite extends Document {
             href="/static/images/favicon/favicon-16x16.png"
           />
           <link rel="manifest" href="/static/images/favicon/manifest.json" />
-          <meta name="msapplication-TileColor" content="#ffffff" />
-          <meta
-            name="msapplication-TileImage"
-            content="/static/images/favicon/ms-icon-144x144.png"
-          />
-          <meta name="theme-color" content="#ffffff" />
-
-          <meta
-            name="viewport"
-            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-          />
         </Head>
         <body>
           <Main />
