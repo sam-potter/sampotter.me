@@ -1,6 +1,6 @@
 import React from "react";
 
-import Page from "../components/page-container";
+import Page from "../components/page";
 import About from "../components/home/about";
 import Works from "../components/home/works";
 
