@@ -99,6 +99,7 @@ export default class NextSite extends Document {
         <body>
           <Main />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js" />
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/ScrollToPlugin.min.js" />
           <NextScript />
         </body>
       </Html>
