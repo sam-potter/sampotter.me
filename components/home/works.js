@@ -13,10 +13,16 @@ export default function Works() {
                 {
                   src: "/static/images/podac/background/full.jpg",
                   thumbnail: "/static/images/podac/background/thumbnail.jpg",
+                  alt: "Podac - Chrome Extension - Homepage",
+                  width: 1020,
+                  height: 475,
                 },
                 {
                   src: "/static/images/podac/bookmark/full.jpg",
                   thumbnail: "/static/images/podac/bookmark/thumbnail.jpg",
+                  alt: "Podac - Chrome Extension - Bookmarks interface",
+                  width: 1020,
+                  height: 475,
                 },
               ]}
             />

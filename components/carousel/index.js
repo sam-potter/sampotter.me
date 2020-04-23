@@ -95,15 +95,9 @@ export default class Carousel extends PureComponent {
             </div>
           ) : null}
           <div className="carousel snap" dir="ltr" ref="carousel">
-            {this.props.slides.map(({ src, thumbnail }) => (
-              <div className="slide" key={src}>
-                <Image
-                  src={src}
-                  thumbnail={thumbnail}
-                  width={1020}
-                  height={475}
-                  style={{ width: "100%" }}
-                />
+            {this.props.slides.map((props) => (
+              <div className="slide" key={props.src}>
+                <Image {...props} />
               </div>
             ))}
           </div>
