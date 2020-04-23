@@ -3,7 +3,7 @@ import { useInView } from "react-intersection-observer";
 
 function Image({ src, thumbnail, alt }) {
   const [loaded, setLoaded] = useState(false);
-  console.log(src);
+
   return (
     <>
       <img
@@ -40,7 +40,7 @@ function Image({ src, thumbnail, alt }) {
   );
 }
 
-export default function Container({ height, width, ...rest }) {
+export default function Container({ height, width, color, ...rest }) {
   const [ref, inView] = useInView({ triggerOnce: true });
   const aspectRatio = (height / width) * 100;
 
@@ -56,6 +56,7 @@ export default function Container({ height, width, ...rest }) {
           padding-bottom: ${aspectRatio}%;
           background: #eee;
           overflow: hidden;
+          background-color: ${color};
         }
         .img {
           position: absolute;

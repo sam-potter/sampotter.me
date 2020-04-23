@@ -38,7 +38,7 @@ export default class Carousel extends PureComponent {
 
   nextSlide = () => {
     const target = this.state.currentSlide + 1;
-    if (target > this.props.slides.length - 1) return;
+    if (target > this.props.photos.length - 1) return;
     this.animate(target * this.refs.carousel.offsetWidth);
   };
 
@@ -75,7 +75,7 @@ export default class Carousel extends PureComponent {
 
   render() {
     const { currentSlide, showSwipe } = this.state;
-    const { slides } = this.props;
+    const { photos } = this.props;
 
     return (
       <InView onChange={this.handleInView} threshold={1} triggerOnce>
@@ -88,7 +88,7 @@ export default class Carousel extends PureComponent {
             </div>
           ) : null}
           <div className="carousel snap" dir="ltr" ref="carousel">
-            {this.props.slides.map((props) => (
+            {this.props.photos.map((props) => (
               <div className="slide" key={props.src}>
                 <Image {...props} />
               </div>
@@ -97,7 +97,7 @@ export default class Carousel extends PureComponent {
         </div>
         <Controls
           currentSlide={currentSlide}
-          slides={slides}
+          photos={photos}
           prevSlide={this.prevSlide}
           nextSlide={this.nextSlide}
         />

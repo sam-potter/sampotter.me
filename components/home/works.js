@@ -9,13 +9,14 @@ export default function Works() {
         <div className="container">
           <div className="work">
             <Carousel
-              slides={[
+              photos={[
                 {
                   src: "/static/images/podac/background/full.jpg",
                   thumbnail: "/static/images/podac/background/thumbnail.jpg",
                   alt: "Podac - Chrome Extension - Homepage",
                   width: 1020,
                   height: 475,
+                  color: "#ae6f5b",
                 },
                 {
                   src: "/static/images/podac/bookmark/full.jpg",
@@ -23,6 +24,7 @@ export default function Works() {
                   alt: "Podac - Chrome Extension - Bookmarks interface",
                   width: 1020,
                   height: 475,
+                  color: "#ae6f5b",
                 },
               ]}
             />

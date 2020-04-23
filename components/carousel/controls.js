@@ -4,18 +4,18 @@ import Button from "../button";
 
 export default function Controls({
   currentSlide,
-  slides,
+  photos,
   prevSlide,
   nextSlide,
 }) {
   const firstSlide = currentSlide === 0;
-  const lastSlide = currentSlide === slides.length - 1;
+  const lastSlide = currentSlide === photos.length - 1;
 
   return (
     <div className="controls">
       <span>
         {currentSlide + 1}
-        <span className="faded"> / {slides.length} Images</span>
+        <span className="faded"> / {photos.length} Images</span>
       </span>
       {isBrowser ? (
         <div className="buttons">
