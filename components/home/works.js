@@ -10,8 +10,14 @@ export default function Works() {
           <div className="work">
             <Carousel
               slides={[
-                { src: "/static/images/podac/background.jpg" },
-                { src: "/static/images/podac/bookmark.jpg" },
+                {
+                  src: "/static/images/podac/background/full.jpg",
+                  thumbnail: "/static/images/podac/background/thumbnail.jpg",
+                },
+                {
+                  src: "/static/images/podac/bookmark/full.jpg",
+                  thumbnail: "/static/images/podac/bookmark/thumbnail.jpg",
+                },
               ]}
             />
             <div className="info">
