@@ -62,7 +62,7 @@ const cachedStyles = css`
     box-shadow: 0 7px 15px rgba(0, 0, 0, 0.12);
   }
   .btn.disabled {
-    color: var(--muted-text);
+    color: var(--text-muted);
     cursor: not-allowed;
   }
   .btn.disabled:hover {

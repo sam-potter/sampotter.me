@@ -73,7 +73,7 @@ export default function Works() {
             justify-content: space-between;
           }
           .subheading {
-            color: rgba(0, 0, 0, 0.6);
+            color: var(--text-muted);
           }
           p {
             margin: 0;

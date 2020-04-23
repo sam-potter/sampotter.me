@@ -39,7 +39,7 @@ export default function Controls({
           padding: 15px 0 30px 0;
         }
         .faded {
-          opacity: 0.6;
+          color: var(--text-muted);
         }
         .buttons {
           display: flex;
