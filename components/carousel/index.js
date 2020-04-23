@@ -10,12 +10,10 @@ export default class Carousel extends PureComponent {
   state = { animating: false, currentSlide: 0, showSwipe: false };
 
   componentDidMount() {
-    this.refs.carousel.addEventListener("click", this.handleClick);
     this.refs.carousel.addEventListener("scroll", this.handleScroll);
   }
 
   componentWillUnmount() {
-    this.refs.carousel.removeEventListener("click", this.handleClick);
     this.refs.carousel.removeEventListener("scroll", this.handleScroll);
   }
 
@@ -48,11 +46,6 @@ export default class Carousel extends PureComponent {
     const target = this.state.currentSlide - 1;
     if (target < 0) return;
     this.animate(target * this.refs.carousel.offsetWidth);
-  };
-
-  handleClick = (event) => {
-    const width = this.refs.carousel.offsetWidth;
-    event.layerX > width / 2 ? this.nextSlide() : this.prevSlide();
   };
 
   handleScroll = async (event) => {
