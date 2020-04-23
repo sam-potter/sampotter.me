@@ -15,51 +15,39 @@ const cachedStyles = css`
     padding: 0.25rem 0.5rem;
     margin: -0.25rem -0.5rem;
     border-radius: 7px;
-    color: #0070f3;
+    color: var(--primary);
     background-color: transparent;
     border: none;
     font-size: inherit;
     line-height: inherit;
-    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s;
+    transition: background 200ms ease, color 200ms ease, box-shadow 200ms,
+      transform 200ms ease;
     outline: none;
   }
   .btn:hover {
-    color: #0070f3;
     background: rgba(0, 118, 255, 0.1);
-  }
-  .btn.error {
-    color: #ff3b30;
-  }
-  .btn.error:hover {
-    background: rgba(255, 59, 48, 0.1);
   }
   .btn.primary,
   .btn.secondary {
     margin: 0;
-    padding: 0 2.875rem;
-    height: 2.81rem;
-    line-height: 2.8rem;
+    padding: 0 25px;
+    height: 50px;
+    min-width: 200px;
     border-radius: 7px;
+    box-shadow: var(--shadow-small);
+  }
+  .btn.primary:hover,
+  .btn.secondary:hover {
+    transform: translate3d(0, -1px, 0);
+    box-shadow: var(--shadow-medium);
   }
   .btn.primary {
-    background-color: #0070f3;
-    box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
-    color: white;
-  }
-  .btn.primary:hover {
-    background: rgb(0, 118, 255);
-    box-shadow: 0 6px 20px rgba(0, 118, 255, 0.23);
-  }
-  .btn.primary:active {
-    background: #006ae6;
+    background-color: var(--primary);
+    color: #fff;
   }
   .btn.secondary {
     background-color: #ffffff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-    color: #0070f3;
-  }
-  .btn.secondary:hover {
-    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.12);
+    color: var(--primary);
   }
   .btn.disabled {
     color: var(--text-muted);
