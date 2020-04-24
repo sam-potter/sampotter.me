@@ -11,16 +11,16 @@ export default function Works() {
             <Carousel
               photos={[
                 {
-                  src: "/public/images/podac/background/full.jpg",
-                  thumbnail: "/public/images/podac/background/thumbnail.jpg",
+                  src: "/static/images/podac/background/full.jpg",
+                  thumbnail: "/static/images/podac/background/thumbnail.jpg",
                   alt: "Podac - Chrome Extension - Homepage",
                   width: 1020,
                   height: 475,
                   color: "#ae6f5b",
                 },
                 {
-                  src: "/public/images/podac/bookmark/full.jpg",
-                  thumbnail: "/public/images/podac/bookmark/thumbnail.jpg",
+                  src: "/static/images/podac/bookmark/full.jpg",
+                  thumbnail: "/static/images/podac/bookmark/thumbnail.jpg",
                   alt: "Podac - Chrome Extension - Bookmarks interface",
                   width: 1020,
                   height: 475,
