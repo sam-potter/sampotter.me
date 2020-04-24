@@ -60,15 +60,8 @@ export default function Page({ title, description, children }) {
           }
           html,
           body {
-            background-color: #fafafa;
-            color: #111;
-          }
-          ::selection {
-            background-color: #0070f3;
-            color: #fff;
-          }
-          svg {
-            text-rendering: optimizeLegibility;
+            background-color: var(--background);
+            color: var(--text-primary);
           }
           h1,
           h2,
@@ -76,17 +69,11 @@ export default function Page({ title, description, children }) {
             margin: 0;
           }
           a {
-            color: #0074de;
+            color: var(--primary);
             text-decoration: none;
-            transition: color 0.2s ease;
           }
           a:hover {
-            color: #68b5fb;
-          }
-          iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+            text-decoration: underline;
           }
           .f-reset {
             font-size: 1rem;
@@ -145,9 +132,6 @@ export default function Page({ title, description, children }) {
           .mute {
             color: #696969;
           }
-          .tc {
-            text-align: center;
-          }
           .row {
             display: flex;
             align-items: center;
@@ -201,6 +185,7 @@ export default function Page({ title, description, children }) {
           }
           svg {
             shape-rendering: crispEdges;
+            text-rendering: optimizeLegibility;
           }
           svg path,
           svg circle {
