@@ -1,3 +1,5 @@
+import gsap from "gsap";
+import ScrollToPlugin from "./ScrollToPlugin";
 import { PureComponent } from "react";
 import { isBrowser } from "react-device-detect";
 import { InView } from "react-intersection-observer";
@@ -5,6 +7,8 @@ import { InView } from "react-intersection-observer";
 import Controls from "./controls";
 import Image from "../image";
 import Toast from "../toast";
+
+gsap.registerPlugin(ScrollToPlugin);
 
 export default class Carousel extends PureComponent {
   state = { animating: false, currentSlide: 0, showSwipe: false };
@@ -19,21 +23,20 @@ export default class Carousel extends PureComponent {
 
   animate = (x) => {
     if (this.state.animating) return;
-    /* eslint-disable */
     const options = {
       duration: 1,
-      ease: Power2.easeInOut,
+      ease: "power2.inOut",
       scrollTo: { x },
     };
 
     // Temporarily remove the CSS snap property to animate
     this.refs.carousel.classList.remove("snap");
     this.setState({ animating: true });
+
     gsap.to(this.refs.carousel, options).eventCallback("onComplete", () => {
       this.refs.carousel.classList.add("snap");
       this.setState({ animating: false });
     });
-    /* eslint-enable */
   };
 
   nextSlide = () => {

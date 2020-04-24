@@ -1,25 +1,22 @@
+import gsap, { Power1 } from "gsap";
 import { Component } from "react";
 
 import Close from "./icons/close";
 
 export default class Toast extends Component {
   componentDidMount() {
-    /* eslint-disable */
     const from = { autoAlpha: 0, x: -3 };
     const to = { delay: this.props.delay, autoAlpha: 1, x: 0 };
     gsap.fromTo(this.refs.toast, 0.2, from, to);
-    /* eslint-enable */
   }
 
   dismiss = async () => {
-    /* eslint-disable */
     const options = {
       autoAlpha: 0,
       x: -3,
       ease: Power1.easeOut,
     };
     gsap.to(this.refs.toast, 0.25, options);
-    /* eslint-enable */
   };
 
   render() {
