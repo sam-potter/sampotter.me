@@ -72,7 +72,16 @@ export default function Page({ title, description, children }) {
             color: var(--primary);
             text-decoration: none;
           }
-          a:hover {
+          a[target="_blank"]:after {
+            background: url("/static/icons/external-link.svg") 100% / contain
+              no-repeat;
+            content: "";
+            position: relative;
+            top: 1px;
+            margin: 0 0.15rem;
+            padding-right: 0.65rem;
+          }
+          a[target="_blank"]:hover {
             text-decoration: underline;
           }
           .f-reset {

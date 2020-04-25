@@ -35,7 +35,9 @@ export default function Works() {
                   <p className="subheading">Chrome Extension</p>
                 </div>
                 <div className="hide-tablet hide-mobile">
-                  <a href="#">View Demo</a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    View Demo
+                  </a>
                 </div>
               </div>
               <div className="description">
