@@ -1,58 +1,71 @@
 import { isBrowser } from "react-device-detect";
+import ArrowLeft from "../icons/arrow-left";
+import ArrowRight from "../icons/arrow-right";
 
-import Button from "../button";
-
-export default function Controls({
-  currentSlide,
-  photos,
-  prevSlide,
-  nextSlide,
-}) {
-  const firstSlide = currentSlide === 0;
-  const lastSlide = currentSlide === photos.length - 1;
-
-  return (
-    <div className="controls">
-      <span>
-        {currentSlide + 1}
-        <span className="faded"> / {photos.length} Images</span>
-      </span>
-      {isBrowser ? (
+const Controls = ({ currentSlide, photos, prevSlide, nextSlide }) => (
+  <div className="controls-container">
+    {isBrowser ? (
+      <div className="blur-container">
         <div className="buttons">
-          <div className="button">
-            <Button onClick={prevSlide} disabled={firstSlide}>
-              Previous
-            </Button>
+          <div className="button" onClick={prevSlide}>
+            <ArrowLeft />
           </div>
-          <div className="button">
-            <Button onClick={nextSlide} disabled={lastSlide}>
-              Next
-            </Button>
+          <div className="button" onClick={nextSlide}>
+            <ArrowRight />
           </div>
         </div>
-      ) : null}
-      <style jsx>{`
-        .controls {
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          padding: 15px 0 30px 0;
-        }
-        .faded {
-          color: var(--text-muted);
-        }
-        .buttons {
-          display: flex;
-        }
-        .button {
-          margin-left: 25px;
-        }
-        @media screen and (max-width: 816px) {
-          .controls {
-            padding: 15px 0;
-          }
-        }
-      `}</style>
+      </div>
+    ) : null}
+    <div className="blur-container">
+      <span className="current-slide">
+        {currentSlide + 1}
+        <span className="faded"> / {photos.length}</span>
+      </span>
     </div>
-  );
-}
+    <style jsx>{`
+      .controls-container {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .blur-container {
+        display: flex;
+        background: var(--blur-background);
+        backdrop-filter: var(--blur-filter);
+        padding: 4px 6px;
+        border-radius: 7px;
+        font-size: 14px;
+      }
+      .blur-container:first-child {
+        margin-right: 5px;
+      }
+      .faded {
+        color: var(--text-muted);
+      }
+      .buttons {
+        display: flex;
+      }
+      .button {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+      .button:last-child {
+        margin-left: 10px;
+      }
+      .current-slide {
+        min-width: 29px;
+        text-align: right;
+      }
+      @media screen and (max-width: 816px) {
+        .blur-container:first-child {
+          margin-right: 0;
+        }
+      }
+    `}</style>
+  </div>
+);
+
+export default Controls;

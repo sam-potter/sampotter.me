@@ -1,27 +1,41 @@
+import { isMobile } from "../hooks/device";
+
 import Container from "../container";
 
 import Button from "../button";
 
-export default function About() {
+const About = () => {
+  const isFull = isMobile();
+  const full = isFull ? { width: "100%" } : null;
+
   return (
     <Container>
       <div className="container">
         <h1>
-          Hola,
+          Hey,
           <br /> My name’s <span className="blue">Sam Potter</span>.
         </h1>
         <p>
-          I’m a full-stack web developer from Melbourne whom offers my services
-          as a freelancer. I’ve built portfolio sites for individuals, business
-          tools for companies, as well as weird crap that I come up with. Scroll
-          down to check out some of my previous works.
+          I’m a full-stack web developer from Melbourne currently working at{" "}
+          <a href="https://www.retailsafari.com.au/">Retail Safari</a> as a
+          frontend engineer. In my spare time, I also offer my services as a
+          freelancer building tools for business, portfolio websites for people,
+          as well as weird crap that I come up with. Scroll down to check out
+          some of my previous works.
         </p>
         <div className="buttons">
-          <Button primary href="mailto:sam.potter@hotmail.com" isExternal>
+          <Button
+            href="mailto:sam.potter@hotmail.com"
+            style={full}
+            primary
+            isExternal
+          >
             Email Me
           </Button>
           <div className="secondButton">
-            <Button secondary>Resumé</Button>
+            <Button style={full} secondary>
+              Resumé
+            </Button>
           </div>
         </div>
 
@@ -45,10 +59,13 @@ export default function About() {
               width: 100%;
             }
             .buttons {
-              justify-content: space-between;
+              display: block;
+            }
+            .button {
+              width: 100%;
             }
             .secondButton {
-              margin-left: 0;
+              margin: 15px 0 0 0;
             }
             h1 {
               font-size: 30px;
@@ -58,4 +75,5 @@ export default function About() {
       </div>
     </Container>
   );
-}
+};
+export default About;

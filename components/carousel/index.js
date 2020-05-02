@@ -6,7 +6,7 @@ import { InView } from "react-intersection-observer";
 
 import Controls from "./controls";
 import Image from "../image";
-import Toast from "../toast";
+import Toast from "./swipe-toast";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -83,37 +83,37 @@ export default class Carousel extends PureComponent {
     return (
       <InView onChange={this.handleInView} threshold={1} triggerOnce>
         <div className="container" ref="container">
-          {isBrowser ? null : showSwipe ? (
-            <div className="swipe">
-              <Toast ref="toast" delay={1.3}>
-                Swipe between images
-              </Toast>
-            </div>
-          ) : null}
           <div className="carousel snap" dir="ltr" ref="carousel">
+            {isBrowser ? null : showSwipe ? (
+              <div className="toast">
+                <Toast ref="toast" delay={1.3}>
+                  Swipe between images
+                </Toast>
+              </div>
+            ) : null}
             {this.props.photos.map((props) => (
               <div className="slide" key={props.src}>
                 <Image {...props} />
               </div>
             ))}
           </div>
+          <Controls
+            currentSlide={currentSlide}
+            photos={photos}
+            prevSlide={this.prevSlide}
+            nextSlide={this.nextSlide}
+          />
         </div>
-        <Controls
-          currentSlide={currentSlide}
-          photos={photos}
-          prevSlide={this.prevSlide}
-          nextSlide={this.nextSlide}
-        />
         <style jsx>{`
           .container {
             position: relative;
             width: 100%;
           }
-          .swipe {
+          .toast {
             position: absolute;
             z-index: 1;
-            left: 15px;
-            bottom: 15px;
+            left: 5px;
+            bottom: 5px;
           }
           .carousel {
             position: relative;

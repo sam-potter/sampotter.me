@@ -47,7 +47,7 @@ const cachedStyles = css`
   }
   .btn.secondary {
     background-color: #ffffff;
-    color: var(--primary);
+    color: var(--text-muted);
   }
   .btn.disabled {
     color: var(--text-muted);

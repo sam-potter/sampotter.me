@@ -1,7 +1,7 @@
-import gsap, { Power1 } from "gsap";
+import gsap from "gsap";
 import { Component } from "react";
 
-import Close from "./icons/close";
+import ArrowLeft from "../icons/arrow-left";
 
 export default class Toast extends Component {
   componentDidMount() {
@@ -11,11 +11,7 @@ export default class Toast extends Component {
   }
 
   dismiss = async () => {
-    const options = {
-      autoAlpha: 0,
-      x: -3,
-      ease: Power1.easeOut,
-    };
+    const options = { autoAlpha: 0, ease: "power2.inOut" };
     gsap.to(this.refs.toast, 0.25, options);
   };
 
@@ -23,37 +19,32 @@ export default class Toast extends Component {
     const { children } = this.props;
 
     return (
-      <button onClick={this.dismiss} ref="toast">
-        <span className="f-reset">{children}</span>
+      <div className="container" ref="toast">
         <div className="icon">
-          <Close />
+          <ArrowLeft />
         </div>
+        <span className="f-reset">{children}</span>
         <style jsx>{`
-          button {
+          .container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px;
-            background: #fff;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+            padding: 6px 15px;
+            background: var(--blur-background);
+            backdrop-filter: var(--blur-filter);
+            color: var(--text-primary);
             border: 0;
-            border-radius: 8px;
+            border-radius: 7px;
             outline: 0;
             cursor: pointer;
           }
           .icon {
-            width: 24px;
-            height: 24px;
-            padding: 3px;
-            border-radius: 50%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: #0070f3;
-            margin-left: 10px;
+            margin-right: 15px;
           }
         `}</style>
-      </button>
+      </div>
     );
   }
 }

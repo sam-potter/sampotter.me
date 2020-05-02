@@ -200,12 +200,6 @@ export default function Page({ title, description, children }) {
           svg circle {
             shape-rendering: geometricprecision;
           }
-          .divider {
-            display: block;
-            height: 1px;
-            width: 100%;
-            background: #eaeaea;
-          }
         `}
       </style>
     </div>

@@ -1,13 +1,17 @@
+import { useState, useEffect } from "react";
+import { isMobile } from "../hooks/device";
+
 import Container from "../container";
 import Carousel from "../carousel";
-import Button from "../button";
 
 export default function Works() {
+  const isWide = isMobile();
+
   return (
     <Container wide white overflow="auto">
-      <Container>
-        <div className="container">
-          <div className="work">
+      <div className="container">
+        <div className="work">
+          <Container wide={isWide}>
             <Carousel
               photos={[
                 {
@@ -28,6 +32,8 @@ export default function Works() {
                 },
               ]}
             />
+          </Container>
+          <Container>
             <div className="info">
               <div className="title">
                 <div className="text">
@@ -55,9 +61,8 @@ export default function Works() {
                 </p>
               </div>
             </div>
-          </div>
+          </Container>
         </div>
-
         <style jsx>{`
           .container {
             margin-top: 100px;
@@ -69,6 +74,7 @@ export default function Works() {
           .info {
             display: flex;
             justify-content: space-between;
+            margin-top: 30px;
           }
           .title {
             min-width: 265px;
@@ -85,13 +91,14 @@ export default function Works() {
           @media screen and (max-width: 816px) {
             .info {
               display: block;
+              margin-top: var(--padding-mobile);
             }
             .title {
               margin-bottom: 30px;
             }
           }
         `}</style>
-      </Container>
+      </div>
     </Container>
   );
 }
