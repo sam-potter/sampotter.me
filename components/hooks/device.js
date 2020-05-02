@@ -1,14 +1,13 @@
 import { useState, useLayoutEffect } from "react";
-import { isMobile as mobile } from "react-device-detect";
+import { isMobile as moble, isBrowser as brwsr } from "react-device-detect";
 
-const isMobile = () => {
-  const [isMobileAfterMount, update] = useState(false);
+export default function useDevice() {
+  const defaults = { isMobile: false, isBrowser: false };
+  const [state, update] = useState(defaults);
 
   useLayoutEffect(() => {
-    update(mobile);
+    update({ isMobile: moble, isBrowser: brwsr });
   }, []);
 
-  return isMobileAfterMount;
-};
-
-export { isMobile };
+  return state;
+}

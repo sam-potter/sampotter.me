@@ -60,15 +60,6 @@ export default class Carousel extends PureComponent {
     const c = this.refs.carousel;
     const newSlide = Math.round(c.scrollLeft / c.offsetWidth);
 
-    // BUG on Mobile Safari: c.scrollLeft
-    // will return 0 when the carousel is
-    // scrolled right to the very end.
-    // This causes the slide number to go
-    // back to the start, incorrectly.
-    // However, this only occurs when the
-    // user taps the image to scroll thru
-    // the carousel.
-
     if (this.state.currentSlide !== newSlide) {
       this.setState({ currentSlide: newSlide });
     }

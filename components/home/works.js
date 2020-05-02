@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { isMobile } from "../hooks/device";
+import useDevice from "../hooks/device";
 
 import Container from "../container";
 import Carousel from "../carousel";
 
 export default function Works() {
-  const isWide = isMobile();
+  const { isMobile: isWide } = useDevice();
 
   return (
     <Container wide white overflow="auto">

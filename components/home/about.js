@@ -1,11 +1,11 @@
-import { isMobile } from "../hooks/device";
+import useDevice from "../hooks/device";
 
 import Container from "../container";
 
 import Button from "../button";
 
 const About = () => {
-  const isFull = isMobile();
+  const { isMobile: isFull } = useDevice();
   const full = isFull ? { width: "100%" } : null;
 
   return (
