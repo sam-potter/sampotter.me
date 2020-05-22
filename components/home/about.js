@@ -19,9 +19,9 @@ const About = () => {
           I’m a full-stack web developer from Melbourne currently working at{" "}
           <a href="https://www.retailsafari.com.au/">Retail Safari</a> as a
           frontend engineer. In my spare time, I also offer my services as a
-          freelancer building tools for business, portfolio websites for people,
-          as well as weird crap that I come up with. Scroll down to check out
-          some of my previous works.
+          freelancer building tools for businesses, portfolio websites for
+          people, as well as weird crap that I come up with. Scroll down to
+          check out some of my previous works.
         </p>
         <div className="buttons">
           <Button
