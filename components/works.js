@@ -10,16 +10,16 @@ const SportingLand = () => (
                 <Carousel
                     photos={[
                         {
-                            src: 'images/sportingland/mobile.jpg',
-                            thumbnail: 'images/sportingland/mobile-thumb.jpg',
+                            src: 'images/sportingland/desktop.jpg',
+                            thumbnail: 'images/sportingland/desktop-thumb.jpg',
                             alt: 'sporting.land UI interface',
                             width: 1440,
                             height: 900,
                             color: '#6852FF',
                         },
                         {
-                            src: 'images/sportingland/desktop.jpg',
-                            thumbnail: 'images/sportingland/desktop-thumb.jpg',
+                            src: 'images/sportingland/mobile.jpg',
+                            thumbnail: 'images/sportingland/mobile-thumb.jpg',
                             alt: 'sporting.land UI interface',
                             width: 1440,
                             height: 900,

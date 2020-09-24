@@ -3,7 +3,7 @@ import { extendTheme } from '@chakra-ui/core';
 const custom = {
     colors: {
         primary: '#0070f3',
-        'primary-hover': 'rgba(0, 112, 243, 0.1)',
+        'primary-hover': '#0070f3',
     },
     shadows: {
         md: '0 5px 10px rgba(0, 0, 0, 0.12)',
