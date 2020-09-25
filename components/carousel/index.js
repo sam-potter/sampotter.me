@@ -1,17 +1,34 @@
 import { Box, Flex } from '@chakra-ui/core';
 import { useState, useEffect, useRef } from 'react';
-// import { InView } from 'react-intersection-observer';
+import { useInView } from 'react-intersection-observer';
 
 import Controls from './controls';
 import Image from '../image';
-// import Toast from './swipe-toast';
+import Toast from './toast';
+import { AnimatePresence } from 'framer-motion';
+
+const useToast = () => {
+    const [shouldShow, setVisibility] = useState(true);
+
+    useEffect(() => {
+        const dismissedBefore = localStorage.getItem('toastDismissed');
+        dismissedBefore && setVisibility(false);
+    });
+
+    const dismissToast = () => {
+        localStorage.setItem('toastDismissed', true);
+        setVisibility(false);
+    };
+
+    return { shouldShow, dismissToast };
+};
 
 const Carousel = ({ photos }) => {
+    const { ref, inView } = useInView({ threshold: 1, triggerOnce: true });
+    const { shouldShow, dismissToast } = useToast();
     const [currentSlide, setCurrentSlide] = useState(0);
-    // const [showToast, setShowToast] = useState(false);
 
     const carousel = useRef();
-    // const toast = useRef();
 
     useEffect(() => {
         carousel.current.addEventListener('scroll', onScroll);
@@ -29,17 +46,13 @@ const Carousel = ({ photos }) => {
     };
 
     const onScroll = e => {
-        // if (showToast) {
-        //     // toast.current.dismiss();
-        //     setTimeout(() => setShowToast(false), 1250);
-        // }
+        inView && shouldShow && dismissToast();
         const s = Math.round(e.target.scrollLeft / e.target.offsetWidth);
         currentSlide !== s && setCurrentSlide(s);
     };
 
     return (
-        // <InView onChange={setShowToast} threshold={1} triggerOnce>
-        <Box position="relative">
+        <Box position="relative" ref={ref}>
             <Flex
                 h="full"
                 w="full"
@@ -52,15 +65,15 @@ const Carousel = ({ photos }) => {
                     scrollSnapType: 'x mandatory',
                 }}
             >
-                {/* <Box
-                        pos="absolute"
-                        left="5px"
-                        bottom="5px"
-                        zIndex="1"
-                        display={{ base: 'block', md: 'none' }}
-                    >
-                        {showToast && <Toast ref={toast} />}
-                    </Box> */}
+                <Box
+                    pos="absolute"
+                    left="5px"
+                    bottom="5px"
+                    zIndex="1"
+                    // display={{ base: 'block', md: 'none' }}
+                >
+                    <AnimatePresence>{inView && shouldShow && <Toast />}</AnimatePresence>
+                </Box>
                 {photos.map(props => (
                     <Box
                         w="full"
@@ -80,7 +93,6 @@ const Carousel = ({ photos }) => {
                 currentSlide={currentSlide}
             />
         </Box>
-        // </InView>
     );
 };
 

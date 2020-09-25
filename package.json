@@ -1,5 +1,5 @@
 {
-    "name": "sampotter.net",
+    "name": "sampotter.me",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -10,7 +10,7 @@
     "dependencies": {
         "@chakra-ui/core": "^1.0.0-rc.3",
         "classnames": "^2.2.6",
-        "gsap": "^3.2.6",
+        "framer-motion": "^2.7.2",
         "next": "^9.5.3",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
