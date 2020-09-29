@@ -36,7 +36,7 @@ const About = () => {
                         hasArrow
                         placement="auto"
                         closeOnClick={false}
-                        label={hasCopied ? 'Copied to clipboard' : 'Click to copy'}
+                        label={hasCopied ? 'Email copied to clipboard' : 'Copy email'}
                     >
                         <Button
                             onClick={onCopy}
