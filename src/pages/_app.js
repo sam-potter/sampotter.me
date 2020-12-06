@@ -4,7 +4,7 @@ import Head from 'next/head';
 const App = ({ Component, pageProps }) => (
   <>
     <Head>
-      <title>Sam Potter | Software Developer</title>
+      <title>Sam Potter | Web Developer</title>
     </Head>
     <Component {...pageProps} />
   </>

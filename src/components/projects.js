@@ -11,7 +11,7 @@ export default function Projects() {
           tags={['React', 'Next.js']}
           href="https://sporting.land/"
         >
-          <span className="text-gray-500">
+          <span className="text-gray-400">
             A booking system helping local sporting venues transition to online bookings post COVID.
           </span>
         </Project>
@@ -22,7 +22,7 @@ export default function Projects() {
           title="Old Scotch Collegians Association"
           imageProps={{ width: 400, height: 160, src: '/images/osca.png', alt: '' }}
         >
-          <span className="text-gray-500">
+          <span className="text-gray-400">
             Website consultation, and a full re-design I did for the Old Boys alumni website of
             OSCA.
           </span>

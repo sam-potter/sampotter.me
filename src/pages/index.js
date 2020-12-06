@@ -8,8 +8,9 @@ export default function Index() {
     <div className="container mx-auto px-4 my-24">
       <Name />
       <div className="grid grid-cols-1 sm:grid-cols-2">
-        <p className="text-xl text-gray-500">
-          I'm a 19 year old developer from Melbourne building great (hopefully) products on the web.
+        <p className="text-xl text-gray-400">
+          Hey, I'm a 19 year old developer from Melbourne learning to build great products on the
+          web.
         </p>
       </div>
       <Projects />

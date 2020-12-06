@@ -1,26 +1,28 @@
 /*
- *   Stripe WebGl Gradient Animation
- *   All Credits to Stripe.com
- *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
- *   commented out for now.
- *   https://kevinhufnagl.com
+ *  Stripe WebGl Gradient Animation
+ *  All Credits to Stripe.com
+ *  Reverse Engineered: Kevin Hufnagl (https://kevinhufnagl.com)
+ *  Modified: Sam Potter (https://sampotter.me)
  */
 
-//Converting colors to proper format
-function normalizeColor(hexCode) {
-  return [((hexCode >> 16) & 255) / 255, ((hexCode >> 8) & 255) / 255, (255 & hexCode) / 255];
-}
-['SCREEN', 'LINEAR_LIGHT'].reduce(
-  (hexCode, t, n) =>
-    Object.assign(hexCode, {
-      [t]: n,
-    }),
-  {},
+const normalizeColor = hexCode => [
+  ((hexCode >> 16) & 255) / 255,
+  ((hexCode >> 8) & 255) / 255,
+  (255 & hexCode) / 255,
+];
+
+const e = (object, propertyName, val) => (
+  propertyName in object
+    ? Object.defineProperty(object, propertyName, {
+        value: val,
+        enumerable: true,
+        configurable: true,
+        writable: true,
+      })
+    : (object[propertyName] = val),
+  object
 );
 
-//Essential functionality of WebGl
-//t = width
-//n = height
 class MiniGl {
   constructor(canvas, width, height, debug = false) {
     const _miniGl = this,
@@ -101,14 +103,14 @@ class MiniGl {
                 context.getProgramParameter(material.program, context.LINK_STATUS) ||
                   console.error(context.getProgramInfoLog(material.program)),
                 context.useProgram(material.program),
-                material.attachUniforms(void 0, _miniGl.commonUniforms),
-                material.attachUniforms(void 0, material.uniforms);
+                material.attachUniforms(undefined, _miniGl.commonUniforms),
+                material.attachUniforms(undefined, material.uniforms);
             }
             //t = uniform
             attachUniforms(name, uniforms) {
               //n  = material
               const material = this;
-              void 0 === name
+              undefined === name
                 ? Object.entries(uniforms).forEach(([name, uniform]) => {
                     material.attachUniforms(name, uniform);
                   })
@@ -132,7 +134,7 @@ class MiniGl {
           },
         },
         Uniform: {
-          enumerable: !1,
+          enumerable: false,
           value: class {
             constructor(e) {
               (this.type = 'float'), Object.assign(this, e);
@@ -148,7 +150,7 @@ class MiniGl {
                 this.update();
             }
             update(value) {
-              void 0 !== this.value &&
+              undefined !== this.value &&
                 context[`uniform${this.typeFn}`](
                   value,
                   0 === this.typeFn.indexOf('Matrix') ? this.transpose : this.value,
@@ -187,7 +189,7 @@ class MiniGl {
           },
         },
         PlaneGeometry: {
-          enumerable: !1,
+          enumerable: false,
           value: class {
             constructor(width, height, n, i, orientation) {
               context.createBuffer(),
@@ -283,13 +285,13 @@ class MiniGl {
           },
         },
         Mesh: {
-          enumerable: !1,
+          enumerable: false,
           value: class {
             constructor(geometry, material) {
               const mesh = this;
               (mesh.geometry = geometry),
                 (mesh.material = material),
-                (mesh.wireframe = !1),
+                (mesh.wireframe = false),
                 (mesh.attributeInstances = []),
                 Object.entries(mesh.geometry.attributes).forEach(([e, attribute]) => {
                   mesh.attributeInstances.push({
@@ -321,17 +323,17 @@ class MiniGl {
           },
         },
         Attribute: {
-          enumerable: !1,
+          enumerable: false,
           value: class {
             constructor(e) {
               (this.type = context.FLOAT),
-                (this.normalized = !1),
+                (this.normalized = false),
                 (this.buffer = context.createBuffer()),
                 Object.assign(this, e),
                 this.update();
             }
             update() {
-              void 0 !== this.values &&
+              undefined !== this.values &&
                 (context.bindBuffer(this.target, this.buffer),
                 context.bufferData(this.target, this.values, context.STATIC_DRAW));
             }
@@ -413,122 +415,65 @@ class MiniGl {
   }
 }
 
-//Sets initial properties
-function e(object, propertyName, val) {
-  return (
-    propertyName in object
-      ? Object.defineProperty(object, propertyName, {
-          value: val,
-          enumerable: !0,
-          configurable: !0,
-          writable: !0,
-        })
-      : (object[propertyName] = val),
-    object
-  );
-}
-
-//Gradient object
 class Gradient {
-  constructor(...t) {
-    e(this, 'el', void 0),
-      e(this, 'cssVarRetries', 0),
-      e(this, 'maxCssVarRetries', 200),
-      e(this, 'angle', 0),
-      e(this, 'isLoadedClass', !1),
-      e(this, 'isScrolling', !1),
-      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(this, 'scrollingTimeout', void 0),
-      e(this, 'scrollingRefreshDelay', 200),
-      e(this, 'isIntersecting', !1),
-      e(this, 'shaderFiles', void 0),
-      e(this, 'vertexShader', void 0),
-      e(this, 'sectionColors', void 0),
-      e(this, 'computedCanvasStyle', void 0),
-      e(this, 'conf', void 0),
-      e(this, 'uniforms', void 0),
-      e(this, 't', 1253106),
-      e(this, 'last', 0),
-      e(this, 'width', void 0),
-      e(this, 'minWidth', 1111),
-      e(this, 'height', 600),
-      e(this, 'xSegCount', void 0),
-      e(this, 'ySegCount', void 0),
-      e(this, 'mesh', void 0),
-      e(this, 'material', void 0),
-      e(this, 'geometry', void 0),
-      e(this, 'minigl', void 0),
-      e(this, 'scrollObserver', void 0),
-      e(this, 'amp', 320),
-      e(this, 'seed', 5),
-      e(this, 'freqX', 14e-5),
-      e(this, 'freqY', 29e-5),
-      e(this, 'freqDelta', 1e-5),
-      e(this, 'activeColors', [1, 1, 1, 1]),
-      e(this, 'isMetaKey', !1),
-      e(this, 'isGradientLegendVisible', !1),
-      e(this, 'isMouseDown', !1),
-      e(this, 'handleScroll', () => {
-        clearTimeout(this.scrollingTimeout),
-          (this.scrollingTimeout = setTimeout(this.handleScrollEnd, this.scrollingRefreshDelay)),
-          this.isGradientLegendVisible && this.hideGradientLegend(),
-          this.conf.playing && ((this.isScrolling = !0), this.pause());
-      }),
-      e(this, 'handleScrollEnd', () => {
-        (this.isScrolling = !1), this.isIntersecting && this.play();
-      }),
-      e(this, 'resize', () => {
-        (this.width = window.innerWidth),
-          this.minigl.setSize(this.width, this.height),
-          this.minigl.setOrthographicCamera(),
-          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
-          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
-          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
-          this.mesh.geometry.setSize(this.width, this.height),
-          (this.mesh.material.uniforms.u_shadow_power.value = this.width < 600 ? 5 : 6);
-      }),
-      e(this, 'handleMouseDown', e => {
-        this.isGradientLegendVisible &&
-          ((this.isMetaKey = e.metaKey),
-          (this.isMouseDown = !0),
-          !1 === this.conf.playing && requestAnimationFrame(this.animate));
-      }),
-      e(this, 'handleMouseUp', () => {
-        this.isMouseDown = !1;
-      }),
-      e(this, 'animate', e => {
-        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
-          if (((this.t += Math.min(e - this.last, 1e3 / 15)), (this.last = e), this.isMouseDown)) {
-            let e = 160;
-            this.isMetaKey && (e = -160), (this.t += e);
-          }
-          (this.mesh.material.uniforms.u_time.value = this.t), this.minigl.render();
-        }
-        if (0 !== this.last && this.isStatic) return this.minigl.render(), void this.disconnect();
-        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
-          requestAnimationFrame(this.animate);
-      }),
-      e(this, 'addIsLoadedClass', () => {
-        /*this.isIntersecting && */ !this.isLoadedClass &&
-          ((this.isLoadedClass = !0),
-          this.el.classList.add('isLoaded'),
-          setTimeout(() => {
-            this.el.parentElement.classList.add('isLoaded');
-          }, 3e3));
-      }),
-      e(this, 'pause', () => {
-        this.conf.playing = false;
-      }),
-      e(this, 'play', () => {
-        requestAnimationFrame(this.animate), (this.conf.playing = true);
-      }),
-      e(this, 'initGradient', selector => {
-        this.el = document.querySelector(selector);
-        this.connect();
-        return this;
-      });
-  }
+  el = undefined;
+  angle = 0;
+  shaderFiles = undefined;
+  vertexShader = undefined;
+  sectionColors = undefined;
+  conf = undefined;
+  uniforms = undefined;
+  t = 1253106;
+  last = 0;
+  width = undefined;
+  minWidth = 1111;
+  height = 600;
+  xSegCount = undefined;
+  ySegCount = undefined;
+  mesh = undefined;
+  material = undefined;
+  geometry = undefined;
+  minigl = undefined;
+  amp = 320;
+  seed = 5;
+  freqX = 14e-5;
+  freqY = 29e-5;
+  freqDelta = 1e-5;
+  activeColors = [1, 1, 1, 1];
+  isMouseDown = false;
+
+  resize = () => {
+    this.width = window.innerWidth;
+    this.minigl.setSize(this.width, this.height);
+    this.minigl.setOrthographicCamera();
+    this.xSegCount = Math.ceil(this.width * this.conf.density[0]);
+    this.ySegCount = Math.ceil(this.height * this.conf.density[1]);
+    this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount);
+    this.mesh.geometry.setSize(this.width, this.height);
+    this.mesh.material.uniforms.u_shadow_power.value = this.width < 600 ? 5 : 6;
+  };
+
+  animate = e => {
+    if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+      if (((this.t += Math.min(e - this.last, 1e3 / 15)), (this.last = e), this.isMouseDown)) {
+        let e = 160;
+        (e = -160), (this.t += e);
+      }
+
+      this.mesh.material.uniforms.u_time.value = this.t;
+      this.minigl.render();
+    }
+    if (0 !== this.last && this.isStatic) return this.minigl.render(), void this.disconnect();
+    (this.conf.playing || this.isMouseDown) && requestAnimationFrame(this.animate);
+  };
+
+  initGradient = id => {
+    this.el = document.getElementById(id);
+    this.connect();
+  };
+
   async connect() {
-    (this.shaderFiles = {
+    this.shaderFiles = {
       vertex:
         'varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}',
       noise:
@@ -537,41 +482,46 @@ class Gradient {
         '//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}',
       fragment:
         'varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}',
-    }),
-      (this.conf = {
-        presetName: '',
-        wireframe: false,
-        density: [0.06, 0.16],
-        zoom: 1,
-        rotation: 0,
-        playing: true,
-      }),
-      document.querySelectorAll('canvas').length < 1
-        ? console.log('DID NOT LOAD HERO STRIPE CANVAS')
-        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
-          requestAnimationFrame(() => {
-            this.el &&
-              ((this.computedCanvasStyle = getComputedStyle(this.el)), this.waitForCssVars());
-          }));
-          /*
-          this.scrollObserver = await s.create(.1, !1),
-          this.scrollObserver.observe(this.el),
-          this.scrollObserver.onSeparate(() => {
-              window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
-          }), 
-          this.scrollObserver.onIntersect(() => {
-              window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
-          })*/
+    };
+
+    this.conf = {
+      presetName: '',
+      wireframe: false,
+      density: [0.06, 0.16],
+      zoom: 1,
+      rotation: 0,
+      playing: true,
+    };
+
+    this.minigl = new MiniGl(this.el, null, null, true);
+
+    requestAnimationFrame(() => {
+      this.computedCanvasStyle = getComputedStyle(this.el);
+      this.init();
+    });
   }
-  disconnect() {
-    this.scrollObserver &&
-      (window.removeEventListener('scroll', this.handleScroll),
-      window.removeEventListener('mousedown', this.handleMouseDown),
-      window.removeEventListener('mouseup', this.handleMouseUp),
-      window.removeEventListener('keydown', this.handleKeyDown),
-      this.scrollObserver.disconnect()),
-      window.removeEventListener('resize', this.resize);
+
+  init() {
+    this.initGradientColors();
+    this.initMesh();
+    this.resize();
+    requestAnimationFrame(this.animate);
+    window.addEventListener('resize', this.resize);
   }
+
+  initGradientColors() {
+    this.sectionColors = ['#ef008f', '#6ec3f4', '#7038ff', '#ffba27']
+      .map(hex => `0x${hex.substr(1)}`)
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+
+  initMesh() {
+    this.material = this.initMaterial();
+    this.geometry = new this.minigl.PlaneGeometry();
+    this.mesh = new this.minigl.Mesh(this.geometry, this.material);
+  }
+
   initMaterial() {
     this.uniforms = {
       u_time: new this.minigl.Uniform({
@@ -681,91 +631,23 @@ class Gradient {
       new this.minigl.Material(this.vertexShader, this.shaderFiles.fragment, this.uniforms)
     );
   }
-  initMesh() {
-    (this.material = this.initMaterial()),
-      (this.geometry = new this.minigl.PlaneGeometry()),
-      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+
+  disconnect() {
+    window.removeEventListener('resize', this.resize);
   }
+
   shouldSkipFrame(e) {
-    return !!window.document.hidden || !this.conf.playing || parseInt(e, 10) % 2 == 0 || void 0;
+    return !!window.document.hidden || !this.conf.playing || parseInt(e, 10) % 2 == 0 || undefined;
   }
+
   updateFrequency(e) {
-    (this.freqX += e), (this.freqY += e);
+    this.freqX += e;
+    this.freqY += e;
   }
+
   toggleColor(index) {
     this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
   }
-  showGradientLegend() {
-    this.width > this.minWidth &&
-      ((this.isGradientLegendVisible = !0), document.body.classList.add('isGradientLegendVisible'));
-  }
-  hideGradientLegend() {
-    (this.isGradientLegendVisible = !1), document.body.classList.remove('isGradientLegendVisible');
-  }
-  init() {
-    this.initGradientColors(),
-      this.initMesh(),
-      this.resize(),
-      requestAnimationFrame(this.animate),
-      window.addEventListener('resize', this.resize);
-  }
-  /*
-   * Waiting for the css variables to become available, usually on page load before we can continue.
-   * Using default colors assigned below if no variables have been found after maxCssVarRetries
-   */
-  waitForCssVars() {
-    if (
-      this.computedCanvasStyle &&
-      -1 !== this.computedCanvasStyle.getPropertyValue('--gradient-color-1').indexOf('#')
-    )
-      this.init(), this.addIsLoadedClass();
-    else {
-      if (((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)) {
-        return (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]), void this.init();
-      }
-      requestAnimationFrame(() => this.waitForCssVars());
-    }
-  }
-  /*
-   * Initializes the four section colors by retrieving them from css variables.
-   */
-  initGradientColors() {
-    this.sectionColors = [
-      '--gradient-color-1',
-      '--gradient-color-2',
-      '--gradient-color-3',
-      '--gradient-color-4',
-    ]
-      .map(cssPropertyName => {
-        let hex = this.computedCanvasStyle.getPropertyValue(cssPropertyName).trim();
-        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
-        if (4 === hex.length) {
-          const hexTemp = hex
-            .substr(1)
-            .split('')
-            .map(hexTemp => hexTemp + hexTemp)
-            .join('');
-          hex = `#${hexTemp}`;
-        }
-        return hex && `0x${hex.substr(1)}`;
-      })
-      .filter(Boolean)
-      .map(normalizeColor);
-  }
 }
 
-/*
- *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
- * Use Gradient.pause() and Gradient.play() for controls.
- *
- * Here are some default property values you can change anytime:
- * Amplitude:    Gradient.amp = 0
- * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
- *
- *
- * Useful functions
- * Gradient.toggleColor(index)
- * Gradient.updateFrequency(freq)
- */
-var gradient = new Gradient();
-gradient.initGradient('#gradient-canvas');
+export default Gradient;
