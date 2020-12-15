@@ -31,7 +31,7 @@ export default class NextSite extends Document {
         <body>
           <Main />
           <NextScript />
-          <script async src="https://cdn.splitbee.io/sb.js"></script>
+          <script async data-api="/_hive" src="/bee.js"></script>
         </body>
       </Html>
     );
