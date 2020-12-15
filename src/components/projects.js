@@ -44,7 +44,7 @@ const Project = ({ title, href, color, imageProps, tags = [], children }) => (
         </div>
       )}
     </div>
-    <h3 className="mt-3 text-lg font-semibold text-white">{title}</h3>
+    <p className="mt-3 text-lg font-semibold text-white">{title}</p>
     <div className="my-3">{children}</div>
     <div className="flex items-center justify-between">
       <div>
