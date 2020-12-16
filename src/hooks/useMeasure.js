@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState, useMemo } from 'react';
 
 const defaultState = { width: 0, height: 0 };
-const useFutile = () => [() => {}, defaultState]; // Used during SSR
+const useFutile = () => defaultState; // Used during SSR
 
 const useMeasure = ref => {
   const [rect, setRect] = useState(defaultState);
