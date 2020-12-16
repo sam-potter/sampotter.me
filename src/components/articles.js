@@ -6,7 +6,7 @@ export default function Articles() {
       <div className="grid sm:grid-cols-2 gap-6 mb-24">
         <Article
           date="Mar 16, 2020"
-          href="https://medium.com/"
+          href="https://medium.com/@sampotter_/reduce-rerenders-in-next-js-e261a0023dbe"
           title="Persistent Layouts in Next.js"
           text="Next.js is an incredible framework, but one issue I never seemed to understand was why my entire page layout would re-mount during page transitions. Inspired by the great Adam Wathan, this article looks at why this problem occurs, as well as several elegant solutions that create layout persistence and a much better user experience."
         />
