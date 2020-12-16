@@ -3,8 +3,7 @@ import { useLayoutEffect, useState, useMemo } from 'react';
 const defaultState = { width: 0, height: 0 };
 const useFutile = () => [() => {}, defaultState]; // Used during SSR
 
-const useMeasure = () => {
-  const [element, ref] = useState(null);
+const useMeasure = ref => {
   const [rect, setRect] = useState(defaultState);
 
   const observer = useMemo(() => {
@@ -17,12 +16,12 @@ const useMeasure = () => {
   }, []);
 
   useLayoutEffect(() => {
-    if (!element) return;
-    observer.observe(element);
+    if (!ref.current) return;
+    observer.observe(ref.current);
     return () => observer.disconnect();
-  }, [element]);
+  }, []);
 
-  return [ref, rect];
+  return rect;
 };
 
 export default typeof window === 'object' && !!window.ResizeObserver ? useMeasure : useFutile;

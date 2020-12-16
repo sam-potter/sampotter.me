@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import useMeasure from '@/hooks/useMeasure';
 import Gradient from '@/js/gradient';
 
 export default function Name() {
-  const [title, rect] = useMeasure();
+  const ref = useRef();
+  const rect = useMeasure(ref);
 
   useEffect(() => {
     const gradient = new Gradient();
@@ -14,7 +15,7 @@ export default function Name() {
     <div className="relative mb-5 overflow-hidden">
       <canvas id="canvas" className="absolute top-0 left-0" style={rect} />
       <h1
-        ref={title}
+        ref={ref}
         style={{ mixBlendMode: 'multiply' }}
         className="relative flex font-extrabold text-5xl sm:text-7xl text-white bg-black"
       >
