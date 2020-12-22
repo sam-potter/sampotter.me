@@ -4,7 +4,7 @@ export default function Projects() {
   return (
     <>
       <p className="mt-24 mb-3 text-3xl font-bold text-white">Projects</p>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
         <Project
           color="#6851FF"
           title="sporting.land"
