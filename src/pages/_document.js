@@ -15,6 +15,13 @@ export default class NextSite extends Document {
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png" />
+          <link
+            rel="preload"
+            href="https://assets.vercel.com/raw/upload/v1587415301/fonts/2/inter-var-latin.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
           <meta
             property="og:description"
             content="Hey, I'm Sam Potter. I’m a full-stack web developer from Melbourne, currently working part-time at Retail Safari. On my off days, I'm available for freelance web development, design, and consultation, so feel free to get in touch."

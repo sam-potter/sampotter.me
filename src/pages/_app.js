@@ -1,4 +1,4 @@
-import 'tailwindcss/tailwind.css';
+import '@/css/tailwind.css';
 import Head from 'next/head';
 
 const App = ({ Component, pageProps }) => (
