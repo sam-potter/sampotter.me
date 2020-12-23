@@ -1,17 +1,14 @@
-import Name from '@/components/name';
+import Motto from '@/components/motto';
 import Projects from '@/components/projects';
 import Articles from '@/components/articles';
 import Footer from '@/components/footer';
 
 export default function Index() {
   return (
-    <div className="container mx-auto px-4 my-24">
-      <Name />
-      <div className="grid grid-cols-1 sm:grid-cols-2">
-        <h2 className="text-xl text-gray-400">
-          Hey, I'm a 19 year old developer from Melbourne learning to build great products on the
-          web.
-        </h2>
+    <div className="container mx-auto px-4 my-24 space-y-24">
+      <div>
+        <Motto />
+        <About />
       </div>
       <Projects />
       <Articles />
@@ -19,3 +16,15 @@ export default function Index() {
     </div>
   );
 }
+
+const About = () => (
+  <div className="grid grid-cols-1 sm:grid-cols-2">
+    <div className="text-xl text-gray-100 space-y-4">
+      <h2>Hey there 👋</h2>
+      <h2>
+        My name's Sam Potter. I'm a 19 year old web developer from Melbourne, Australia. To sum me
+        up in 3 words, read the colourful sentence above one more time.
+      </h2>
+    </div>
+  </div>
+);

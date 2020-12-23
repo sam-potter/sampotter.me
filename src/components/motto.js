@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import useMeasure from '@/hooks/useMeasure';
 import Gradient from '@/js/gradient';
 
-export default function Name() {
+export default function Motto() {
   const ref = useRef();
   const rect = useMeasure(ref);
 
@@ -17,9 +17,9 @@ export default function Name() {
       <h1
         ref={ref}
         style={{ mixBlendMode: 'multiply' }}
-        className="relative flex font-extrabold text-5xl sm:text-7xl text-white bg-black"
+        className="relative flex font-extrabold text-4xl sm:text-6xl text-white bg-black"
       >
-        {'Sam Potter'.split('').map((l, i) => (
+        {'Always a student'.split('').map((l, i) => (
           <span
             key={`${l}${i}`}
             style={{
@@ -28,7 +28,7 @@ export default function Name() {
               transitionTimingFunction: 'cubic-bezier(0.4, 0, 0, 1)',
               transitionDuration: '1s',
               transitionDelay: `${i * 30 + 500}ms`,
-              paddingRight: l == ' ' ? 15 : 0,
+              paddingRight: l == ' ' ? 10 : 0,
             }}
           >
             {l}
