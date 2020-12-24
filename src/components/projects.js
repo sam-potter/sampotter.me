@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Tag from '@/components/tag';
 
 export default function Projects() {
   return (
@@ -18,7 +19,7 @@ export default function Projects() {
           tags={['Design']}
           href="https://www.oscanet.com.au/"
           title="Old Scotch Collegians Association"
-          imageProps={{ width: 400, height: 160, src: '/images/osca.png', alt: '' }}
+          imageProps={{ width: 400, height: 160, src: '/images/osca.png', alt: '', priority: true }}
         >
           Website consultation, and full re-design I did for Scotch College's alumni association.
         </Project>
@@ -40,17 +41,12 @@ const Project = ({ title, href, color, imageProps, tags = [], children }) => (
       )}
     </div>
     <div className="mt-4">
-      <p className="text-lg font-semibold text-white mb-1">{title}</p>
-      <div className="text-gray-400 mb-3">{children}</div>
+      <p className="text-lg font-semibold dark:text-white mb-1">{title}</p>
+      <div className="text-gray-600 dark:text-gray-400 mb-3">{children}</div>
       <div className="flex items-center justify-between pt-2">
         <div>
           {tags.map((tag, index) => (
-            <span
-              key={index}
-              className="inline-flex items-center px-2 py-1 mr-2 rounded text-sm font-medium bg-gray-800 text-gray-300"
-            >
-              {tag}
-            </span>
+            <Tag key={index}>{tag}</Tag>
           ))}
         </div>
         <a

@@ -9,12 +9,14 @@
   },
   "dependencies": {
     "next": "^10.0.1",
+    "next-themes": "^0.0.10",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.1.0",
     "postcss": "^8.2.1",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.0.2",
+    "tailwindcss-blend-mode": "^1.0.0"
   }
 }

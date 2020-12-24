@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import useMeasure from '@/hooks/useMeasure';
 import Gradient from '@/js/gradient';
 
@@ -16,8 +17,7 @@ export default function Motto() {
       <canvas id="canvas" className="absolute top-0 left-0" style={rect} />
       <h1
         ref={ref}
-        style={{ mixBlendMode: 'multiply' }}
-        className="relative flex font-extrabold text-4xl sm:text-6xl text-white bg-black"
+        className="relative flex font-extrabold text-4xl sm:text-6xl text-black bg-white blend-screen dark:blend-multiply dark:text-white dark:bg-black"
       >
         {'Always a student'.split('').map((l, i) => (
           <span
