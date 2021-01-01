@@ -29,7 +29,7 @@ const Toggle = () => {
 
   return (
     <button
-      className="p-4 pl-0 cursor-pointer"
+      className="p-4 pl-0 cursor-pointer focus:outline-none"
       onClick={() => setTheme(isLight ? 'dark' : 'light')}
     >
       {isLight ? '🌑' : '☀️'}
