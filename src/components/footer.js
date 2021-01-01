@@ -17,7 +17,7 @@ const Link = ({ href, children }) => (
     href={href}
     rel="noopener"
     target="_blank"
-    className="text-indigo-500 hover:underline font-medium"
+    className="font-medium text-indigo-500 hover:underline"
   >
     {children}
   </a>

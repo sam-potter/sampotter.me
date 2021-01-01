@@ -17,7 +17,7 @@ export default function Motto() {
       <canvas id="canvas" className="absolute top-0 left-0" style={rect} />
       <h1
         ref={ref}
-        className="relative flex font-extrabold text-4xl sm:text-6xl text-black bg-white blend-screen dark:blend-multiply dark:text-white dark:bg-black"
+        className="relative flex text-4xl font-extrabold text-black bg-white sm:text-6xl blend-screen dark:blend-multiply dark:text-white dark:bg-black"
       >
         {'Always a student'.split('').map((l, i) => (
           <span

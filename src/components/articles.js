@@ -1,8 +1,6 @@
-import Tag from '@/components/tag';
-
 export default function Articles() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
       <div className="col-span-1 space-y-4">
         <p className="text-3xl font-bold dark:text-white">Writings</p>
         <p className="text-gray-600 dark:text-gray-400">
@@ -24,9 +22,9 @@ export default function Articles() {
 }
 
 const Article = ({ title, text, href, date }) => (
-  <div className="flex flex-col justify-between bg-white dark:bg-gray-800 rounded-md shadow-md overflow-hidden">
+  <div className="flex flex-col justify-between overflow-hidden bg-white rounded-md shadow-md dark:bg-gray-800">
     <div className="p-4">
-      <p className="dark:text-white text-lg font-bold mt-1 mb-2">{title}</p>
+      <p className="mt-1 mb-2 text-lg font-bold dark:text-white">{title}</p>
       <p className="text-gray-600 dark:text-gray-400">{text}</p>
     </div>
     <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900">

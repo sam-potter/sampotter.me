@@ -31,7 +31,7 @@ export default function Projects() {
 const Project = ({ title, href, color, imageProps, tags = [], children }) => (
   <div>
     <div
-      className="rounded-lg h-32 w-full flex items-center justify-center"
+      className="flex items-center justify-center w-full h-32 rounded-lg"
       style={{ background: color }}
     >
       {imageProps && (
@@ -41,12 +41,17 @@ const Project = ({ title, href, color, imageProps, tags = [], children }) => (
       )}
     </div>
     <div className="mt-4">
-      <p className="text-lg font-semibold dark:text-white mb-1">{title}</p>
-      <div className="text-gray-600 dark:text-gray-400 mb-3">{children}</div>
+      <p className="mb-1 text-lg font-semibold dark:text-white">{title}</p>
+      <div className="mb-3 text-gray-600 dark:text-gray-400">{children}</div>
       <div className="flex items-center justify-between pt-2">
         <div>
           {tags.map((tag, index) => (
-            <Tag key={index}>{tag}</Tag>
+            <span
+              key={index}
+              className="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium bg-gray-100 rounded dark:bg-gray-800 dark:text-gray-300"
+            >
+              {tag}
+            </span>
           ))}
         </div>
         <a

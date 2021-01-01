@@ -5,7 +5,7 @@ import Footer from '@/components/footer';
 
 export default function Index() {
   return (
-    <div className="container mx-auto px-4 py-32 space-y-32">
+    <div className="container px-4 py-32 mx-auto space-y-32">
       <div>
         <Motto />
         <About />
@@ -19,7 +19,7 @@ export default function Index() {
 
 const About = () => (
   <div className="grid grid-cols-1 sm:grid-cols-2">
-    <div className="text-xl dark:text-gray-100 space-y-4">
+    <div className="space-y-4 text-xl dark:text-gray-100">
       <h2>Hey there 👋</h2>
       <h2>
         My name's Sam Potter. I'm a 19 year old web developer from Melbourne, Australia. To sum me
