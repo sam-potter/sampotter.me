@@ -16,7 +16,7 @@ export default function Articles() {
           date="Jan 11, 2020"
           href="https://medium.com/swlh/how-podac-loads-images-95x-faster-f1d6063590c2"
           title="How Podac loads images 95x faster"
-          text="Podac was my first dive into the world of React. It's a Chrome extension that brought life to my 'new tab' page with beautiful background images. However, fetching and loading an image from the Unsplash API before making a search was no easy task. The article reveals how a few neat tricks allowed me to optimise image load times."
+          text="Podac was my first dive into the world of React. It's a Chrome extension that brought life to my 'new tab' page with beautiful background images. However, trying to fetch and load an image from the Unsplash API before making a search was no easy task. The article reveals how a few neat tricks allowed me to optimise image load times."
         />
       </div>
     </div>

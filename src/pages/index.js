@@ -5,7 +5,7 @@ import Footer from '@/components/footer';
 
 export default function Index() {
   return (
-    <div className="container mx-auto px-4 py-48 space-y-48">
+    <div className="container mx-auto px-4 py-32 space-y-32">
       <div>
         <Motto />
         <About />
