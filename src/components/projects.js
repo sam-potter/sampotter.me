@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Tag from '@/components/tag';
 
 export default function Projects() {
   return (
