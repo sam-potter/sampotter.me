@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 export default class NextSite extends Document {
   render() {
     return (
-      <Html lang="en" style={{ background: '#000' }}>
+      <Html lang="en">
         <Head>
           <meta name="language" content="en" />
           <meta name="author" content="Sam Potter" />
@@ -35,7 +35,7 @@ export default class NextSite extends Document {
             content="Sam Potter Web Developer, Melbourne Developer, Website Builder Melbourne, Sam Potter, Sam Potter Melbourne, Sam Potter Developer"
           />
         </Head>
-        <body>
+        <body className="bg-white dark:bg-black">
           <Main />
           <NextScript />
           <script async data-api="/_hive" src="/bee.js"></script>
