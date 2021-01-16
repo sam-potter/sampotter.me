@@ -1,7 +1,7 @@
 export default function Articles() {
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-      <div className="col-span-1 space-y-4">
+    <div className="grid grid-cols-1 gap-6 px-4 pt-12 -mx-4 bg-gray-100 sm:py-24 sm:grid-cols-3">
+      <div className="col-span-1 pb-8 space-y-4">
         <p className="text-3xl font-bold dark:text-white">Writings</p>
         <p className="text-gray-600 dark:text-gray-400">
           I try to write as I'm learning. So often, these articles are written just as I begin to
@@ -22,7 +22,7 @@ export default function Articles() {
 }
 
 const Article = ({ title, text, href, date }) => (
-  <div className="flex flex-col justify-between overflow-hidden bg-white rounded-md shadow-md dark:bg-gray-800">
+  <div className="flex flex-col justify-between -mx-4 overflow-hidden bg-white shadow-md sm:rounded-md sm:mx-0 dark:bg-gray-800">
     <div className="p-4">
       <p className="mt-1 mb-2 text-lg font-bold dark:text-white">{title}</p>
       <p className="text-gray-600 dark:text-gray-400">{text}</p>
