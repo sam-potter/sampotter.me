@@ -19,7 +19,7 @@ export default function Motto() {
         ref={ref}
         className="relative flex text-4xl font-extrabold text-black bg-white sm:text-6xl blend-screen dark:blend-multiply dark:text-white dark:bg-black"
       >
-        {'Always a student'.split('').map((l, i) => (
+        {'Sam Potter'.split('').map((l, i) => (
           <span
             key={`${l}${i}`}
             style={{

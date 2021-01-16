@@ -5,6 +5,13 @@ export default class NextSite extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link
+            rel="preload"
+            href="/fonts/inter-var-latin.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
           <meta name="language" content="en" />
           <meta name="author" content="Sam Potter" />
           <meta name="robots" content="follow, all" />
@@ -14,13 +21,6 @@ export default class NextSite extends Document {
           <link rel="shortcut icon" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="shortcut icon" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="shortcut icon" sizes="192x192" href="/android-icon-192x192.png" />
-          <link
-            rel="preload"
-            href="https://assets.vercel.com/raw/upload/v1587415301/fonts/2/inter-var-latin.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-          />
         </Head>
         <body className="bg-white dark:bg-black">
           <Main />

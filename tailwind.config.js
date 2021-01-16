@@ -5,6 +5,7 @@ const blendModes = plugin(({ addUtilities }) => {
   const utils = {
     '.blend-screen': { mixBlendMode: 'screen' },
     '.blend-multiply': { mixBlendMode: 'multiply ' },
+    '.text-decoration-wavy': { textDecorationStyle: 'wavy ' },
   };
   addUtilities(utils, { variants: ['dark'] });
 });

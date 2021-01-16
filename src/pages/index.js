@@ -5,7 +5,7 @@ import Footer from '@/components/footer';
 
 export default function Index() {
   return (
-    <div className="container px-4 py-32 mx-auto space-y-32">
+    <div className="max-w-5xl px-4 py-32 mx-auto space-y-32">
       <div>
         <Motto />
         <About />
@@ -22,8 +22,9 @@ const About = () => (
     <div className="space-y-4 text-xl dark:text-gray-100">
       <h2>Hey there 👋</h2>
       <h2>
-        My name's Sam Potter. I'm a 19 year old web developer from Melbourne, Australia. To sum me
-        up in 3 words, read the colourful sentence above one more time.
+        I'm Sam. I'm a developer from Melbourne in love with building{' '}
+        <span className="line-through">good shit</span> performant, scalable, and maintable apps on
+        the web.
       </h2>
     </div>
   </div>
