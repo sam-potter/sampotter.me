@@ -1,6 +1,6 @@
 export default function Articles() {
   return (
-    <div className="grid grid-cols-1 gap-6 px-4 pt-12 -mx-4 bg-gray-100 sm:py-24 sm:grid-cols-3">
+    <div className="grid grid-cols-1 gap-6 px-4 pt-12 -mx-4 bg-gray-100 dark:bg-black sm:py-24 sm:grid-cols-3">
       <div className="col-span-1 pb-8 space-y-4">
         <p className="text-3xl font-bold dark:text-white">Writings</p>
         <p className="text-gray-600 dark:text-gray-400">
