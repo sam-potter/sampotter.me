@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes';
 
 const Footer = () => (
-  <div className="flex items-center justify-between">
+  <div className="flex items-center justify-between app-container">
     <Toggle />
 
     <div className="space-x-4">

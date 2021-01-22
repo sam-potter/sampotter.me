@@ -5,8 +5,8 @@ import Footer from '@/components/footer';
 
 export default function Index() {
   return (
-    <div className="max-w-5xl px-4 py-32 mx-auto space-y-32">
-      <div>
+    <div className="py-32 space-y-32">
+      <div className="app-container">
         <Motto />
         <About />
       </div>

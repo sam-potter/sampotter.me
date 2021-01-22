@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function Projects() {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 app-container">
       <p className="text-3xl font-bold text-white">Projects</p>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <Project
