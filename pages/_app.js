@@ -2,8 +2,8 @@ import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
 import { ThemeProvider } from 'next-themes';
 
-import '@/css/tailwind.css';
-import seoConfig from '../../seo.config';
+import 'styles/global.css';
+import seoConfig from 'seo.config';
 
 const App = ({ Component, pageProps }) => (
   <ThemeProvider attribute="class">

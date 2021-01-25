@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
-import useMeasure from '@/hooks/useMeasure';
-import Gradient from '@/js/gradient';
+import useMeasure from 'hooks/useMeasure';
+import Gradient from 'utils/gradient';
 
 export default function Motto() {
   const ref = useRef();
