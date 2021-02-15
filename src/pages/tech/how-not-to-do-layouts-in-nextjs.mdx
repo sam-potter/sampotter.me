@@ -1,0 +1,213 @@
+import Link from '@/components/link';
+
+export const meta = {
+  title: 'How not to do layouts in Next.js',
+  date: '2021-02-13T02:01:41.812Z',
+};
+
+Handling layouts in Next.js is a weird thing.
+
+Simple, persistent layouts are not a primary feature of the [brilliant React framework](https://nextjs.org/).
+They are however, a primary feature of Single Page Applications (SPAs).
+So why did the Next.js team decide to leave this crucial web page fundamental hidden in a dark corner?
+Honestly, I've got no idea. Maybe they thought it wasn't a priority? Or some type of barrier-to-entry for beginners learning Next.js? Who knows.
+
+This article aims to shed light on:
+
+- Why persistent layouts are good
+- Common Next.js layout patterns that don't work
+- Why those patterns don't work
+
+Then, I'll refer you to a great article with several great solutions.
+
+The reason I'm not giving a solution here is because I don't need to. I'll be honest, this is my second attempt at writing this article.
+My first attempt was pointless. It was titled "How to do persistent layouts in Next.js" and was basically an amalgamation of every post you'd find from a single Google search.
+Solutions to this problem are well documented. Why the problem occurs however, that's a tad more obsecure.
+I also think a really in-depth understanding of the problem sets you up nicely when it comes
+to solving it.
+
+## Why persistent layouts are good
+
+What do I even mean by a persistent layout anyways? Most pages have some sort of layout, i.e. they'll have
+a navigation bar up the top, maybe a footer down the bottom, and a bunch of content in between.
+The components that are common to every page are a part of the layout (like the navbar and footer in this case) and usually get abstracted into
+a layout component. It makes developers lives easier doing that.
+
+So what does the persistent bit mean? That is concerned about how when the user navigates from one page to the next,
+we avoid re-mounting the page layout component, since we know that those navbar and footer components
+won't change from one page to the next. And only worry about re-mounting the individual page content, since that will be different.
+
+Good layout persistence is a thankless feature, you only notice it when a layout isn't persisting across page navigations.
+The most common examples of bad persistence you might see are:
+
+- Side navigation bars losing their scroll position
+- Search input in the navigation bar loses its value
+- Initial "fade in" animations re-running for no reason
+
+Developers often combat these problems with complex state handlers that poorly determine scroll position, animation states
+and other unnecessary things. While these are only poor UX issues that usually don't detriment the function of a web app.
+They take away the feeling that the site is indeed that, a web app, and leave the user to feel more like their on a traditional website
+that loses all state and performs entire-page refreshes every time you do something.
+
+In short, layout persistence is "cleaner" for users, and more maintainable for developers.
+
+## Common anti-patterns that don't work
+
+While reading through these, if you see a pattern that you've been using in your Next.js apps, you're clearly a terrible developer.
+I'm kidding. I only know these anti-patterns because I've used them all at some point in my Next.js journey.
+
+### Placing your Layout in each page component
+
+```jsx
+const AboutPage = () => (
+  <Layout>
+    <p>This is an about page.</p>
+  </Layout>
+);
+
+export default AboutPage;
+```
+
+### Using a Higher Order Component (HOC)
+
+```jsx
+const withLayout = Component => props => (
+  <Layout>
+    <Component {...props} />
+  </Layout>
+);
+
+const AboutPage = () => <p>This is an about page</p>;
+
+export default withLayout(AboutPage);
+```
+
+### Wrapping the default export
+
+```jsx
+const AboutPage = () => <p>This is an about page</p>;
+
+export default (
+  <Layout>
+    <AboutPage />
+  </Layout>
+);
+```
+
+None of these patterns create layout persistence.
+The problem is that in each case, we are handling the layout responsibility for given page
+inside the page component file. Let me explain why this is a problem.
+
+## Why these patterns don't work
+
+Let me start this explanation with an analogy.
+
+Think of each file in your `/pages` directory as a box. A physical, cardboard box.
+Your `/about.js` file is a box, and so is your `/dashboard.js` too.
+On each box is a label, the label on the first box says `About` and the label on
+the second box says `Dashboard`. Next.js then takes all the code you wrote inside each
+of those files, and places it into the appropriately labelled box.
+
+Now, when a user navigates from `/about` to `/dashboard`, Next.js tells React that
+it needs to update the page. Basically, React looks at the label on each box,
+throws away the `About` box and replaces it with the newly requested `Dashboard` box.
+
+React doesn't know what's inside the box, it doesn't care. All React does is look at
+the label on each box, and swap them around so that the newly requested one is put in
+place ready for the user.
+
+How does this ruin our layout persistence? Well in each of the 3 patterns above, the content
+of all those boxes will start with a `<Layout>` component. But because React doesn't care,
+the layout gets un-mounted from the DOM as the first box gets thrown out, abandoning scroll positions
+and deleting input values along the way, before being immeditately
+re-mounted as the new box comes into place.
+
+Now let me put this back in React terms.
+
+Each physical box we were talking about is really just a component. And instead of code being wrapped up and thrown into
+a box, it's just child components being put into a larger page component.
+All the components that are put together create what's known as a component tree.
+
+This whole process is known as [reconciliation](https://reactjs.org/docs/reconciliation.html), or "diffing" as it is sometimes called.
+Let's run through the whole process when a user navigates from `/about` to `/dashboard`.
+
+While the user is looking at the About page, the component tree will look like this:
+
+```jsx
+// App component tree while looking at the About page
+<App>
+  <AboutPage>
+    <Layout>
+      <p>This is an about page</p>
+    </Layout>
+  </AboutPage>
+<App>
+```
+
+When Next.js tells React to update the page to show the `/dashboard`, React needs to build a new tree.
+This process is known as [rendering](https://reactjs.org/docs/rendering-elements.html), where React calls the root component (basically calling `App()` since it is essentially a function),
+whilst also calling every subsequent child component, until it ends up with something like this:
+
+```jsx
+// App component tree for the newly requested Dashboard page
+<App>
+  <DashboardPage>
+    <Layout>
+      <p>This is a dashboard page</p>
+    </Layout>
+  </DashboardPage>
+<App>
+```
+
+Once React has two rendered trees, it must then determine what is different about them,
+so it can then update what it needs to in our app. This is the reconcilation bit, the "diffing" bit,
+the "box swapping" bit. Starting at the root component (`<App>`), React traverses its way down
+the tree, checking if the components are different at each step of the way.
+Once React gets to first difference, the `<AboutPage>` and `<DashboardPage>` components,
+it scraps the entire `<AboutPage>` tree and swaps it with the `<DashboardPage>` tree.
+You should now be able to see how our `<Layout>` gets caught up in all this drama. React doesn't
+care about our layout component, and just swaps the two page components above.
+
+Hopefully, the solution to persisting our layout component is starting to become more obvious.
+To prevent our layout from being scrapped and re-mounted, we need to put it on the outside of
+the page component, i.e. we need the page component to be a child of the layout component. Like this:
+
+```jsx
+// About page component tree
+<App>
+  <Layout>
+    <AboutPage>
+      <p>This is an about page</p>
+    </AboutPage>
+  </Layout>
+</App>
+
+// Dashboard component tree
+<App>
+  <Layout>
+    <DashboardPage>
+      <p>This is a dashboard page</p>
+    </DashboardPage>
+  </Layout>
+</App>
+```
+
+If our component trees are set out like this, the first difference that React encounters between
+the two trees will still be the page component itself, but our `<Layout>` will no longer get
+tangled up in the swapping of them. This is what creates persistence.
+
+## Solutions
+
+Now it's all well and good knowing that we need to swap the order of the page component and the
+layout component, but how do we do that in our code. As promised, I'm going to forward you on
+to my favourite article on this topic, and the only article you'll need.
+
+[Persistent Layout Patterns in Next.js Adam Wathan](https://adamwathan.me/2019/10/17/persistent-layout-patterns-in-nextjs/)
+
+Not only will Adam give you several great solutions, he'll offer another perspective and explanation
+of why the issue occurs. If you're still confused after reading his article though, feel free to send me a DM on Twitter
+or something. [@saampotter\_](https://twitter.com/saampotter_) is where you'll find me.
+
+Thats it. If you have any feedback, any suggestions of other anti-patterns, or just want to chat. Also feel free to DM me.
+
+Sam.
