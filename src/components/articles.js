@@ -16,7 +16,7 @@ export default function Articles() {
 
         <div className="-mx-4">
           <Article
-            date="Jan 11, 2020"
+            date="Feb 15, 2021"
             href="/tech/how-not-to-do-layouts-in-nextjs"
             title="How not to do layouts in Next.js"
           />
