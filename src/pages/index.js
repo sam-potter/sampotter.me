@@ -20,7 +20,7 @@ const About = () => (
   <div className="sm:grid sm:grid-cols-3">
     <div className="col-span-2 space-y-4 text-xl dark:text-gray-100">
       <h2>Hey there 👋</h2>
-      <h2>I'm Sam. I'm a 19 year old developer from Melbourne building good shit.</h2>
+      <h2>I'm Sam. I'm a 20 year old developer from Melbourne building good shit.</h2>
       <h2>
         Find me on
         <Link href="https://github.com/saampotter" className="ml-1">
