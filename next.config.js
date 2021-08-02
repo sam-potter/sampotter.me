@@ -4,21 +4,21 @@ const { createLoader } = require('simple-functional-loader');
 
 const tokenClassNames = {
   tag: 'text-code-red',
-  'attr-name': 'text-code-yellow',
-  'attr-value': 'text-code-green',
   deleted: 'text-code-red',
-  inserted: 'text-code-green',
-  punctuation: 'text-code-white',
-  keyword: 'text-code-purple',
+  boolean: 'text-code-red',
   string: 'text-code-green',
   function: 'text-code-blue',
-  boolean: 'text-code-red',
+  keyword: 'text-code-purple',
+  inserted: 'text-code-green',
+  punctuation: 'text-code-white',
   comment: 'text-gray-400 italic',
+  'attr-name': 'text-code-yellow',
+  'attr-value': 'text-code-green',
 };
 
 module.exports = {
   pageExtensions: ['js', 'jsx', 'mdx'],
-  async rewrites() {
+  rewrites() {
     return [
       {
         source: '/bee.js',
@@ -30,42 +30,40 @@ module.exports = {
       },
     ];
   },
-  webpack: (config, options) => {
-    const mdx = [
-      options.defaultLoaders.babel,
+  headers() {
+    return [
       {
-        loader: '@mdx-js/loader',
-        options: {
-          rehypePlugins: [
-            rehypePrism,
-            () => {
-              return tree => {
-                visit(tree, 'element', (node, index, parent) => {
-                  let [token, type] = node.properties.className || [];
-                  if (token === 'token') {
-                    node.properties.className = [tokenClassNames[type]];
-                  }
-                });
-              };
-            },
-          ],
-        },
+        source: '/fonts/inter-var-latin.woff2',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
       },
     ];
-
+  },
+  webpack: (config, options) => {
     config.module.rules.push({
       test: /\.mdx$/,
       use: [
-        ...mdx,
-        createLoader(function (src) {
-          const content = [
-            'import Post from "@/components/post"',
-            '// export { getStaticProps } from "@/getStaticProps"',
-            src,
-            'export default Post',
-          ].join('\n');
+        options.defaultLoaders.babel,
+        {
+          loader: '@mdx-js/loader',
+          options: {
+            rehypePlugins: [
+              rehypePrism,
+              () => {
+                return tree => {
+                  visit(tree, 'element', node => {
+                    let [token, type] = node.properties.className || [];
 
-          return this.callback(null, content);
+                    if (token === 'token') node.properties.className = [tokenClassNames[type]];
+                  });
+                };
+              },
+            ],
+          },
+        },
+        createLoader(function (src) {
+          const c = ['import Post from "@/components/post"', src, 'export default Post'].join('\n');
+
+          return this.callback(null, c);
         }),
       ],
     });
@@ -74,8 +72,8 @@ module.exports = {
     if (!options.dev && !options.isServer) {
       Object.assign(config.resolve.alias, {
         react: 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
         'react-dom': 'preact/compat',
+        'react-dom/test-utils': 'preact/test-utils',
       });
     }
 

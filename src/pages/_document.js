@@ -7,19 +7,21 @@ export default class NextSite extends Document {
       <Html lang="en">
         <Head>
           <link
-            rel="preload"
-            href="/fonts/inter-var-latin.woff2"
             as="font"
+            rel="preload"
             type="font/woff2"
             crossOrigin="anonymous"
+            href="/fonts/inter-var-latin.woff2"
           />
           <meta name="language" content="en" />
           <meta name="author" content="Sam Potter" />
           <meta name="robots" content="follow, all" />
         </Head>
+
         <body className="bg-white">
           <Main />
           <NextScript />
+
           {!isDev && <script async data-api="/_hive" src="/bee.js"></script>}
         </body>
       </Html>

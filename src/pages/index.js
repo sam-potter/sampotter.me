@@ -1,37 +1,44 @@
 import Name from '@/components/name';
-import Articles from '@/components/articles';
-import Container from '@/components/container';
 import Link from '@/components/link';
+import Container from '@/components/container';
 
 export default function Index() {
   return (
-    <>
-      <Container className="py-32">
+    <div className="mt-32">
+      <Container>
         <Name />
-        <About />
-      </Container>
 
-      <Articles />
-    </>
+        <p className="max-w-screen-sm mt-6 text-lg text-gray-700">
+          Hey, I&apos;m Sam, a 20 year old engineer from Melbourne. Currently building&nbsp;
+          <Link href="https://univo.app/">univo</Link>. You can find me on&nbsp;
+          <Link href="https://github.com/saampotter">GitHub</Link>, or&nbsp;
+          <Link href="https://twitter.com/saampotter_">Twitter</Link>.
+        </p>
+
+        <div className="mt-8 border-b" />
+
+        <div className="mt-8 -mx-4">
+          <Article
+            date="Feb 15, 2021"
+            title="How not to do layouts in Next.js"
+            href="/tech/how-not-to-do-layouts-in-nextjs"
+          />
+          <Article
+            date="Jan 11, 2020"
+            title="How Podac loads images 95x faster"
+            href="https://medium.com/swlh/how-podac-loads-images-95x-faster-f1d6063590c2"
+          />
+        </div>
+      </Container>
+    </div>
   );
 }
 
-const About = () => (
-  <div className="sm:grid sm:grid-cols-3">
-    <div className="col-span-2 space-y-4 text-xl dark:text-gray-100">
-      <h2>Hey there 👋</h2>
-      <h2>I'm Sam. I'm a 20 year old developer from Melbourne building good shit.</h2>
-      <h2>
-        Find me on
-        <Link href="https://github.com/saampotter" className="ml-1">
-          GitHub
-        </Link>
-        ,
-        <Link href="https://twitter.com/saampotter_" className="ml-1">
-          Twitter
-        </Link>
-        .
-      </h2>
+const Article = ({ title, href, date }) => (
+  <Link href={href}>
+    <div className="px-4 pt-3 pb-1 sm:rounded-md hover:bg-gray-100 group">
+      <p className="text-sm text-gray-400">{date}</p>
+      <p className="mt-1 mb-2 text-lg">{title}</p>
     </div>
-  </div>
+  </Link>
 );

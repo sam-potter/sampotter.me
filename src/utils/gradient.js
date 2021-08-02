@@ -11,18 +11,6 @@ const normalizeColor = hexCode => [
   (255 & hexCode) / 255,
 ];
 
-const e = (object, propertyName, val) => (
-  propertyName in object
-    ? Object.defineProperty(object, propertyName, {
-        value: val,
-        enumerable: true,
-        configurable: true,
-        writable: true,
-      })
-    : (object[propertyName] = val),
-  object
-);
-
 class MiniGl {
   constructor(canvas, width, height, debug = false) {
     const _miniGl = this,
@@ -272,9 +260,8 @@ class MiniGl {
                   const r = o + xIndex * segment_width,
                     l = yIndex * (geometry.xSegCount + 1) + xIndex;
                   (geometry.attributes.position.values[3 * l + 'xyz'.indexOf(orientation[0])] = r),
-                    (geometry.attributes.position.values[
-                      3 * l + 'xyz'.indexOf(orientation[1])
-                    ] = -t);
+                    (geometry.attributes.position.values[3 * l + 'xyz'.indexOf(orientation[1])] =
+                      -t);
                 }
               }
               geometry.attributes.position.update(),

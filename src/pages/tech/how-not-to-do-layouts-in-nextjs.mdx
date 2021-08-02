@@ -1,9 +1,13 @@
-import Link from '@/components/link';
-
 export const meta = {
   title: 'How not to do layouts in Next.js',
   date: '2021-02-15T06:52:41.124Z',
 };
+
+### TLDR
+
+To create layout persistence, wrap the layout component at the `_app.js` level, and not in the individual page components. Read on for a further explanation.
+
+<div className="border-b"></div>
 
 Handling layouts in Next.js is a weird thing.
 
@@ -71,11 +75,12 @@ export default AboutPage;
 ### Using a Higher Order Component (HOC)
 
 ```jsx
-const withLayout = Component => props => (
-  <Layout>
-    <Component {...props} />
-  </Layout>
-);
+const withLayout = Component => props =>
+  (
+    <Layout>
+      <Component {...props} />
+    </Layout>
+  );
 
 const AboutPage = () => <p>This is an about page</p>;
 

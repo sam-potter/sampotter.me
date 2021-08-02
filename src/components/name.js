@@ -13,8 +13,9 @@ export default function Motto() {
   }, []);
 
   return (
-    <div className="relative mb-5 overflow-hidden">
+    <div className="relative overflow-hidden">
       <canvas id="canvas" className="absolute top-0 left-0" style={rect} />
+
       <h1
         ref={ref}
         style={{ mixBlendMode: 'screen' }}
@@ -24,12 +25,12 @@ export default function Motto() {
           <span
             key={`${l}${i}`}
             style={{
-              transform: `translate3d(0,${rect.height > 0 ? '0' : '100%'},0)`,
-              transitionProperty: 'transform',
-              transitionTimingFunction: 'cubic-bezier(0.4, 0, 0, 1)',
               transitionDuration: '1s',
-              transitionDelay: `${i * 30 + 500}ms`,
+              transitionProperty: 'transform',
               paddingRight: l == ' ' ? 10 : 0,
+              transitionDelay: `${i * 30 + 500}ms`,
+              transitionTimingFunction: 'cubic-bezier(0.4, 0, 0, 1)',
+              transform: `translate3d(0,${rect.height > 0 ? '0' : '100%'},0)`,
             }}
           >
             {l}

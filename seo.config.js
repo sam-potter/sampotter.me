@@ -1,7 +1,7 @@
-const title = 'Sam Potter - Web Developer';
-const description = "Hey I'm Sam Potter, a 19 year old web developer from Melbourne, Australia.";
+const title = 'Sam Potter';
+const description = "Hey, I'm Sam Potter, a 20 year old engineer from Melbourne, Australia.";
 
-export default {
+const config = {
   title,
   description,
   canonical: 'https://sampotter.me',
@@ -18,3 +18,5 @@ export default {
     cardType: 'summary_large_image',
   },
 };
+
+export default config;
