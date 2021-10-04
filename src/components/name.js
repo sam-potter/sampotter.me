@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
-import useMeasure from '@/hooks/useMeasure';
 import Gradient from '@/utils/gradient';
+import useMeasure from '@/hooks/useMeasure';
 
 export default function Motto() {
   const ref = useRef();
@@ -10,6 +10,8 @@ export default function Motto() {
   useEffect(() => {
     const gradient = new Gradient();
     gradient.initGradient('canvas');
+
+    return () => void gradient.disconnect();
   }, []);
 
   return (

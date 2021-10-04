@@ -5,17 +5,25 @@ const config = {
   title,
   description,
   canonical: 'https://sampotter.me',
-  openGraph: {
-    type: 'website',
-    locale: 'en_IE',
-    url: 'https://sampotter.me',
-    title,
-    description,
-  },
   twitter: {
     handle: '@saampotter_',
     site: '@saampotter_',
     cardType: 'summary_large_image',
+  },
+  openGraph: {
+    title,
+    description,
+    type: 'website',
+    locale: 'en_IE',
+    url: 'https://sampotter.me',
+    images: [
+      {
+        url: 'https://sampotter.me/images/og.png',
+        width: 2048,
+        height: 1024,
+        alt: 'Sam Potter Homepage',
+      },
+    ],
   },
 };
 

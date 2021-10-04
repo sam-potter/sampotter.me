@@ -16,9 +16,10 @@ export default class NextSite extends Document {
           <meta name="language" content="en" />
           <meta name="author" content="Sam Potter" />
           <meta name="robots" content="follow, all" />
+          <link rel="shortcut icon" type="image/x-icon" href="/favicon.png" />
         </Head>
 
-        <body className="bg-white">
+        <body>
           <Main />
           <NextScript />
 

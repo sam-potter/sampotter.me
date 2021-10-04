@@ -19,6 +19,11 @@ export default function Index() {
 
         <div className="mt-8 -mx-4">
           <Article
+            date="Oct 4, 2021"
+            title="If someone asks what an NFT is, say this"
+            href="/tech/if-someone-asks-what-an-nft-is-say-this"
+          />
+          <Article
             date="Feb 15, 2021"
             title="How not to do layouts in Next.js"
             href="/tech/how-not-to-do-layouts-in-nextjs"
