@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import tinytime from 'tinytime';
 import Link from '@/components/link';
+import { useRouter } from 'next/router';
 import { MDXProvider } from '@mdx-js/react';
 import Container from '@/components/container';
 
@@ -8,11 +9,27 @@ const components = { a: Link };
 const postDateTemplate = tinytime('{MM} {DD}, {YYYY}');
 
 export default function Post({ meta, children }) {
+  const router = useRouter();
+
   return (
     <div className="my-32">
       <Container>
         <Head>
-          <title>{meta.title} – Sam Potter</title>
+          <title>{meta.title} - Sam Potter</title>
+          <meta name="description" content={meta.description}></meta>
+
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:title" content={meta.title} />
+          <meta name="twitter:site" content="@saampotter_" />
+          <meta name="twitter:creator" content="@saampotter_" />
+          <meta name="twitter:description" content={meta.description} />
+          <meta name="twitter:image" content="https://sampotter.me/images/og.png" />
+
+          <meta property="og:type" content="article" />
+          <meta property="og:description" content={meta.description} />
+          <meta property="og:title" content={`${meta.title} – Sam Potter`} />
+          <meta property="og:image" content="https://sampotter.me/images/og.png" />
+          <meta property="og:url" content={`https://sampotter.me${router.pathname}`} />
         </Head>
         <article>
           <header>
