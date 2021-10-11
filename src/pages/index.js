@@ -36,7 +36,7 @@ export default function Index() {
         <Container>
           <Name />
 
-          <p className="max-w-screen-sm mt-6 text-lg text-gray-700">
+          <p className="max-w-screen-sm mt-6 text-gray-700 text-md md:text-lg">
             Hey, I&apos;m Sam, a 20 year old engineer from Melbourne. Currently building&nbsp;
             <Link href="https://univo.app/">univo</Link>. You can find me on&nbsp;
             <Link href="https://github.com/saampotter">GitHub</Link>, or&nbsp;
@@ -76,8 +76,8 @@ export default function Index() {
 const Article = ({ title, href, date }) => (
   <Link href={href}>
     <div className="px-4 pt-3 pb-1 sm:rounded-md hover:bg-gray-100 group">
-      <p className="text-sm text-gray-400">{date}</p>
-      <p className="mt-1 mb-2 text-lg">{title}</p>
+      <p className="text-xs text-gray-400 md:text-sm">{date}</p>
+      <p className="mt-1 mb-2 text-md md:text-lg">{title}</p>
     </div>
   </Link>
 );

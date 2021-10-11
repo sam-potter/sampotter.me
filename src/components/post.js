@@ -46,7 +46,7 @@ export default function Post({ meta, children }) {
             </div>
           </header>
           <div className="divide-y divide-gray-200 xl:pb-0 xl:col-span-3 xl:row-span-2">
-            <div className="pt-10 pb-8 prose max-w-none">
+            <div className="pt-10 pb-8 prose-sm prose md:prose max-w-none">
               <MDXProvider components={components}>{children}</MDXProvider>
             </div>
           </div>
