@@ -48,6 +48,11 @@ export default function Index() {
           <div className="mt-8 -mx-4">
             <Article
               date="Oct 4, 2021"
+              title="A primer on reducing initial page load times"
+              href="/tech/a-primer-on-reducing-initial-page-load-times"
+            />
+            <Article
+              date="Oct 4, 2021"
               title="If someone asks what an NFT is, say this"
               href="/tech/if-someone-asks-what-an-nft-is-say-this"
             />

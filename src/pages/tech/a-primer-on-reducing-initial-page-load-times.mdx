@@ -1,7 +1,13 @@
+import Image from 'next/image';
+import UnivoDashboardGif from 'public/articles/a-primer-on-reducing-initial-page-load-times/univo-dashboard.gif';
+import FinalHttpRequest from 'public/articles/a-primer-on-reducing-initial-page-load-times/final-http-request.png';
+import SimpleHttpRequest from 'public/articles/a-primer-on-reducing-initial-page-load-times/simple-http-request.png';
+import HttpRequestOptions from 'public/articles/a-primer-on-reducing-initial-page-load-times/http-request-options.png';
+
 export const meta = {
   date: '2021-08-02T02:26:39.357Z',
   title: 'A primer on reducing initial page load times',
-  description: 'Learn how to speed up your website and keep users happy.',
+  image: '/articles/a-primer-on-reducing-initial-page-load-times/og.png',
 };
 
 ### TLDR
@@ -9,10 +15,10 @@ export const meta = {
 To achieve the fastest initial page load:
 
 - Use a static page served through a CDN.
-- Preload resources and preconnect to external origins.
 - Use cookies and injected scripts to speed up redirects.
+- Preload resources and preconnect to external origins.
 
-<div className="border-b"></div>
+<div className="border-b" />
 
 One thing I've always obsessed over when visiting any online dashboard, is how fast everything loads.
 Particularly if I'm visiting an authenticated route. You just have to sit there and watch spinners spin,
@@ -25,60 +31,170 @@ page load times and keep users happy.
 
 Currently, the dashboard loads like this:
 
+<div className="py-4">
+  <div className="overflow-hidden border rounded-md shadow-md md:shadow-xl">
+    <Image
+      priority
+      quality="100"
+      layout="responsive"
+      src={UnivoDashboardGif}
+      alt="The univo dashboard"
+    />
+  </div>
+</div>
+
 It's fast.
 
-If you don't believe that gif, try for yourself. [Sign up](https://univo.app/register), enter a random store name,
-close your tab, and then click this [https://univo.app](https://univo.app) to navigate to the homepage.
+If you don't believe that gif, try for yourself. [Sign up](https://univo.app/register), enter a random store name and close your tab.
+Now click that same link to navigate back to the sign up page (the "wrong" page since you're now authenticated) and
+watch just how quick everything loads.
 
 ## The request
 
 Before we do anything, we first need to understand what happens from the moment a user hits enter in their search bar until the moment
-the dashboard is fully loaded. In this way, we'll better understand what parts of the request we can optimize.
+the dashboard is fully loaded. In this way, we'll better understand what parts of the request we can optimize to reduce our initial
+page load times.
 
-A good way of understanding this process is by starting with a checklist of things that need to be done when the user requests our dashboard. We'll use
-these as the building blocks for the request.
+<div className="py-4">
+  <Image quality="100" layout="responsive" src={SimpleHttpRequest} alt="A Simple HTTP request" />
+</div>
 
-1. Serve the user the HTML, JS, and CSS for that page.
-2. Determine if they are authenticated or not.
-3. Load the user-specific data for that page.
+While this is your basic HTTP request cycle, hopefully you've noticed it's missing three crucial tasks that must be handled
+when a user requests a page.
 
-## Static pages are fast
+<div className="py-4">
+  <Image quality="100" layout="responsive" src={HttpRequestOptions} alt="HTTP request options" />
+</div>
 
-The first optimisation is about reducing a metric known as Time to First Byte (TTFB). Basically, it's how long it takes the
-browser to receive a response from a server for the requested resource. There are two simple methods of reducing your TTFB:
+The reason I left these three tasks out is because there are multiple ways of handling them, and the solutions that
+we pick will heavily influence our system design choices later on. Think of the solutions to these three things as a fork in the road,
+where choosing one solution will send you down a very different path to the rest.
 
-1. Reduce how long it takes your server to generate the requested resource.
-2. Reduce how far (geographically) the request has to travel.
+So let me walk you through some of the different options, and explain the paths that I
+opted for to make [univo](https://univo.app) fast.
 
-There are several ways we can reduce the time taken to generate the page on the server like having more CPU power, avoiding
-HTTP requests, speeding up database queries, etc. However, the fastest computation is always going to be no computation at all.
+## Building the HTML, CSS, and JS
 
-If the requested resource is a static asset, i.e. it doesn't change regardless of the request parameters, the server can just
-send that back to the browser every time without having to think.
+There are two options for how we can handle our build process. We can either:
 
-So in terms of performance, serving a static `.html` file is a no-brainer. Of course, prioritising performance like this
-is a trade off for arguably a worse developer/user experience in certain ways, but that debate is outside the scope of this article.
-Just remember, it's important to weigh up whether performance is something you want in your use case.
+1. Build the page dynamically with each request as it happens.
+2. Build the page once ahead-of-time.
 
-One thing that static assets also enable is the opportunity to minimise the distance the request has to travel.
-When you request [univo](https://univo.app), you're sending a request to a server in Sydney, Australia. So if you're
-currently sitting in a bedroom in the North Pole, that's a lot of kilometres for your request to travel through cables.
-It would be great if we could put a server geographically in the middle of that path, maybe somewhere in Singapore.
-Even better if we could put a server in your neighbours house.
+In terms of reducing initial page load times, the result of our decision here will mainly impact a metric known
+as [Time to First Byte (TTFB)](https://developer.chrome.com/docs/devtools/network/reference/#timing-explanation).
+Basically, it's how long it takes the browser to receive a response from the server for the requested resource.
 
-With static assets, we actually can because we know that the response is going to be the same (the asset itself)
-regardless of changes in the request parameters. This is known as
-a Content Delivery Network (CDN). Basically, a server just watches requests go by and saves a copy of the response, so that
-if any identical subsequent requests occur, it can step in and send that cached response straight back.
+There are only two ways of minimising your TTFB:
 
-When I deploy [univo](https://univo.app) to [Vercel](https://vercel.com), that's exactly
-what their [edge network](https://vercel.com/docs/edge-network/overview) is doing.
+#### Reduce how long it takes your server to generate the requested resource.
 
-## Preload and preconnect
+<div className="md:pl-12">
+  There are several ways we can reduce the time taken to generate the page on the server: increasing
+  CPU power, avoiding HTTP requests, speeding up database queries, etc. However, the fastest
+  computation is always going to be no computation at all. If the requested resource is a static
+  asset, the server can just send that back to the client every time without having to compute
+  anything.
+</div>
 
-Once the browser recieves the page, how can we speed up inevitable subsequent requests for different fonts, css files, and
-requests for data? By preloading and preconnecting to those resources. Right now on this blog, open up your browsers devtools, click on
-the "Elements" tab, and open up the `<head>` tag. The very next tag you should see should be something like:
+#### Reduce how far (geographically) the request has to travel.
+
+<div className="md:pl-12">
+Let's say you're currently sitting in a bedroom in the North Pole. If you sent a request to my laptop down here in Melbourne, Australia.
+That's a lot of kilometres for your request to travel through cables.
+It would be great if we could put a server geographically in the middle of that path to serve that request instead, maybe somewhere in Singapore.
+Even better if we could put that server in your neighbours house.
+
+With static assets we actually can, because we know that the response is always going to be the same with every request. This process is peformed
+by something called a Content Delivery Network (CDN). Basically, a server just watches requests go by and saves
+a copy of the response when told to, so that if any identical requests occur later on, it can step in and send that cached response straight back.
+
+</div>
+
+Hopefully you'll recognise that for reducing TTFB, the second option is the way to go. At univo, all pages
+are built in-advance so that they are just static assets that can be cached and served by Vercel's
+[CDN](https://vercel.com/docs/edge-network/overview).
+
+Why doesn't everyone do this then? As you'll see in the following two sections, a consequence of choosing to serve static
+assets instead of dynamically generated content, is that we lose the ability to run server-side code.
+
+## Redirecting users
+
+In the scenario when a user lands on the "wrong"
+page, the most performant thing we can do is redirect them as fast as possible. This is where an inability
+to run server-side code is a huge detriment.
+
+The first place we would be able to determine whether or not a redirect is necessary
+would be on the server. But as a consequence of our decision earlier, we can't.
+
+However with Vercel, we have a [trick up our sleeve](https://vercel.com/docs/cli#project-configuration/redirects).
+
+#### Server-side redirects with Vercel
+
+Vercel allows us to make redirects based on some conditional logic executed at the CDN level:
+
+```js
+// vercel.config.js
+
+export default {
+  redirects() {
+    return [
+      {
+        statusCode: 302,
+        source: '/(|signin|register)',
+        destination: '/dashboard/orders',
+        has: [
+          {
+            type: 'cookie',
+            key: 'redirect',
+            value: undefined, // Matches any value
+          },
+        ],
+      },
+    ];
+  },
+};
+```
+
+What this means is that when a user visits either the homepage or the sign up/in pages, they will be redirected to the main page of the dashboard if
+they have a `redirect` cookie set. All we have to do then is make sure the presence of that cookie is kept in-sync with
+the authentication status of a user and voilá: we'll have achieved server-side-quality redirects while maintaining the benefits
+of static assets.
+
+#### Client-side redirects and injected scripts
+
+Unfortuntely, that conditional logic has its limits and doesn't quite cover all the use-cases.
+One [limitation of this feature](https://github.com/vercel/next.js/discussions/25931) at the moment is
+the inability to detect when a cookie is **not** present. Meaning that if a user requests the dashboard page, we are
+unable to redirect them to the sign in/up pages based on the absence of a `redirect` cookie.
+
+Until that functionality is implemented, the way we trigger that redirect is through client-side code using an
+injected script right at the top the documents `<head>` tag.
+
+```jsx
+<script
+  dangerouslySetInnerHTML={{
+    __html: `
+      if (document.cookie.indexOf('redirect=') === -1) {
+        location.replace('/signin?next=' + encodeURIComponent(location.pathname));
+      }
+    `,
+  }}
+/>
+```
+
+In that way, this code will be parsed and executed by the browser well before it begins to download
+any of the other code that makes up the app.
+
+## Downloading user data
+
+Now that we can be confident users have landed on the correct page, the problem then shifts to how fast can we can show
+them user-specific data.
+
+#### Preload and preconnect
+
+An easy way of speeding up inevitable requests for fonts, CSS files, and
+external requests for data is by preloading and preconnecting to those resources. Right now on this blog, open up your browsers devtools, click on
+the "Elements" tab, and open up the `<head>` tag. You should see the very next tag is something like
 
 ```jsx
 <link rel="preload" href="/fonts/inter-var-latin.woff2" as="font" />
@@ -88,16 +204,17 @@ Since we know that we are about to load and use the [Inter](https://rsms.me/inte
 That's exactly what this tag is doing. In that way, by the time the browser parses the CSS rule that actually enforces the font,
 it might already be loaded and ready to go.
 
-If you scroll down some more in the `<head>`, you'll notice even more tags like that of a similar nature for loading css files, scripts, and more.
-If you know you'll be loading resources straight away like this, giving the browser warning is a great way of speeding that process up.
+If you scroll down some more in the `<head>`, you'll notice even more tags like that of a similar nature for loading CSS files, scripts, and more.
+If you know you'll be loading resources straight away like this, giving the browser warning allows it to begin loading as soon as possible
 
 Preconnecting is practically the same, but is used when those resources sit on an external domain. On the [univo](https://univo.app) dashboard
-we preconnect to our external API, so when it comes time to fetch data for the user that connection is open and raring to go.
+we preconnect to our external API, so when it comes time to fetch data for the user, we have already completed some of necessary parts of the HTTP
+request like the DNS lookup and SSL handshake.
 
-## Using a cookie to speed up redirects
+## Putting it together
 
-All of these optimisations are great, but in the scenario when a user lands on the wrong page, the most performant thing we can do
-is redirect them as fast as possible. A great example of this is an unauthenticated user lands on the dashboard and needs to be redirected
-to sign in.
+With static assets, CDN plus client-side redirects, alongside resource preloading and preconnecting, our final request ends up looking a bit like this
 
-As a consequence of our decision to make the page static, we can only perform this redirect on the client.
+<div className="py-4">
+  <Image quality="100" layout="responsive" src={FinalHttpRequest} alt="univo HTTP request cycle" />
+</div>
