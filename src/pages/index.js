@@ -47,7 +47,7 @@ export default function Index() {
 
           <div className="mt-8 -mx-4">
             <Article
-              date="Oct 4, 2021"
+              date="Oct 11, 2021"
               title="A primer on reducing initial page load times"
               href="/tech/a-primer-on-reducing-initial-page-load-times"
             />
