@@ -47,22 +47,22 @@ export default function Index() {
 
           <div className="mt-8 -mx-4">
             <Article
-              date="Oct 11, 2021"
+              date="11 Oct 2021"
               title="A primer on reducing initial page load times"
               href="/tech/a-primer-on-reducing-initial-page-load-times"
             />
             <Article
-              date="Oct 4, 2021"
+              date="4 Oct 2021"
               title="If someone asks what an NFT is, say this"
               href="/tech/if-someone-asks-what-an-nft-is-say-this"
             />
             <Article
-              date="Feb 15, 2021"
+              date="15 Feb 2021"
               title="How not to do layouts in Next.js"
               href="/tech/how-not-to-do-layouts-in-nextjs"
             />
             <Article
-              date="Jan 11, 2020"
+              date="11 Jan 2020"
               title="How Podac loads images 95x faster"
               href="https://medium.com/swlh/how-podac-loads-images-95x-faster-f1d6063590c2"
             />
