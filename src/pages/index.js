@@ -39,8 +39,8 @@ export default function Index() {
           <p className="max-w-screen-sm mt-6 text-gray-700 text-md md:text-lg">
             Hey, I&apos;m Sam, a 20 year old engineer from Melbourne. Currently building&nbsp;
             <Link href="https://univo.app/">univo</Link>. You can find me on&nbsp;
-            <Link href="https://github.com/saampotter">GitHub</Link>, or&nbsp;
-            <Link href="https://twitter.com/saampotter_">Twitter</Link>.
+            <Link href="https://github.com/sam-potter">GitHub</Link>, or&nbsp;
+            <Link href="https://twitter.com/sampotter___">Twitter</Link>.
           </p>
 
           <div className="mt-8 border-b" />
