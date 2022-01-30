@@ -15,8 +15,8 @@ export default function Index() {
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Sam Potter" />
-        <meta name="twitter:site" content="@saampotter_" />
-        <meta name="twitter:creator" content="@saampotter_" />
+        <meta name="twitter:site" content="@sampotter___" />
+        <meta name="twitter:creator" content="@sampotter___" />
         <meta name="twitter:image" content="https://sampotter.me/images/og.png" />
         <meta
           name="twitter:description"

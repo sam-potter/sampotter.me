@@ -16,8 +16,8 @@ export default function Post({ meta, children }) {
 
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:title" content={meta.title} />
-          <meta name="twitter:site" content="@saampotter_" />
-          <meta name="twitter:creator" content="@saampotter_" />
+          <meta name="twitter:site" content="@sampotter___" />
+          <meta name="twitter:creator" content="@sampotter___" />
           <meta name="twitter:description" content={meta.description} />
           <meta name="twitter:image" content={meta.image ?? 'https://sampotter.me/images/og.png'} />
 
