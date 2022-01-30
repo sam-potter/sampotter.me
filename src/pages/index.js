@@ -51,11 +51,11 @@ export default function Index() {
               title="A primer on reducing initial page load times"
               href="/tech/a-primer-on-reducing-initial-page-load-times"
             />
-            <Article
+            {/* <Article
               date="4 Oct 2021"
               title="If someone asks what an NFT is, say this"
               href="/tech/if-someone-asks-what-an-nft-is-say-this"
-            />
+            /> */}
             <Article
               date="15 Feb 2021"
               title="How not to do layouts in Next.js"
