@@ -46,11 +46,11 @@ export default function Index() {
           <div className="mt-8 border-b" />
 
           <div className="mt-8 -mx-4">
-            <Article
+            {/* <Article
               date="11 Oct 2021"
               title="A primer on reducing initial page load times"
               href="/tech/a-primer-on-reducing-initial-page-load-times"
-            />
+            /> */}
             {/* <Article
               date="4 Oct 2021"
               title="If someone asks what an NFT is, say this"
