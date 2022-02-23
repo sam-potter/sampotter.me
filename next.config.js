@@ -18,6 +18,10 @@ const tokenClassNames = {
 
 module.exports = {
   pageExtensions: ['js', 'jsx', 'mdx'],
+  images: {
+    loader: 'imgix',
+    path: 'https://sampotter.imgix.net/',
+  },
   rewrites() {
     return [
       {
