@@ -17,6 +17,7 @@ const tokenClassNames = {
 };
 
 module.exports = {
+  exportTrailingSlash: true,
   pageExtensions: ['js', 'jsx', 'mdx'],
   images: {
     loader: 'imgix',
