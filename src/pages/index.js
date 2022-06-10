@@ -37,8 +37,9 @@ export default function Index() {
           <Name />
 
           <p className="max-w-screen-sm mt-6 text-gray-700 text-md md:text-lg">
-            Hey, I&apos;m Sam, a 20 year old engineer from Melbourne. Currently building&nbsp;
-            <Link href="https://univo.app/">univo</Link>. You can find me on&nbsp;
+            Hey, I&apos;m Sam, a 21 year old engineer from Melbourne. Currently building good things
+            at&nbsp;
+            <Link href="https://olympusdao.finance/">Olympus</Link>. You can find me on&nbsp;
             <Link href="https://github.com/sam-potter">GitHub</Link>, or&nbsp;
             <Link href="https://twitter.com/sampotter___">Twitter</Link>.
           </p>
