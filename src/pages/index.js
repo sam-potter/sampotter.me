@@ -47,7 +47,7 @@ export default function Index() {
           <div className="mt-8 -mx-4">
             <Article
               date="23 Jan 2024"
-              title="React Server Components"
+              title="Why React Server Components?"
               href="/tech/react-server-components"
             />
 
