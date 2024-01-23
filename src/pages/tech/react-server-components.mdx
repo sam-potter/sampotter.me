@@ -22,7 +22,7 @@ They're great questions. But the answer is those APIs were murdered.
   <p className="text-sm">Load data in useEffect he says</p>
 </div>
 
-React changed things with version 16. Their conceptual model went all in the idea that components can be functions: they take in some arguments (called props) and from those arguments they compute some UI.
+React changed things with version 16. Their conceptual model went all in on the idea that components can be functions: they take in some arguments (called props) and from those arguments they compute some UI.
 
 `f(props) => ui`
 
@@ -69,7 +69,7 @@ Notice how the component above reads information directly from a database. If we
 
 Now, we don't do this in practice because - well - I just sent you my database password. So clearly, rendering _this_ component in _your_ browser doesn't make sense.
 
-What do we do then? Browsers have been rendering components since the down of time? Surely we're not going to stop doing that are we? Are we?
+What do we do then? Browsers have been rendering components since the dawn of time? Surely we're not going to stop doing that are we? Are we?
 
 Yes we are. For _this_ component at least.
 
@@ -82,6 +82,6 @@ Now when you visit my webpage, instead of sending the database credentials and t
 These are the two main ideas that are encompassed in the term RSC. We now have a way to:
 
 1. Define asynchronous components that can encompass all the necessary logic they need to compute their UI in a single render.
-2. Render components in a separate environment and serialize their output so the result can be shown in our environment.
+2. Render components in one environment and serialize their output to share the result across network boundaries to be shown in a different environment.
 
-The "server” in React Server Component really just describes a component that probably _wasn't_ rendered in your browser. It could be in theory - but for one reason or another it made more sense to render that component on another computer. It might be freshly rendered by that computer every time a new request is made for a website. It might have been rendered 6 months earlier and then cached. It might have been rendered on a Cloudflare Worker in Melbourne or on a server in Seattle. But it probably _wasn't_ rendered in your browser, your browser only received the output and showed it on your screen.
+The "server” in React Server Component really just describes a component that probably _wasn't_ rendered in your browser. It could be in theory - but for one reason or another it made more sense to render that component on another computer. It might be freshly rendered by that computer every time a new request is made for a website. It might have been rendered 6 months earlier and then cached. It might have been rendered on a Cloudflare Worker in Melbourne or on a server in Seattle but it probably _wasn't_ rendered in your browser. Your browser only received the output and showed it on your screen.
