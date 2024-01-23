@@ -1,0 +1,87 @@
+export const meta = {
+  date: '23 Jan 2024',
+  title: 'React Server Components',
+};
+
+I want you to grab my hand whilst I explain React Server Components (RSC) - because we're going to go an adventure of understanding _why_ they were created.
+
+Because you can show me a new thing, you can tell me how to use the new thing, but until I understand why the new thing exists I will forget. And forget.
+
+Let's start this adventure back in 2019:
+
+The team at Meta just dropped a new version of React 16. You're absolutely pumped as you read through their docs
+
+"Hooks? What are hooks? What was wrong with class components? So components are functions now, and hooks are functions inside other functions? What happened to lifecycle methods? Where the hell do I load data? What happened to all the things I need to build my app?”
+
+They're great questions. But the answer is those APIs were murdered.
+
+"Ohhh I load data in useEffect”
+
+<div className="flex flex-col space-y-4 items-center">
+  <img alt="" src="/images/yep.png" className="m-0" />
+  <p className="text-sm">Load data in useEffect he says</p>
+</div>
+
+React changed things with version 16. Their conceptual model went all in the idea that components can be functions: they take in some arguments (called props) and from those arguments they compute some UI.
+
+`f(props) => ui`
+
+React wanted us to write pure components. They wanted our components to never touch a value outside of their function scope - no variables reads and _definitely_ no writes.
+
+But we never did. So many times we wrote code that created side effects during render. Our components ended up reading and writing information from everywhere: we were loading in data from our APIs, user preferences from localStorage and JWTs from sessionStorage. We were loading all sorts of information from different sources and to make matters worse almost all of it was asynchronous, none of that info was ready right away we had to download it! But for the apps we were trying to build - we had to.
+
+When React starting working on concurrent rendering they saw this. They saw that nobody followed the rules. They saw how this new rendering model worked great in theory, but broke almost everyones existing codebases in some way because they forgot we're all baboons.
+
+Our components often needed multiple renders before they were in the final output we wanted to show users. Because components often needed more than props to compute their output.
+
+So wouldn't it be nice if we could do this:
+
+```jsx
+const db = new Postgres({
+  host: '..',
+  port: '..',
+  database: '..',
+  password: '..',
+});
+
+async function Component() {
+  const movies = await db.select().from('movies');
+
+  return (
+    <div>
+      {movies.map(movie => {
+        return <div key={movie.id}>{movie.name}</div>;
+      })}
+    </div>
+  );
+}
+```
+
+Fast forward to today. This is now possible with RSC. And this code is a _massive_ change.
+
+Suddenly our components could become perfect boxes of encapsulation. In a single function call components can take in their props, load all the asynchronous information they needed, and then return some output UI.
+
+`async f(props) => ui`
+
+This on its own is a brilliant idea, but the React team didn't stop there. They had more innovation up their sleeve.
+
+Notice how the component above reads information directly from a database. If we wanted to render this component in your browser, we could - when you request the web page we'd just need to send the database credentials down too. You'd connect to the db, call this component, await the query, and render the computed UI.
+
+Now, we don't do this in practice because - well - I just sent you my database password. So clearly, rendering _this_ component in _your_ browser doesn't make sense.
+
+What do we do then? Browsers have been rendering components since the down of time? Surely we're not going to stop doing that are we? Are we?
+
+Yes we are. For _this_ component at least.
+
+But then, how would I send you the UI that was returned from rendering? Components have never crossed boundaries like this before, especially not a big wide network boundary.
+
+This leads us to genius idea number two: React built a serialisation protocol - a fancy term that describes how the computed output of a component can be transformed into a specific format that can be sent across network boundaries.
+
+Now when you visit my webpage, instead of sending the database credentials and the component to render, we simply send the computed output UI. Your browser receives it, deserialises it from its fancy format, and shows it on the page - movie results and all.
+
+These are the two main ideas that are encompassed in the term RSC. We now have a way to:
+
+1. Define asynchronous components that can encompass all the necessary logic they need to compute their UI in a single render.
+2. Render components in a separate environment and serialize their output so the result can be shown in our environment.
+
+The "server” in React Server Component really just describes a component that probably _wasn't_ rendered in your browser. It could be in theory - but for one reason or another it made more sense to render that component on another computer. It might be freshly rendered by that computer every time a new request is made for a website. It might have been rendered 6 months earlier and then cached. It might have been rendered on a Cloudflare Worker in Melbourne or on a server in Seattle. But it probably _wasn't_ rendered in your browser, your browser only received the output and showed it on your screen.

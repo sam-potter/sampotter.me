@@ -45,21 +45,18 @@ export default function Index() {
           <div className="mt-8 border-b" />
 
           <div className="mt-8 -mx-4">
-            {/* <Article
-              date="11 Oct 2021"
-              title="A primer on reducing initial page load times"
-              href="/tech/a-primer-on-reducing-initial-page-load-times"
-            /> */}
-            {/* <Article
-              date="4 Oct 2021"
-              title="If someone asks what an NFT is, say this"
-              href="/tech/if-someone-asks-what-an-nft-is-say-this"
-            /> */}
+            <Article
+              date="23 Jan 2024"
+              title="React Server Components"
+              href="/tech/react-server-components"
+            />
+
             <Article
               date="15 Feb 2021"
               title="How not to do layouts in Next.js"
               href="/tech/how-not-to-do-layouts-in-nextjs"
             />
+
             <Article
               date="11 Jan 2020"
               title="How Podac loads images 95x faster"
