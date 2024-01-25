@@ -5,7 +5,7 @@ export const meta = {
 
 ```jsx
 async function Component() {
-  const db = new Postgres({ host: '..', port: '..', password: '..' });
+  const db = new Postgres({ password: '..', host: '..', port: '..' });
   const movies = await db.select().from('movies');
 
   return (
@@ -20,15 +20,15 @@ async function Component() {
 
 This is a React Server Component.
 
-Notice how the component above reads information directly from a database. If we wanted to render this component in your browser, we could - when you request the web page we'd just need to send the database credentials down too. You'd connect to the db, call this component, await the query, and render the computed UI.
+Notice how the component above reads information directly from a database. If we wanted to render this component in your browser, we could - when you request the web page we'd just need to send the database credentials down too. You'd connect to the db, render this component, await the query, and show the returned UI.
 
 Now, we don't do this in practice because, well I just sent you my database password. So clearly, rendering _this_ component in _your_ browser doesn't make sense.
 
-What can we do then? Browsers have been rendering React components since the dawn of time? Surely we're not going to stop doing that are we? Are we?
+What can we do then? Browsers have been rendering React components since the dawn of time, surely we're not going to stop doing that are we? Are we?
 
 Yes we are. For _this_ component at least.
 
-We're going to render _this_ component on my database server. That's where my credentials are, that's where my database is, and that's where it would be convenient _and_ fast to render it.
+We're going to render _this_ component on _my_ database server. That's where my credentials are, that's where my database is, and that's where it would be convenient _and_ fast to render it.
 
 But then, how would I send you the UI that was returned from rendering? Components have never crossed boundaries like this before, especially not a big wide network boundary.
 
@@ -40,4 +40,4 @@ In my opinion, this is RSC: a new technology that allows a React component to be
 
 The "server” in React Server Component really just describes a component that probably _wasn't_ rendered in your browser. It could be in theory - but for one reason or another it made more sense to render that component on another computer.
 
-It might be freshly rendered by that computer on each HTTP request, it might have been rendered 6 months earlier and then cached, it might have been rendered on a Cloudflare Worker in Melbourne or on a server in Seattle but it probably _wasn't_ rendered in your browser. Your browser only received the output and showed it on your screen.
+It might be freshly rendered by that computer on each HTTP request, it might have been rendered 6 months earlier and then cached, it might have been rendered on a Cloudflare Worker in Melbourne or on a server in Seattle but it probably wasn't rendered in _your_ browser. Your browser only received the output and showed it on your screen.
