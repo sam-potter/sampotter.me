@@ -5,9 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next export",
     "start": "next start",
-    "lint": "next lint"
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.5.0",
