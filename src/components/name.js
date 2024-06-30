@@ -10,8 +10,7 @@ export default function Motto() {
   useEffect(() => {
     const gradient = new Gradient();
     gradient.initGradient('canvas');
-
-    return () => void gradient.disconnect();
+    return () => gradient.disconnect();
   }, []);
 
   return (
