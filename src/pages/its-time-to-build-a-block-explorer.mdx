@@ -1,0 +1,16 @@
+export const meta = {
+  date: '14 July 2024',
+  title: "It's time to build a block explorer",
+};
+
+When people ask what's the most widely used blockchain application, you might answer with [Uniswap](https://uniswap.org/), or [Opensea](https://opensea.io/), or [Binance](https://www.binance.com/en). But the truth is it's none of those - it's [Etherscan](https://etherscan.io/). Every time a user performs an action on any of those other blockchain apps, they check the chain with a block explorer like Etherscan.
+
+But I have to say, I have _never_ enjoyed using Etherscan to understand my day-to-day blockchain interactions. It's great if you were interested in whether or not a block filled the target gas quota, or if you wondered whether or not your transaction conformed to the new EIP-1599 format. But if you just wanted to check if your NFT was listed correctly, or if a whale was dumping their ERC20 position, or if a DAO vote went through, or any other of the [7 core blockchain actions](https://x.com/Jai_Bhavnani/status/1734086306928722230) it's not great. So why is etherscan a poor experience for everyday users just wanting to understand blockchain events?
+
+Because blockchain users aren't Etherscan's customer. Blockchains are. Ethereum and other chains pay Etherscan a couple million bucks a year for the app to show information about the functioning of their chain. They aren't building features for you and me because we aren't their customer.
+
+So for the last 3 years I have dreamt of a world where things were different: what if we could view all the blockchain events that regular people were interested in? What if the user experience was comparable to apps like [Linear](https://linear.app) and [Family](https://family.co/)? What if it were decentralised? What if it were open source? How could an app like that be monetised? How would we decentralise the work of indexing the chain? How would clients achieve consensus on the head of the data store? How would different versions of the software continue to operate?
+
+I think one of the main reasons I've been fascinated by the idea of building this out is because those are _really_ hard questions to answer.
+
+But I've got a rough idea of where to start.
