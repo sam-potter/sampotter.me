@@ -10,7 +10,7 @@ export default function Index() {
         <title>Sam Potter</title>
         <meta
           name="description"
-          content="Hey, I'm Sam Potter, a 20 year old engineer from Melbourne. Currently building univo. You can find me on GitHub or Twitter."
+          content="Hey, I'm Sam Potter, a 23 year old engineer from Melbourne."
         />
 
         <meta name="twitter:card" content="summary" />
@@ -20,7 +20,7 @@ export default function Index() {
         <meta name="twitter:image" content="https://sampotter.me/images/og.png" />
         <meta
           name="twitter:description"
-          content="Hey, I'm Sam Potter, a 20 year old engineer from Melbourne. Currently building univo. You can find me on GitHub or Twitter."
+          content="Hey, I'm Sam Potter, a 23 year old engineer from Melbourne."
         />
 
         <meta property="og:title" content="Sam Potter" />
@@ -28,7 +28,7 @@ export default function Index() {
         <meta property="og:image" content="https://sampotter.me/images/og.png" />
         <meta
           property="og:description"
-          content="Hey, I'm Sam Potter, a 20 year old engineer from Melbourne. Currently building univo. You can find me on GitHub or Twitter."
+          content="Hey, I'm Sam Potter, a 23 year old engineer from Melbourne."
         />
       </Head>
 
