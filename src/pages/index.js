@@ -46,6 +46,12 @@ export default function Index() {
 
           <div className="mt-8 -mx-4">
             <Article
+              date="23 Aug 2024" //
+              title="On living alone"
+              href="/on-living-alone"
+            />
+
+            <Article
               date="30 Jun 2024"
               title="I'm ready to write again"
               href="/im-ready-to-write-again"
