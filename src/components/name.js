@@ -4,7 +4,7 @@ import Gradient from '@/utils/gradient';
 import useMeasure from '@/hooks/useMeasure';
 
 export default function Motto() {
-  const ref = useRef();
+  const ref = useRef(null);
   const rect = useMeasure(ref);
 
   useEffect(() => {
