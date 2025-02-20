@@ -1,0 +1,20 @@
+export const meta = {
+  date: '23 Aug 2024',
+  title: 'Interface design',
+};
+
+Have you ever wondered how your 10 year-old car connects to your brand new iPhone? Take music for example: you can pause, play, next, previous, turn the volume up and down, and you can do it on your phone _or_ using the actual dials and knobs on the dash. It doesn’t really matter what car you have either, or even what brand of phone, it all _just works_ exactly as you’d expect.
+
+But how? How can a car designed 10 years ago support music controls on an iPhone 15 that isn’t even invented yet? Does Apple learn the internals of every music system of every car ever developed? How can two devices talk to each other even though they will be born over a decade apart? How do they achieve _perfect_ interoperability?
+
+The answer is they do it with an interface.
+
+In this case, our interface is a made up of the actions we can perform on a music player: `play`, `pause`, `next`, `previous`, `volume_up`, `volume_down`. And with these in place, Apple no longer has to know and understand the internals of every music system in every car, and instead can just send a `play` command to the car. How that command actually results in music playing out of the car speakers is up to the car manufacturer to decide.
+
+The interface becomes a mutally agreed contract - the list of the rules of the game - and the only language that two separate systems _both_ need to speak.
+
+It has taken me a long time to understand interfaces. At the start of my career, I never had to think about them. I implemented `pause` and `play` so that sound actually came out of the car speakers. Sometimes, I'd even pack up my toolbox and move to the other side of the wall to make sure everything worked both ways, but at no point did I ever get to touch the wall itself.
+
+It wasn't until I first read [A Philosophy of Software Design by John Ousterhout](https://www.amazon.com.au/Philosophy-Software-Design-John-Ousterhout/dp/1732102201) that I started to realise the wall was more a _design problem_ than a technical one. And it was at that point where more and more of my work was less concerned about the logic of a systems internals but the design of its boundary.
+
+I think I'll happily spend the next 20 years of my life working on interfaces.

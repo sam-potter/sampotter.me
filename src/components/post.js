@@ -27,18 +27,27 @@ export default function Post({ meta, children }) {
           <meta property="og:image" content={meta.image ?? 'https://sampotter.me/images/og.png'} />
           <meta property="og:url" content={`https://sampotter.me${router.pathname}`} />
         </Head>
+
         <article>
           <header>
-            <div className="pb-4 border-b border-gray-200">
+            <div className="flex flex-col gap-2 pb-6 border-b border-gray-200">
               <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
                 {meta.title}
               </h1>
+
+              {typeof meta.subtitle === 'string' && (
+                <h2 className="text-2xl font-medium tracking-tight text-gray-500">
+                  {meta.subtitle}
+                </h2>
+              )}
             </div>
+
             <div className="flex items-center justify-between pt-2 text-sm">
               <time className="text-gray-700">{meta.date}</time>
               <Link href="/">See all posts</Link>
             </div>
           </header>
+
           <div className="divide-y divide-gray-200 xl:pb-0 xl:col-span-3 xl:row-span-2">
             <div className="pt-10 pb-8 prose-sm prose md:prose max-w-none">
               <MDXProvider components={{ a: Link }}>{children}</MDXProvider>

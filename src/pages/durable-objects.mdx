@@ -1,0 +1,24 @@
+export const meta = {
+  date: '19 Feb 2025',
+  title: 'What I hope Durable Objects can become',
+};
+
+I want Durable Objects to become a globally replicated storage system with the ability to relocate its write-leader geographically closer to users.
+
+<div className="border-t w-32" />
+
+That's a mouthful, so let me digest. 
+[Durable Objects](https://developers.cloudflare.com/durable-objects/) are an amazing compute 
+primitive offered by [Cloudflare](https://cloudflare.com) based on the 
+[Actor programming model](https://en.wikipedia.org/wiki/Actor_model). It's easy to think of them as
+[mini virtual machines, all addressable, with zero startup time](https://x.com/threepointone/status/1888543177910403333). 
+In September of 2024 when Cloudflare added [SQLite support](https://blog.cloudflare.com/sqlite-in-durable-objects/)
+they became even more powerful, but there is one last feature that I wish they had: __global replication__.
+
+At the time of writing, when a request is made to a Durable Object for the very first time it is instantiated in a
+data center _close_ to where the initial request was made (usually within 50ms). 
+
+We make use of them heavily at [univo](https://univo.app), especially with our
+[dashboard application](https://univo.app/login).
+
+
