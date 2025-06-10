@@ -46,12 +46,6 @@ export default function Index() {
 
           <div className="mt-8 -mx-4">
             <Article
-              date="23 Aug 2024" //
-              title="Interface design"
-              href="/interface-design"
-            />
-
-            <Article
               date="23 Jan 2024"
               title="React Server Components"
               href="/tech/react-server-components"

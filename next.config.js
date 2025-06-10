@@ -18,22 +18,6 @@ const tokenClassNames = {
 
 module.exports = {
   pageExtensions: ['js', 'jsx', 'mdx'],
-  images: {
-    loader: 'imgix',
-    path: 'https://sampotter.imgix.net/',
-  },
-  rewrites() {
-    return [
-      {
-        source: '/bee.js',
-        destination: 'https://cdn.splitbee.io/sb.js',
-      },
-      {
-        source: '/_hive/:slug',
-        destination: 'https://hive.splitbee.io/:slug',
-      },
-    ];
-  },
   headers() {
     return [
       {
@@ -71,15 +55,6 @@ module.exports = {
         }),
       ],
     });
-
-    // Replace React with Preact only in client production build
-    if (!options.dev && !options.isServer) {
-      Object.assign(config.resolve.alias, {
-        react: 'preact/compat',
-        'react-dom': 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-      });
-    }
 
     return config;
   },

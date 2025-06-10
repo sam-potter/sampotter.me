@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-const isDev = process.env.NODE_ENV === 'development';
 
 export default class NextSite extends Document {
   render() {
@@ -22,8 +21,6 @@ export default class NextSite extends Document {
         <body>
           <Main />
           <NextScript />
-
-          {!isDev && <script async data-api="/_hive" src="/bee.js"></script>}
         </body>
       </Html>
     );
